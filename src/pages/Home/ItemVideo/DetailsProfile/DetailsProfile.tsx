@@ -11,17 +11,19 @@ const CurrentUser = localStorage.getItem("user");
 interface Props {
     data: any,
     datadetails: any,
+    setFollow: any,
 }
 
-const DetailsProfile: React.FC<Props> = ({ data, datadetails }) => {
-    const [follow, setFollow] = useState<any>(datadetails?.following);
+const DetailsProfile: React.FC<Props> = ({ data, datadetails, setFollow }) => {
+    const [follow, setFollow1] = useState<any>(datadetails?.following);
 
-    useEffect(() => { setFollow(datadetails?.following) }, [datadetails?.following])
+    useEffect(() => { setFollow1(datadetails?.following) }, [datadetails?.following])
 
 
     function handleFollow(buff: any) {
         if (CurrentUser) {
-            setFollow(!follow);
+            setFollow(!follow)
+            setFollow1(!follow)
             Following(data, buff)
         } else {
             handleShowLogin();

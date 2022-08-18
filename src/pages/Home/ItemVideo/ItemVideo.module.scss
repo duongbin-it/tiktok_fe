@@ -103,6 +103,13 @@
 
 .div-btn_item {
   margin-right: 114px;
+
+  .font-popers {
+    font-family: "Source Serif Pro", serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
+  }
 }
 
 .div-btn_item-div {
@@ -581,11 +588,4 @@ canvas {
     height: 25px;
     background: transparent;
   }
-}
-
-.font-popers {
-  font-family: "Source Serif Pro", serif;
-  font-size: 16px;
-  font-weight: 600;
-  color: brown;
 }

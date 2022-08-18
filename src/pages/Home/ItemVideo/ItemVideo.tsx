@@ -214,20 +214,24 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
         placement='bottom'
         hideOnClick={false}
         onShow={() => {
-          ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/users", "POST", { username: data.username }).then((req) => setDatadetails(req))
+          ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/users", "POST", { username: data.username })
+            .then((req) => setDatadetails(req))
+            .catch((res) => console.log(res))
         }}
         onHide={() => {
           setDatadetails('')
         }}
         render={(attrs) => datadetails && (
           <div className={cx('search-result')} tabIndex={-1} {...attrs}>
-            {isVisibile_avatar ? <DetailsProfile data={data} datadetails={datadetails?.data[0]} /> : null}
+            {
+              isVisibile_avatar ? <DetailsProfile data={data} datadetails={datadetails?.data[0]} setFollow={setFollow} /> : null
+            }
           </div>
         )}>
         <a className={cx("link-btn")} href={data.link_profile}>
           <div className={cx("link-btn_div")}>
             <span className={cx("link-btn_span")}>
-              <img style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover", }} lazy1-src={data.avatar} alt={'avatar'} ref={ref_avatar} />
+              <img style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover" }} lazy1-src={data.avatar} alt={'avatar'} ref={ref_avatar} />
             </span>
           </div>
         </a>

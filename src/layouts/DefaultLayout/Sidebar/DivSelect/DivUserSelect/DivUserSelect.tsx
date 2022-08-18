@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { LiveStreamIcon } from '../../../../../assets/icons/icons';
 import styles from './DivUserSelect.module.scss';
@@ -22,21 +22,21 @@ const unhandleIconLive = (image: any) => (
     </span>
 )
 
-function DivUserSelect({ name, username, link, icon, image, live }: any) {
+function DivUserSelect({ name, username, icon, image, live }: any) {
     return (
         <>
             <div className={cx('wrapper')}>
-                <Link to={link}>
+                <Link to={`/@${username}`}>
                     <div className={cx('img-block')}>
                         {live ? handleIconLive(image) : unhandleIconLive(image)}
                     </div>
                 </Link>
-                <Link className={cx('link-btn')} to={link}>
+                <Link className={cx('link-btn')} to={`/@${username}`}>
                     <div className={cx('img-block-label')}>
-                        <h4 className={cx('img-block-title')}>{name}</h4>
+                        <h4 className={cx('img-block-title')}>{username}</h4>
                         <div style={{ marginLeft: 4 }}>{icon}</div>
                     </div>
-                    <p className={cx('img-block-label-name')}>{username}</p>
+                    <p className={cx('img-block-label-name')}>{name}</p>
                 </Link>
             </div>
         </>
@@ -44,29 +44,3 @@ function DivUserSelect({ name, username, link, icon, image, live }: any) {
 }
 
 export default DivUserSelect;
-
-
-
-
-
-
-{/* <Tippy
-interactive
-zIndex={1}
-appendTo={document.body}
-delay={[400, 700]}
-offset={[130, 6]}
-placement='bottom'
-hideOnClick={false}
-onShow={() => {
-    ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/users", "POST", { username: data.username }).then((req) => setDatadetails(req))
-}}
-render={(attrs) => (
-    <div className={cx('search-result')} tabIndex={-1} {...attrs}>
-        <DetailsProfile data={data} datadetails={datadetails?.data[0]} />
-    </div>
-)}>
-<span className={cx('img-block-btn')} >
-    <img className={cx('img-avatar')} src={image} alt='avatar'></img>
-</span>
-</Tippy> */}

@@ -34,17 +34,17 @@ const Sidebar: React.FC = () => {
   const [api, setApi] = useState<any>();
   const ref = useRef<HTMLDivElement>(null);
   const currentUser = localStorage.getItem("user");
+  const [data, setData] = useState<any>(null)
 
   useEffect(() => {
     localStorage.setItem("ref", ref.current?.className || '');
   }, [ref]);
 
-  async function Discover() {
-    return await ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/discover", "GET").then((res) => setApi(res));
-  }
-
   useEffect(() => {
-    Discover();
+    ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/discover", "GET").then((res) => setApi(res));
+    ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/users", "POST", {})
+      .then((req) => setData(req))
+      .catch((res) => console.log(res))
   }, []);
 
   return (
@@ -66,7 +66,7 @@ const Sidebar: React.FC = () => {
           }
         })()}
 
-        <DivSelect title="Suggested accounts" atb="See all" />
+        <DivSelect title="Suggested accounts" atb="See all" data={data} />
         <div className={cx("wrapper-1")}>
           <p className={cx("title")}>Discover</p>
           <div className={cx("container-1")}>

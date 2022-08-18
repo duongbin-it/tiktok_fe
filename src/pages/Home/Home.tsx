@@ -8,8 +8,8 @@ const Home: React.FC = () => {
   const [api, setApi] = useState<any>();
 
   useEffect(() => {
-    (async function Newfeed() {
-      await ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/newfeed", "GET").then((res) => {
+    (function Newfeed() {
+      ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/newfeed", "GET").then((res) => {
         localStorage.setItem("CountVideo", res?.data.length || '');
         setApi(res);
       });
