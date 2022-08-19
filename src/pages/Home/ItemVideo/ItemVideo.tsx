@@ -173,14 +173,14 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
       let volume = Number((e.target as HTMLInputElement).value) / 100;
       ref_video.current!.volume = volume;
       if (volume < 0.01) {
-        dispath(setButtonSound('set_sound'));
+        dispath(setButtonSound(true));
       } else {
-        dispath(setButtonSound('set_sound'));
+        dispath(setButtonSound(false));
       }
     };
 
     const Click = (refSound.current as HTMLDivElement).onclick = function () {
-      dispath(setButtonSound('set_sound'));
+      dispath(setButtonSound(!sound));
       if (sound) {
         document.querySelectorAll(`[class='${ref_video.current?.className}']`).forEach(item => {
           (item as HTMLVideoElement).muted = false;
@@ -225,7 +225,7 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
         render={(attrs) => datadetails && (
           <div className={cx('search-result')} tabIndex={-1} {...attrs}>
             {
-              isVisibile_avatar ? <DetailsProfile datadetails={datadetails?.data} setFollow={setFollow} /> : null
+              isVisibile_avatar ? <DetailsProfile datadetails={datadetails?.data[0] ? datadetails.data[0] : datadetails.data} setFollow={setFollow} /> : null
             }
           </div>
         )}>

@@ -15,13 +15,14 @@ interface Props {
 
 const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow }) => {
     const [follow, setFollow1] = useState<any>(datadetails?.following);
-
-    useEffect(() => { setFollow1(datadetails?.following) }, [datadetails?.following])
+    useEffect(() => {
+        setFollow1(datadetails?.following)
+    }, [datadetails?.following])
 
     function handleFollow(buff: any) {
         if (CurrentUser) {
             setFollow(!follow)
-            setFollow1(!follow)
+            // setFollow1(!follow)
             Following(datadetails, buff)
         } else {
             handleShowLogin();
@@ -31,7 +32,7 @@ const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow }) => {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <a href={datadetails.link}>
+                <a href={`/@${datadetails.username}`}>
                     <span className={cx("image_avatar")}>
                         <img src={datadetails.avatar} alt="avatar" />
                     </span>
@@ -53,7 +54,7 @@ const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow }) => {
                 })()}
             </div>
             <h3 className={cx('title')}>
-                <a href={datadetails.link}>{datadetails?.username ? datadetails.username : "________"}</a>
+                <a href={`/@${datadetails.username}`}>{datadetails?.username ? datadetails.username : "________"}</a>
                 {datadetails?.blue_check ? <CheckIcon marginLeft={4} marginRight={2} /> : null}
             </h3>
             <br />
