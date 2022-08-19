@@ -1,8 +1,8 @@
 import classNames from "classnames/bind";
 import React, { Fragment } from "react";
 import { CheckIcon } from "../../../../assets/icons/icons";
-import styles from "./DivSelect.module.scss";
-import DivUsers from "./DivUserSelect/DivUsers";
+import styles from "./SuggestAcounts.module.scss";
+import DivUsers from "./DivUsers/DivUsers";
 
 const cx = classNames.bind(styles);
 

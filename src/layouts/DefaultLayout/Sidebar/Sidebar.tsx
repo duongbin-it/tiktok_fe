@@ -5,7 +5,7 @@ import { DISCOVER, SUGGEST_ACOUNTS } from "../../../api/api";
 import { MusicIcon, SharpIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
 import { ConnectApi, handleShowLogin } from "../../../components/GlobalFunc/GlobalFunc";
-import DivSelect from "./DivSelect/DivSelect";
+import SuggestAcounts from "./SuggestAcounts/SuggestAcounts";
 import DivUser from "./DivUser/DivUser";
 import styles from "./Sidebar.module.scss";
 
@@ -61,11 +61,11 @@ const Sidebar: React.FC = () => {
               </div>
             );
           } else {
-            return <DivSelect title="Following accounts" atb="See more" data={data} />;
+            return <SuggestAcounts title="Following accounts" atb="See more" data={data} />;
           }
         })()}
 
-        <DivSelect title="Suggested accounts" atb="See all" data={data} />
+        <SuggestAcounts title="Suggested accounts" atb="See all" data={data} />
         <div className={cx("wrapper-1")}>
           <p className={cx("title")}>Discover</p>
           <div className={cx("container-1")}>
