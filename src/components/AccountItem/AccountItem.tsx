@@ -19,7 +19,7 @@ const AccountItem: React.FC<Props> = ({ data, onClick }) => {
                     <span>{data['full_name']}</span>
                     {data['tick']}
                 </h4>
-                <span className={cx('username')}>{data.nickname}</span>
+                <span className={cx('username')}>{data['nickname']}</span>
             </div>
         </Link>
     )

@@ -6,7 +6,7 @@ import { MusicIcon, SharpIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
 import { ConnectApi, handleShowLogin } from "../../../components/GlobalFunc/GlobalFunc";
 import SuggestAcounts from "./SuggestAcounts/SuggestAcounts";
-import DivUser from "./DivUser/DivUser";
+import DivUser from "./DivLink/DivUser";
 import styles from "./Sidebar.module.scss";
 
 const cx = classNames.bind(styles);
@@ -54,7 +54,8 @@ const Sidebar: React.FC = () => {
           if (!currentUser) {
             return (
               <div className={cx("containers")}>
-                <p style={{ fontSize: 16 + "px", lineHeight: 22 + "px", color: "rgba(22, 24, 35, 0.5" }}>Log in to follow creators, like videos, and view comments.</p>
+                <p style={{ fontSize: 16 + "px", lineHeight: 22 + "px", color: "rgba(22, 24, 35, 0.5" }}>
+                  Log in to follow creators, like videos, and view comments.</p>
                 <Button login onClick={handleShowLogin}>
                   Log in
                 </Button>

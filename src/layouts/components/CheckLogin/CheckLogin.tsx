@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { Following, handleShowLogin } from '../../../components/GlobalFunc/GlobalFunc';
 
 
@@ -19,7 +19,7 @@ const handleFollow: React.FC<Props> = ({ CurrentUser, buff, data }) => {
     }
 
     return (
-        <Fragment></Fragment>
+        <></>
     )
 }
 

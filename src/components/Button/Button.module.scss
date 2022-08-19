@@ -84,50 +84,6 @@
   }
 }
 
-.enablesound {
-  border-radius: 4px;
-  border: none;
-  color: rgba(255, 255, 255, 1);
-  background-color: rgba(254, 44, 85, 1);
-  min-width: 164px;
-  min-height: 36px;
-  font-size: 18px;
-  line-height: 25px;
-  font-weight: 600;
-  font-family: SofiaPro, PingFangSC, sans-serif;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  position: relative;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  padding: 6px 8px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  cursor: pointer;
-  box-sizing: border-box;
-  font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
-  margin-top: 16px;
-  min-width: 100px;
-
-  &:hover {
-    border-color: var(--primary);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
-  }
-}
-
 .outline {
   border: 1px solid var(--primary);
   background-color: white;

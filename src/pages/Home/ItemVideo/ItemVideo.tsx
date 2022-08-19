@@ -1,17 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Tippy from "@tippyjs/react/headless";
 import classNames from "classnames/bind";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { USERS } from "../../../api/api";
 import { CheckIcon, CommentIcon, HeartactiveIcon, HeartIcon, MusicIcon, PauseIcon, PlayIcon, ReportIcon, ShareIcon, SoundIcon, UnSoundIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
-import { ConnectApi, Following, handleShowLogin, Hearted } from "../../../components/GlobalFunc/GlobalFunc";
+import { Following, handleShowLogin, Hearted } from "../../../components/GlobalFunc/GlobalFunc";
+import Tippys from "../../../components/Tippys/Tippys";
 import useElementOnScreen from "../../../hooks/useElementOnScreen";
 import { setButtonSound } from "../../../redux/actions";
-import DetailsProfile from "./DetailsProfile/DetailsProfile";
 import styles from "./ItemVideo.module.scss";
 
+var numeral = require('numeral');
 const cx = classNames.bind(styles);
 
 
@@ -23,11 +22,9 @@ interface Props {
 const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
 
   const dispath = useDispatch();
-
   const sound = useSelector<any>(item => item['sound']);
 
   const [play, setPlay] = useState<boolean>(false);
-  const [datadetails, setDatadetails] = useState<any | undefined>();
   const [time, setTime] = useState<any>(null);
   const [follow, setFollow] = useState<boolean>(data.following);
   const [heart, setHeart] = useState<boolean>(data.heart_check);
@@ -206,29 +203,7 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
 
   return (
     <div className={cx("wrapper")}>
-      <Tippy
-        interactive
-        zIndex={1}
-        appendTo={document.body}
-        delay={[200, 700]}
-        offset={[130, 6]}
-        placement='bottom'
-        hideOnClick={false}
-        onShow={() => {
-          ConnectApi(USERS, "POST", { username: data.username })
-            .then((req) => setDatadetails(req))
-            .catch((res) => console.log(res))
-        }}
-        onHide={() => {
-          setDatadetails('')
-        }}
-        render={(attrs) => datadetails && (
-          <div className={cx('search-result')} tabIndex={-1} {...attrs}>
-            {
-              isVisibile_avatar ? <DetailsProfile datadetails={datadetails?.data[0] ? datadetails.data[0] : datadetails.data} setFollow={setFollow} /> : null
-            }
-          </div>
-        )}>
+      <Tippys setFollow={setFollow} data={data}>
         <a className={cx("link-btn")} href={data.link_profile}>
           <div className={cx("link-btn_div")}>
             <span className={cx("link-btn_span")}>
@@ -236,7 +211,7 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
             </span>
           </div>
         </a>
-      </Tippy>
+      </Tippys>
 
       {/* content-title */}
       <div className={cx("div-btn-content")}>
@@ -330,19 +305,19 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
               <span className={cx("title-reaction")}>
                 {heart && CurrentUser ? <HeartactiveIcon /> : <HeartIcon />}
               </span>
-              <strong className={cx("title-reactjs")}>{data.heart}</strong>
+              <strong className={cx("title-reactjs")}>{numeral(data.heart).format('0.0a').toString().toUpperCase()}</strong>
             </button>
             <button className={cx("button-heart")} onClick={handleShowLogin}>
               <span className={cx("title-reaction")}>
                 <CommentIcon />
               </span>
-              <strong className={cx("title-reactjs")}>{data.comment}</strong>
+              <strong className={cx("title-reactjs")}>{numeral(data.comment).format('0.0a').toString().toUpperCase()}</strong>
             </button>
             <button className={cx("button-heart")} onClick={handleShowLogin}>
               <span className={cx("title-reaction")}>
                 <ShareIcon />
               </span>
-              <strong className={cx("title-reactjs")}>{data.share}</strong>
+              <strong className={cx("title-reactjs")}>{numeral(data.share).format('0.0a').toString().toUpperCase()}</strong>
             </button>
           </div>
         </div>

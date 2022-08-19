@@ -5,6 +5,7 @@ import Button from "../../../../components/Button/Button"
 import { Following, handleShowLogin } from "../../../../components/GlobalFunc/GlobalFunc"
 import styles from './DetailsProfile.module.scss'
 
+var numeral = require('numeral');
 const cx = classNames.bind(styles)
 const CurrentUser = localStorage.getItem("user");
 
@@ -22,7 +23,7 @@ const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow }) => {
     function handleFollow(buff: any) {
         if (CurrentUser) {
             setFollow(!follow)
-            // setFollow1(!follow)
+            setFollow1(!follow)
             Following(datadetails, buff)
         } else {
             handleShowLogin();
@@ -37,10 +38,10 @@ const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow }) => {
                         <img src={datadetails.avatar} alt="avatar" />
                     </span>
                 </a>
-                {(() => {
+                {datadetails['username'] !== "Fail Data" ? (() => {
                     if (follow && CurrentUser) {
                         return (
-                            <Button following onClick={() => handleFollow(false)}>
+                            <Button following_profile onClick={() => handleFollow(false)}>
                                 Following
                             </Button>
                         );
@@ -51,7 +52,7 @@ const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow }) => {
                             </Button>
                         );
                     }
-                })()}
+                })() : null}
             </div>
             <h3 className={cx('title')}>
                 <a href={`/@${datadetails.username}`}>{datadetails?.username ? datadetails.username : "________"}</a>
@@ -61,16 +62,20 @@ const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow }) => {
             <h4 className={cx('name')}>{datadetails.name}</h4>
             <div style={{ marginTop: 8, display: "flex", justifyContent: 'space-around' }}>
                 <div style={{ display: "flex", alignItems: "center" }}>
-                    <span style={{ fontSize: 17, fontWeight: 500 }}>{datadetails?.count_followers ? datadetails.count_followers : "________"}</span>
+                    <span style={{ fontSize: 17, fontWeight: 500 }}>
+                        {numeral(datadetails?.count_followers).format('0.0a').toString().toUpperCase()}
+                    </span>
                     <span style={{ paddingLeft: 6, fontWeight: 100, fontSize: 17 }}>Followers</span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center" }}>
-                    <span style={{ fontSize: 17, fontWeight: 500 }}>{datadetails?.count_likes ? datadetails.count_likes : "________"}</span>
+                    <span style={{ fontSize: 17, fontWeight: 500 }}>
+                        {numeral(datadetails?.count_likes).format('0.0a').toString().toUpperCase()}
+                    </span>
                     <span style={{ paddingLeft: 6, fontWeight: 100, fontSize: 17 }}>Likes</span>
                 </div>
             </div>
             <>
-                {datadetails?.bio ? <p className={cx("footers")}>{datadetails?.bio}</p> : Fragment}
+                {datadetails?.bio ? <p className={cx("footers")}>{datadetails?.bio}</p> : null}
             </>
         </div>
     )

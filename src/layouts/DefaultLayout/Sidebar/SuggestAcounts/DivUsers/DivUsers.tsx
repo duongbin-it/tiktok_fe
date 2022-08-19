@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LiveStreamIcon } from '../../../../../assets/icons/icons';
+import Tippys from '../../../../../components/Tippys/Tippys';
 import styles from './DivUsers.module.scss';
 
 
@@ -22,24 +23,42 @@ const unhandleIconLive = (image: any) => (
     </span>
 )
 
-function DivUserSelect({ index, name, username, icon, image, live }: any) {
-
+function DivUsers({ index, name, username, icon, image, live, data, title }: any) {
     return (
-        <div className={cx('wrapper')} >
-            <Link to={`/@${username}`}>
-                <div className={cx('img-block')}>
-                    {live ? handleIconLive(image) : unhandleIconLive(image)}
+        title !== "Following accounts"
+            ? (<Tippys data={data} unoffset>
+                <div className={cx('wrapper', index > 4 ? 'hidden' : null)} >
+                    <Link to={`/@${username}`}>
+                        <div className={cx('img-block')}>
+                            {live ? handleIconLive(image) : unhandleIconLive(image)}
+                        </div>
+                    </Link>
+                    <Link className={cx('link-btn')} to={`/@${username}`}>
+                        <div className={cx('img-block-label')}>
+                            <h4 className={cx('img-block-title')}>{username}</h4>
+                            <div style={{ marginLeft: 4, display: 'flex' }}>{icon}</div>
+                        </div>
+                        <p className={cx('img-block-label-name')}>{name}</p>
+                    </Link>
                 </div>
-            </Link>
-            <Link className={cx('link-btn')} to={`/@${username}`}>
-                <div className={cx('img-block-label')}>
-                    <h4 className={cx('img-block-title')}>{username}</h4>
-                    <div style={{ marginLeft: 4, display: 'flex' }}>{icon}</div>
+            </Tippys>)
+            : (
+                <div className={cx('wrapper', index > 4 ? 'hidden' : null)} >
+                    <Link to={`/@${username}`}>
+                        <div className={cx('img-block')}>
+                            {live ? handleIconLive(image) : unhandleIconLive(image)}
+                        </div>
+                    </Link>
+                    <Link className={cx('link-btn')} to={`/@${username}`}>
+                        <div className={cx('img-block-label')}>
+                            <h4 className={cx('img-block-title')}>{username}</h4>
+                            <div style={{ marginLeft: 4, display: 'flex' }}>{icon}</div>
+                        </div>
+                        <p className={cx('img-block-label-name')}>{name}</p>
+                    </Link>
                 </div>
-                <p className={cx('img-block-label-name')}>{name}</p>
-            </Link>
-        </div>
+            )
     );
 }
 
-export default DivUserSelect
+export default DivUsers

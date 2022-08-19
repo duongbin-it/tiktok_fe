@@ -1,8 +1,8 @@
 import classNames from "classnames/bind";
-import React, { Fragment } from "react";
+import React from "react";
 import { CheckIcon } from "../../../../assets/icons/icons";
-import styles from "./SuggestAcounts.module.scss";
 import DivUsers from "./DivUsers/DivUsers";
+import styles from "./SuggestAcounts.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -12,7 +12,7 @@ interface Props {
   data?: any,
 }
 
-const DivSelect: React.FC<Props> = ({ title, atb, data }) => {
+const SuggestAcounts: React.FC<Props> = ({ title, atb, data }) => {
   return (
     <div className={cx("wrapper")}>
       <p className={cx("title")}>{title}</p>
@@ -24,9 +24,11 @@ const DivSelect: React.FC<Props> = ({ title, atb, data }) => {
               index={index}
               name={props.name}
               username={props.username}
-              icon={props.blue_check ? <CheckIcon /> : Fragment}
+              icon={props.blue_check ? <CheckIcon /> : null}
               image={props.image}
               live={props.live}
+              data={data}
+              title={title}
             />
           )
         }
@@ -34,11 +36,11 @@ const DivSelect: React.FC<Props> = ({ title, atb, data }) => {
           return false
         }
       })}
-      <div className={cx("see-more")} onClick={() => console.log(1)}>
+      <div className={cx("see-more")}>
         <p className={cx("see-more-btn")}>{atb}</p>
       </div>
     </div>
   );
 }
 
-export default DivSelect
+export default SuggestAcounts
