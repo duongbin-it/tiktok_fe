@@ -1,6 +1,2 @@
-POST https://tiktok-nodejs1.herokuapp.com/api/users
-Content-Type: application/json
-
-{
-    "username": ""
-}
+# POST https://tiktok-nodejs1.herokuapp.com/api/users
+GET http://localhost:3001/api/suggest_acounts

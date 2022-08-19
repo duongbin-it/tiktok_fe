@@ -9,22 +9,20 @@ const cx = classNames.bind(styles)
 const CurrentUser = localStorage.getItem("user");
 
 interface Props {
-    data: any,
     datadetails: any,
     setFollow: any,
 }
 
-const DetailsProfile: React.FC<Props> = ({ data, datadetails, setFollow }) => {
+const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow }) => {
     const [follow, setFollow1] = useState<any>(datadetails?.following);
 
     useEffect(() => { setFollow1(datadetails?.following) }, [datadetails?.following])
-
 
     function handleFollow(buff: any) {
         if (CurrentUser) {
             setFollow(!follow)
             setFollow1(!follow)
-            Following(data, buff)
+            Following(datadetails, buff)
         } else {
             handleShowLogin();
         }
@@ -33,15 +31,15 @@ const DetailsProfile: React.FC<Props> = ({ data, datadetails, setFollow }) => {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <a href={data.link_profile}>
+                <a href={datadetails.link}>
                     <span className={cx("image_avatar")}>
-                        <img src={data.avatar} alt="avatar" />
+                        <img src={datadetails.avatar} alt="avatar" />
                     </span>
                 </a>
                 {(() => {
                     if (follow && CurrentUser) {
                         return (
-                            <Button following_profile onClick={() => handleFollow(false)}>
+                            <Button following onClick={() => handleFollow(false)}>
                                 Following
                             </Button>
                         );
@@ -55,11 +53,11 @@ const DetailsProfile: React.FC<Props> = ({ data, datadetails, setFollow }) => {
                 })()}
             </div>
             <h3 className={cx('title')}>
-                <a href={data.link_profile}>{datadetails?.username ? datadetails.username : "________"}</a>
-                {data?.blue_check ? <CheckIcon marginLeft={4} marginRight={2} /> : null}
+                <a href={datadetails.link}>{datadetails?.username ? datadetails.username : "________"}</a>
+                {datadetails?.blue_check ? <CheckIcon marginLeft={4} marginRight={2} /> : null}
             </h3>
             <br />
-            <h4 className={cx('name')}>{data.name}</h4>
+            <h4 className={cx('name')}>{datadetails.name}</h4>
             <div style={{ marginTop: 8, display: "flex", justifyContent: 'space-around' }}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <span style={{ fontSize: 17, fontWeight: 500 }}>{datadetails?.count_followers ? datadetails.count_followers : "________"}</span>

@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LiveStreamIcon } from '../../../../../assets/icons/icons';
-import styles from './DivUserSelect.module.scss';
+import styles from './DivUsers.module.scss';
 
 
 const cx = classNames.bind(styles)
@@ -22,10 +22,10 @@ const unhandleIconLive = (image: any) => (
     </span>
 )
 
-function DivUserSelect({ name, username, icon, image, live }: any) {
+function DivUserSelect({ index, name, username, icon, image, live }: any) {
     return (
         <>
-            <div className={cx('wrapper')}>
+            <div className={cx('wrapper', index > 4 ? 'hidden' : null)}>
                 <Link to={`/@${username}`}>
                     <div className={cx('img-block')}>
                         {live ? handleIconLive(image) : unhandleIconLive(image)}
@@ -34,7 +34,7 @@ function DivUserSelect({ name, username, icon, image, live }: any) {
                 <Link className={cx('link-btn')} to={`/@${username}`}>
                     <div className={cx('img-block-label')}>
                         <h4 className={cx('img-block-title')}>{username}</h4>
-                        <div style={{ marginLeft: 4 }}>{icon}</div>
+                        <div style={{ marginLeft: 4, display: 'flex' }}>{icon}</div>
                     </div>
                     <p className={cx('img-block-label-name')}>{name}</p>
                 </Link>

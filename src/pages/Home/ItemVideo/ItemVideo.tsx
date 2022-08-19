@@ -224,7 +224,7 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
         render={(attrs) => datadetails && (
           <div className={cx('search-result')} tabIndex={-1} {...attrs}>
             {
-              isVisibile_avatar ? <DetailsProfile data={data} datadetails={datadetails?.data[0]} setFollow={setFollow} /> : null
+              isVisibile_avatar ? <DetailsProfile datadetails={datadetails?.data} setFollow={setFollow} /> : null
             }
           </div>
         )}>

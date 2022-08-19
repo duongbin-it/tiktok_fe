@@ -472,7 +472,7 @@ canvas {
 
 .progress__track {
   left: 50%;
-  height: 3px;
+  height: 2px;
   border-radius: 20px;
   position: absolute;
   transform: translate(-50%, 0);
@@ -505,7 +505,7 @@ canvas {
   top: 0;
   left: 0;
   width: 0;
-  height: 3px;
+  height: 2px;
   border-radius: 20px;
   position: absolute;
   background-color: #fff;
@@ -534,7 +534,7 @@ canvas {
 
   &:hover .progress__track,
   &:hover .progress__track-update {
-    height: 5px;
+    height: 3px;
   }
 
   &:hover .progress__track-update::after {

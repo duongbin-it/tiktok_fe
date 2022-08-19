@@ -42,7 +42,7 @@ const Sidebar: React.FC = () => {
 
   useEffect(() => {
     ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/discover", "GET").then((res) => setApi(res));
-    ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/users", "POST", {})
+    ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/suggest_acounts", "GET")
       .then((req) => setData(req))
       .catch((res) => console.log(res))
   }, []);
@@ -62,7 +62,7 @@ const Sidebar: React.FC = () => {
               </div>
             );
           } else {
-            return <DivSelect title="Following accounts" atb="See more" />;
+            return <DivSelect title="Following accounts" atb="See more" data={data} />;
           }
         })()}
 
