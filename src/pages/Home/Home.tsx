@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NEWFEED } from "../../api/api";
 import { ConnectApi } from "../../components/GlobalFunc/GlobalFunc";
 import Loading from "../../components/HomeLoading/HomeLoading";
 import ItemVideo from "./ItemVideo/ItemVideo";
@@ -9,7 +10,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     (function Newfeed() {
-      ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/newfeed", "GET").then((res) => {
+      ConnectApi(NEWFEED, "GET").then((res) => {
         localStorage.setItem("CountVideo", res?.data.length || '');
         setApi(res);
       });

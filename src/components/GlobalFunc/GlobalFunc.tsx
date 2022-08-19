@@ -1,5 +1,6 @@
 import axios from "axios";
 import classNames from "classnames/bind";
+import { FOLLOWING, HEARTED } from "../../api/api";
 import styles from '../../layouts/Login/Login.module.scss';
 
 const cx = classNames.bind(styles);
@@ -28,19 +29,18 @@ async function ConnectApi(url: string, method = "GET", data?: object) {
 }
 
 function Following(data: any, buff: boolean) {
-  if (data._id && data.username) {
-    ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/following", "POST", {
-      id: data._id,
-      value: buff,
+  if (data.username) {
+    ConnectApi(FOLLOWING, "POST", {
       username: data.username,
+      value: buff,
     });
   }
 }
 
 function Hearted(data: any, buff: boolean) {
-  if (data._id) {
-    ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/hearted", "POST", {
-      id: data._id,
+  if (data.username) {
+    ConnectApi(HEARTED, "POST", {
+      username: data.username,
       value: buff,
     });
   }

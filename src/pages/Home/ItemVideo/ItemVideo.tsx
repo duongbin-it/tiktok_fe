@@ -3,6 +3,7 @@ import Tippy from "@tippyjs/react/headless";
 import classNames from "classnames/bind";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { USERS } from "../../../api/api";
 import { CheckIcon, CommentIcon, HeartactiveIcon, HeartIcon, MusicIcon, PauseIcon, PlayIcon, ReportIcon, ShareIcon, SoundIcon, UnSoundIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
 import { ConnectApi, Following, handleShowLogin, Hearted } from "../../../components/GlobalFunc/GlobalFunc";
@@ -214,7 +215,7 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
         placement='bottom'
         hideOnClick={false}
         onShow={() => {
-          ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/users", "POST", { username: data.username })
+          ConnectApi(USERS, "POST", { username: data.username })
             .then((req) => setDatadetails(req))
             .catch((res) => console.log(res))
         }}

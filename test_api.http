@@ -1,0 +1,7 @@
+POST  http://localhost:3001/api/following
+Content-Type: application/json
+
+{
+     "value": true, 
+     "username": "hienluongxink"
+}

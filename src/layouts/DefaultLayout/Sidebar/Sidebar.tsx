@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { DISCOVER, SUGGEST_ACOUNTS } from "../../../api/api";
 import { MusicIcon, SharpIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
 import { ConnectApi, handleShowLogin } from "../../../components/GlobalFunc/GlobalFunc";
@@ -41,10 +42,8 @@ const Sidebar: React.FC = () => {
   }, [ref]);
 
   useEffect(() => {
-    ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/discover", "GET").then((res) => setApi(res));
-    ConnectApi("https://tiktok-nodejs1.herokuapp.com/api/suggest_acounts", "GET")
-      .then((req) => setData(req))
-      .catch((res) => console.log(res))
+    ConnectApi(DISCOVER, "GET").then((res) => setApi(res)).catch((res) => console.log(res))
+    ConnectApi(SUGGEST_ACOUNTS, "GET").then((req) => setData(req)).catch((res) => console.log(res))
   }, []);
 
   return (
