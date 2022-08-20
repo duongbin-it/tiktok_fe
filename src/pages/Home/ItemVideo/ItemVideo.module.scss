@@ -77,6 +77,92 @@
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
+
+  .live-stream {
+    color: rgba(255, 255, 255, 1.0);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 17px;
+    position: absolute;
+    background: linear-gradient(131.17deg, #FF1764 0%, #ED3495 94.15%);
+    height: 15px;
+    line-height: 15px;
+    padding: 0 4px;
+    bottom: -2px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    word-break: keep-all;
+    border-radius: 2px;
+    z-index: 1;
+  }
+
+  .live-icon {
+    position: absolute;
+  }
+
+  .link-btn_span1 {
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-feature-settings: "tnum";
+    position: relative;
+    overflow: hidden;
+    color: rgb(255, 255, 255);
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 32px;
+    border-radius: 50%;
+    background-color: rgba(136, 136, 136, 0.5);
+    border-color: rgba(22, 24, 35, 0.12);
+    border-width: 0.5px;
+    cursor: pointer;
+    animation: 1800ms ease-out 0.9s infinite normal none running animation-fp9d1s;
+    width: 50px;
+    height: 50px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 119, 146, 0.5);
+    animation: 1800ms ease-out 0s infinite normal none running animation-fp9d12;
+    box-shadow: rgb(255 119 146 / 50%) 0px -0.5px 0.5px 0.5px;
+  }
+
+  @keyframes animation-fp9d1s {
+    0% {
+      transform: scale(0.95);
+    }
+
+    50% {
+      transform: scale(0.9);
+    }
+
+    100% {
+      transform: scale(0.95);
+    }
+  }
+
+  @keyframes animation-fp9d12 {
+    0% {
+      transform: scale(0.9);
+    }
+
+    50% {
+      transform: scale(1.17);
+    }
+
+    100% {
+      transform: scale(0.9);
+    }
+  }
 }
 
 .link-btn_span {

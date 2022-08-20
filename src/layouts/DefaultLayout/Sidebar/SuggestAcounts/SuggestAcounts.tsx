@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import React from "react";
+import { v4 as uuidv4 } from 'uuid';
 import { CheckIcon } from "../../../../assets/icons/icons";
 import DivUsers from "./DivUsers/DivUsers";
 import styles from "./SuggestAcounts.module.scss";
@@ -20,7 +21,7 @@ const SuggestAcounts: React.FC<Props> = ({ title, atb, data }) => {
         if (index < 10) {
           return (
             <DivUsers
-              key={index}
+              key={uuidv4()}
               index={index}
               name={props.name}
               username={props.username}

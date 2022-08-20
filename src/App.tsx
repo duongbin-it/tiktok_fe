@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout";
 import { publicRoutes } from "./Routes/Routes";
 
@@ -8,7 +9,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          {publicRoutes.map((route, index) => {
+          {publicRoutes.map((route) => {
             let Layout: any = DefaultLayout;
             if (route.layout) {
               Layout = route.layout;
@@ -16,7 +17,7 @@ function App() {
               Layout = Fragment;
             }
             return (
-              <Route key={index} path={route.path} element={
+              <Route key={uuidv4()} path={route.path} element={
                 <Layout>
                   <route.component />
                 </Layout>

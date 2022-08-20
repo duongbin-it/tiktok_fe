@@ -1,9 +1,9 @@
-
 import Tippy from '@tippyjs/react/headless';
 import axios from 'axios';
 import classNames from 'classnames/bind';
 import React, { useEffect, useRef, useState } from 'react';
 import 'tippy.js/dist/tippy.css';
+import { v4 as uuidv4 } from 'uuid';
 import { ClearIcon, LoadingIcon, SearchIcon } from '../../../assets/icons/icons';
 import AccountItem from '../../../components/AccountItem/AccountItem';
 import styles from './Search.module.scss';
@@ -62,8 +62,8 @@ const Search: React.FC = () => {
                 <div className={cx('search-result')} tabIndex={-1} {...attrs}>
                     <div className={cx('wrapper-1')}>
                         <h4 className={cx('search-title')}>Accounts</h4>
-                        {searchResult.map((result, index) => (
-                            <AccountItem key={index} data={result} onClick={handleHideResult} />
+                        {searchResult.map((result) => (
+                            <AccountItem key={uuidv4()} data={result} onClick={handleHideResult} />
                         ))}
                     </div>
                 </div>

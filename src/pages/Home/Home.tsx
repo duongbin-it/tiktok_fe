@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import { NEWFEED } from "../../api/api";
 import { ConnectApi } from "../../components/GlobalFunc/GlobalFunc";
 import Loading from "../../components/HomeLoading/HomeLoading";
@@ -11,7 +12,6 @@ const Home: React.FC = () => {
   useEffect(() => {
     (function Newfeed() {
       ConnectApi(NEWFEED, "GET").then((res) => {
-        localStorage.setItem("CountVideo", res?.data.length || '');
         setApi(res);
       });
     })()
@@ -24,7 +24,7 @@ const Home: React.FC = () => {
           (() => {
             if (datas.username) {
               return (
-                <ItemVideo key={datas['_id']} data={datas} big={false} />
+                <ItemVideo key={uuidv4()} data={datas} big={false} />
               )
             }
           })()

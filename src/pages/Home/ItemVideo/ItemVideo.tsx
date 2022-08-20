@@ -3,11 +3,13 @@ import classNames from "classnames/bind";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 import { CheckIcon, CommentIcon, HeartactiveIcon, HeartIcon, MusicIcon, PauseIcon, PlayIcon, ReportIcon, ShareIcon, SoundIcon, UnSoundIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
 import { Following, handleShowLogin, Hearted } from "../../../components/GlobalFunc/GlobalFunc";
 import Tippys from "../../../components/Tippys/Tippys";
 import useElementOnScreen from "../../../hooks/useElementOnScreen";
+import TippyShare from '../../../layouts/components/TippyShare/TippyShare';
 import { setButtonSound } from "../../../redux/actions";
 import styles from "./ItemVideo.module.scss";
 
@@ -201,12 +203,34 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
 
   return (
     <div className={cx("wrapper")}>
-      <Tippys setFollow={setFollow} data={data}>
+      {/* <Tippys setFollow={setFollow} data={data}>
         <Link className={cx("link-btn")} to={data.link_profile}>
           <div className={cx("link-btn_div")}>
             <span className={cx("link-btn_span")}>
               <img style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover" }} lazy1-src={data.avatar} alt={'avatar'} ref={ref_avatar} />
             </span>
+          </div>
+        </Link>
+      </Tippys> */}
+
+      {/* LIVESTREAM */}
+      <Tippys setFollow={setFollow} data={data}>
+        <Link className={cx("link-btn")} to={data.link_profile}>
+          <div className={cx("link-btn_div")}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="none" className={cx('live-icon')} viewBox="0 0 52 52">
+              <circle cx="26" cy="26" r="25.25" stroke="url(#paint0_linear)" strokeWidth="1.5"></circle>
+              <defs>
+                <linearGradient
+                  id="paint0_linear" x1="-22.739" x2="29.261" y1="26" y2="71.479" gradientUnits="userSpaceOnUse"><stop stopColor="#FF1764"></stop><stop offset="1" stopColor="#ED3495"></stop>
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <span className={cx("link-btn_span1")}>
+              <img style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover", maxWidth: '100%', display: "block" }} lazy1-src={data.avatar} alt={'avatar'} ref={ref_avatar} />
+            </span>
+
+            <span className={cx('live-stream')}>LIVE</span>
           </div>
         </Link>
       </Tippys>
@@ -241,9 +265,9 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
           <div style={{ fontSize: 16, lineHeight: 22 + "px", wordBreak: "break-word", width: 510 + "px", }}>
             <span className={cx('font-popers')}>{data.title}</span>
             {data.name_tag
-              && data.name_tag.map((item: any, index: number) => (
-                <a className={cx("tag")} href={item.link_tag} target="_blank" rel="noreferrer" key={index}>
-                  <strong className={cx("tag_strong")} key={index}>
+              && data.name_tag.map((item: any) => (
+                <a className={cx("tag")} href={item.link_tag} target="_blank" rel="noreferrer" key={uuidv4()}>
+                  <strong className={cx("tag_strong")}>
                     #{item.key}
                   </strong>
                 </a>
@@ -312,14 +336,16 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
                 {data.comment.toString().length >= 4 ? numeral(data.comment).format('0.0a').toString().toUpperCase() : data.comment}
               </strong>
             </button>
-            <button className={cx("button-heart")} onClick={handleShowLogin}>
-              <span className={cx("title-reaction")}>
-                <ShareIcon />
-              </span>
-              <strong className={cx("title-reactjs")}>
-                {data.share.toString().length >= 4 ? numeral(data.share).format('0.0a').toString().toUpperCase() : data.share}
-              </strong>
-            </button>
+            <TippyShare>
+              <button className={cx("button-heart")} onClick={handleShowLogin}>
+                <span className={cx("title-reaction")}>
+                  <ShareIcon />
+                </span>
+                <strong className={cx("title-reactjs")}>
+                  {data.share.toString().length >= 4 ? numeral(data.share).format('0.0a').toString().toUpperCase() : data.share}
+                </strong>
+              </button>
+            </TippyShare>
           </div>
         </div>
       </div>

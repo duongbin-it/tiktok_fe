@@ -8,6 +8,7 @@ import { ConnectApi, handleShowLogin } from "../../../components/GlobalFunc/Glob
 import SuggestAcounts from "./SuggestAcounts/SuggestAcounts";
 import DivUser from "./DivLink/DivUser";
 import styles from "./Sidebar.module.scss";
+import { v4 as uuidv4 } from 'uuid';
 
 const cx = classNames.bind(styles);
 
@@ -71,12 +72,12 @@ const Sidebar: React.FC = () => {
           <p className={cx("title")}>Discover</p>
           <div className={cx("container-1")}>
             {api
-              ? api.data[0].data.map((item: any, index: number) => (
+              ? api.data[0].data.map((item: any) => (
                 (() => {
                   switch (item.icon) {
                     case "MusicIcon":
                       return (
-                        <Link key={index} className={cx("link")} to={`/music/${item.content.replace('-', '').replace(/ /g, "_")}`}>
+                        <Link key={uuidv4()} className={cx("link")} to={`/music/${item.content.replace('-', '').replace(/ /g, "_")}`}>
                           <div className={cx("content")}>
                             <p className={cx("icon-btn")}>
                               <MusicIcon />
@@ -87,7 +88,7 @@ const Sidebar: React.FC = () => {
                       )
                     case "SharpIcon":
                       return (
-                        <Link key={index} className={cx("link")} to={`/tag/${item.content}`}>
+                        <Link key={uuidv4()} className={cx("link")} to={`/tag/${item.content}`}>
                           <div className={cx("content")}>
                             <p className={cx("icon-btn")}>
                               <SharpIcon />
@@ -105,8 +106,8 @@ const Sidebar: React.FC = () => {
         <div className={cx("sperate")}></div>
         <div className={cx('footer')}>
           <div className={cx('footer-item')}>
-            {dieukhoan.map((props, index) => (
-              <Link key={index} className={cx('link-footer')} to={`/@${props.title.toLowerCase().replace('-', '').replace(/ /g, "_")}`}>{props.title}</Link>
+            {dieukhoan.map((props) => (
+              <Link key={uuidv4()} className={cx('link-footer')} to={`/@${props.title.toLowerCase().replace('-', '').replace(/ /g, "_")}`}>{props.title}</Link>
             ))}
           </div>
           <span className={cx('span-title')}>© 2022 TikTok</span>

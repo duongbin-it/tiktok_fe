@@ -1,0 +1,46 @@
+.wrapper {
+    background-color: rgb(255, 255, 255);
+    left: -25px;
+    position: absolute;
+    z-index: 1;
+    background: rgb(255, 255, 255);
+    border-radius: 8px;
+    bottom: calc(100% + 12px);
+    box-shadow: rgb(0 0 0 / 12%) 0px 4px 16px;
+    transition: opacity 300ms ease 0s;
+    opacity: 1;
+    transform: translateY(8px);
+
+    .wrapper-1 {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        width: 280px;
+        padding: 8px 0px;
+        max-height: 448px;
+        overflow: auto;
+
+        .link-socialnetwork {
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            padding: 11px 16px;
+            position: relative;
+
+            &:hover {
+                background: rgba(22, 24, 35, 0.03);
+                text-decoration: none;
+            }
+        }
+
+        .link-socialnetwork-pop {
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            padding: 0px 16px;
+            position: relative;
+        }
+    }
+}
