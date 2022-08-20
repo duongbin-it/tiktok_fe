@@ -3,14 +3,15 @@ import classNames from "classnames/bind";
 import { useState } from "react";
 import { USERS } from "../../api/api";
 import DetailsProfile from "../../pages/Home/ItemVideo/DetailsProfile/DetailsProfile";
-import { ConnectApi } from "../GlobalFunc/GlobalFunc";
 import styles from "../../pages/Home/ItemVideo/ItemVideo.module.scss";
+import { ConnectApi } from "../GlobalFunc/GlobalFunc";
 
 const cx = classNames.bind(styles);
 
 
 export default function Tippys({ children, setFollow, data, unoffset }: any) {
     const [datadetails, setDatadetails] = useState<any | undefined>();
+
     return (
         <Tippy
             interactive
@@ -21,7 +22,7 @@ export default function Tippys({ children, setFollow, data, unoffset }: any) {
             placement='bottom'
             hideOnClick={false}
             onShow={() => {
-                ConnectApi(USERS, "POST", { username: data.username })
+                ConnectApi(USERS, "POST", data.username ? { username: data.username } : { username: data })
                     .then((req) => setDatadetails(req))
                     .catch((res) => console.log(res))
 

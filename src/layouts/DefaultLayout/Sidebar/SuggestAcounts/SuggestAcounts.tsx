@@ -27,7 +27,6 @@ const SuggestAcounts: React.FC<Props> = ({ title, atb, data }) => {
               icon={props.blue_check ? <CheckIcon /> : null}
               image={props.image}
               live={props.live}
-              data={data}
               title={title}
             />
           )

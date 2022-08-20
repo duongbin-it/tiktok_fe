@@ -2,6 +2,7 @@
 import classNames from "classnames/bind";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { CheckIcon, CommentIcon, HeartactiveIcon, HeartIcon, MusicIcon, PauseIcon, PlayIcon, ReportIcon, ShareIcon, SoundIcon, UnSoundIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
 import { Following, handleShowLogin, Hearted } from "../../../components/GlobalFunc/GlobalFunc";
@@ -28,7 +29,6 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
   const [time, setTime] = useState<any>(null);
   const [follow, setFollow] = useState<boolean>(data.following);
   const [heart, setHeart] = useState<boolean>(data.heart_check);
-
   const ref = useRef<HTMLDivElement>(null);
   const ref_img = useRef<HTMLImageElement>(null);
   const ref_avatar = useRef<HTMLImageElement>(null);
@@ -39,8 +39,6 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
   const progress = useRef<HTMLInputElement>(null);
   const progress__trackupdat = useRef<HTMLDivElement>(null);
   const progress__trackupdate = useRef<HTMLDivElement>(null);
-
-
   const isVisibile_video = useElementOnScreen({ threshold: 1 }, ref_video);
   const isVisibile_img = useElementOnScreen({ threshold: 0.5 }, ref_img);
   const isVisibile_avatar = useElementOnScreen({ threshold: 0.5 }, ref_avatar);
@@ -60,7 +58,7 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
   useEffect(() => {
     if (isVisibile_video) {
       if (!play) {
-        if (!ref_video.current!.getAttribute('src')) {
+        if (!ref_video.current?.getAttribute('src')) {
           ref_video.current?.setAttribute("src", String(ref_video.current.getAttribute('lazy-src')))
         }
         setPlay(true);
@@ -76,14 +74,14 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
 
 
   useEffect(() => {
-    if (isVisibile_img && !ref_img.current!.getAttribute('src')) {
+    if (isVisibile_img && !ref_img.current?.getAttribute('src')) {
       ref_img.current?.setAttribute("src", String(ref_img.current.getAttribute('lazys-src')));
     }
   }, [isVisibile_img])
 
 
   useEffect(() => {
-    if (isVisibile_avatar && !ref_avatar.current!.getAttribute('src')) {
+    if (isVisibile_avatar && !ref_avatar.current?.getAttribute('src')) {
       ref_avatar.current?.setAttribute("src", String(ref_avatar.current.getAttribute('lazy1-src')));
     }
   }, [isVisibile_avatar])
@@ -107,23 +105,23 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
 
   useEffect(() => {
     const timeUpdate = ref_video.current!.ontimeupdate = function () {
-      if (ref_video.current!.duration) {
-        const progressPercent = Math.floor((ref_video.current!.currentTime / ref_video.current!.duration) * 100);
+      if (ref_video.current?.duration) {
+        const progressPercent = Math.floor((ref_video.current?.currentTime / ref_video.current?.duration) * 100);
         setTime(
-          (Math.floor(ref_video.current!.currentTime).toString().length >= 2 ? "00:" + Math.floor(ref_video.current!.currentTime) : "00:0" + Math.floor(ref_video.current!.currentTime)) +
+          (Math.floor(ref_video.current?.currentTime).toString().length >= 2 ? "00:" + Math.floor(ref_video.current?.currentTime) : "00:0" + Math.floor(ref_video.current?.currentTime)) +
           "/" +
-          (Math.floor(ref_video.current!.duration).toString().length >= 2 ? "00:" + Math.floor(ref_video.current!.duration) : "00:0" + Math.floor(ref_video.current!.duration))
+          (Math.floor(ref_video.current?.duration).toString().length >= 2 ? "00:" + Math.floor(ref_video.current?.duration) : "00:0" + Math.floor(ref_video.current?.duration))
         );
         progress__trackupdate.current!.style.width = progressPercent + "%";
       }
     };
 
     const mouseOver = ref_video.current!.onmouseover = function () {
-      if (ref_video.current!.duration) {
+      if (ref_video.current?.duration) {
         setTime(
-          (Math.floor(ref_video.current!.currentTime).toString().length >= 2 ? "00:" + Math.floor(ref_video.current!.currentTime) : "00:0" + Math.floor(ref_video.current!.currentTime)) +
+          (Math.floor(ref_video.current?.currentTime).toString().length >= 2 ? "00:" + Math.floor(ref_video.current?.currentTime) : "00:0" + Math.floor(ref_video.current?.currentTime)) +
           "/" +
-          (Math.floor(ref_video.current!.duration).toString().length >= 2 ? "00:" + Math.floor(ref_video.current!.duration) : "00:0" + Math.floor(ref_video.current!.duration))
+          (Math.floor(ref_video.current?.duration).toString().length >= 2 ? "00:" + Math.floor(ref_video.current?.duration) : "00:0" + Math.floor(ref_video.current?.duration))
         );
       }
     };
@@ -176,7 +174,7 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
       }
     };
 
-    const Click = (refSound.current as HTMLDivElement).onclick = function () {
+    const Click = refSound.current!.onclick = function () {
       dispath(setButtonSound(!sound));
       if (sound) {
         document.querySelectorAll(`[class='${ref_video.current?.className}']`).forEach(item => {
@@ -204,13 +202,13 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
   return (
     <div className={cx("wrapper")}>
       <Tippys setFollow={setFollow} data={data}>
-        <a className={cx("link-btn")} href={data.link_profile}>
+        <Link className={cx("link-btn")} to={data.link_profile}>
           <div className={cx("link-btn_div")}>
             <span className={cx("link-btn_span")}>
               <img style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover" }} lazy1-src={data.avatar} alt={'avatar'} ref={ref_avatar} />
             </span>
           </div>
-        </a>
+        </Link>
       </Tippys>
 
       {/* content-title */}
