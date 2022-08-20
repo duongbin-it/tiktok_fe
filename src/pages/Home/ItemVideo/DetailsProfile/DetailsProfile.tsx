@@ -12,10 +12,10 @@ const CurrentUser = localStorage.getItem("user");
 interface Props {
     datadetails: any,
     setFollow: any,
-    primary?: any,
+    suggest?: any,
 }
 
-const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow, primary }: any) => {
+const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow, suggest }: any) => {
     const [follow, setFollow1] = useState<any>(datadetails?.following);
     useEffect(() => {
         setFollow1(datadetails?.following)
@@ -39,25 +39,27 @@ const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow, primary }: an
                         <img src={datadetails.avatar} alt="avatar" />
                     </span>
                 </a>
-                {datadetails['username'] !== "Fail Data" ? (() => {
-                    if (follow && CurrentUser) {
-                        return (
-                            <Button following_profile onClick={() => handleFollow(false)}>
-                                Following
-                            </Button>
-                        );
-                    } else {
-                        return (
-                            primary
-                                ? (<Button primary onClick={() => handleFollow(true)}>
-                                    Follow
-                                </Button>)
-                                : (<Button follow_profile onClick={() => handleFollow(true)}>
-                                    Follow
-                                </Button>)
-                        );
-                    }
-                })() : null}
+                {
+                    datadetails['username'] !== "Fail Data" ? (() => {
+                        if (follow && CurrentUser) {
+                            return (
+                                <Button following_profile onClick={() => handleFollow(false)}>
+                                    Following
+                                </Button>
+                            );
+                        } else {
+                            return (
+                                suggest
+                                    ? (<Button primary onClick={() => handleFollow(true)}>
+                                        Follow
+                                    </Button>)
+                                    : (<Button follow_profile onClick={() => handleFollow(true)}>
+                                        Follow
+                                    </Button>)
+                            );
+                        }
+                    })() : null
+                }
             </div>
             <h3 className={cx('title')}>
                 <a href={`/@${datadetails.username}`}>{datadetails?.username ? datadetails.username : "________"}</a>
@@ -80,7 +82,7 @@ const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow, primary }: an
                 </div>
             </div>
             <>
-                {datadetails?.bio ? <p className={cx("footers")}>{datadetails?.bio}</p> : null}
+                {datadetails?.bio && !suggest ? <p className={cx("footers")}>{datadetails?.bio}</p> : null}
             </>
         </div>
     )

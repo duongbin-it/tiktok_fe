@@ -9,7 +9,7 @@ import { ConnectApi } from "../GlobalFunc/GlobalFunc";
 const cx = classNames.bind(styles);
 
 
-export default function Tippys({ children, setFollow, data, unoffset, primary }: any) {
+export default function Tippys({ children, setFollow, data, suggest }: any) {
     const [datadetails, setDatadetails] = useState<any | undefined>();
 
     return (
@@ -17,8 +17,8 @@ export default function Tippys({ children, setFollow, data, unoffset, primary }:
             interactive
             zIndex={1}
             appendTo={document.body}
-            delay={[200, 700]}
-            offset={unoffset ? [0, 0] : [130, 6]}
+            delay={suggest ? [200, 0] : [200, 700]}
+            offset={suggest ? [0, 0] : [130, 6]}
             placement='bottom'
             hideOnClick={false}
             onShow={() => {
@@ -32,9 +32,12 @@ export default function Tippys({ children, setFollow, data, unoffset, primary }:
             }}
             render={(attrs) => datadetails && (
                 <div className={cx('search-result')} tabIndex={-1} {...attrs}>
-                    {<DetailsProfile
-                        datadetails={datadetails?.data[0] ? datadetails.data[0] : datadetails.data}
-                        setFollow={setFollow} primary={primary} />}
+                    {
+                        <DetailsProfile
+                            suggest={suggest}
+                            setFollow={setFollow}
+                            datadetails={datadetails?.data[0] ? datadetails.data[0] : datadetails.data} />
+                    }
                 </div>
             )}>
             {children}

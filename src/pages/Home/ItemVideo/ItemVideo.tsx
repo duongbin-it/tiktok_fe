@@ -292,10 +292,7 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
                   {time}
                 </div>
               </div>
-              <p className={cx("button-report")}>
-                <ReportIcon marginRight="5" />
-                Report
-              </p>
+              <p className={cx("button-report")}><ReportIcon marginRight="5" />Report</p>
             </div>
           </div>
           <div className={cx("button-reaction")}>
@@ -303,19 +300,25 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
               <span className={cx("title-reaction")}>
                 {heart && CurrentUser ? <HeartactiveIcon /> : <HeartIcon />}
               </span>
-              <strong className={cx("title-reactjs")}>{numeral(data.heart).format('0.0a').toString().toUpperCase()}</strong>
+              <strong className={cx("title-reactjs")}>
+                {data.heart.toString().length >= 4 ? numeral(data.heart).format('0.0a').toString().toUpperCase() : data.heart}
+              </strong>
             </button>
             <button className={cx("button-heart")} onClick={handleShowLogin}>
               <span className={cx("title-reaction")}>
                 <CommentIcon />
               </span>
-              <strong className={cx("title-reactjs")}>{numeral(data.comment).format('0.0a').toString().toUpperCase()}</strong>
+              <strong className={cx("title-reactjs")}>
+                {data.comment.toString().length >= 4 ? numeral(data.comment).format('0.0a').toString().toUpperCase() : data.comment}
+              </strong>
             </button>
             <button className={cx("button-heart")} onClick={handleShowLogin}>
               <span className={cx("title-reaction")}>
                 <ShareIcon />
               </span>
-              <strong className={cx("title-reactjs")}>{numeral(data.share).format('0.0a').toString().toUpperCase()}</strong>
+              <strong className={cx("title-reactjs")}>
+                {data.share.toString().length >= 4 ? numeral(data.share).format('0.0a').toString().toUpperCase() : data.share}
+              </strong>
             </button>
           </div>
         </div>

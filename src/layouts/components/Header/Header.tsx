@@ -111,9 +111,9 @@ const Header: React.FC = () => {
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
         <div className={cx("logo")}>
-          <Link to="/">
+          <a href="/">
             <LogoIcon />
-          </Link>
+          </a>
         </div>
         <Search />
         <div className={cx("actions")}>

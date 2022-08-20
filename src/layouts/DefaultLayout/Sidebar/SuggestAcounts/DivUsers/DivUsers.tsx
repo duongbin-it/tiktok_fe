@@ -28,7 +28,7 @@ function DivUsers({ index, name, username, icon, image, live, title }: any) {
     return (
         title !== "Following accounts"
             ? (
-                <Tippys data={username} unoffset primary>
+                <Tippys data={username} suggest>
                     <div className={cx('wrapper', index > 4 ? 'hidden' : null)} >
                         <Link to={`/@${username}`}>
                             <div className={cx('img-block')}>
