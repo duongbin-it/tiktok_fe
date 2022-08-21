@@ -203,36 +203,36 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
 
   return (
     <div className={cx("wrapper")}>
-      {/* <Tippys setFollow={setFollow} data={data}>
-        <Link className={cx("link-btn")} to={data.link_profile}>
-          <div className={cx("link-btn_div")}>
-            <span className={cx("link-btn_span")}>
-              <img style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover" }} lazy1-src={data.avatar} alt={'avatar'} ref={ref_avatar} />
-            </span>
-          </div>
-        </Link>
-      </Tippys> */}
-
-      {/* LIVESTREAM */}
       <Tippys setFollow={setFollow} data={data}>
-        <Link className={cx("link-btn")} to={`/@${data.username}`}>
-          <div className={cx("link-btn_div")}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="none" className={cx('live-icon')} viewBox="0 0 52 52">
-              <circle cx="26" cy="26" r="25.25" stroke="url(#paint0_linear)" strokeWidth="1.5"></circle>
-              <defs>
-                <linearGradient
-                  id="paint0_linear" x1="-22.739" x2="29.261" y1="26" y2="71.479" gradientUnits="userSpaceOnUse"><stop stopColor="#FF1764"></stop><stop offset="1" stopColor="#ED3495"></stop>
-                </linearGradient>
-              </defs>
-            </svg>
+        {
+          data.live
+            ? <Link className={cx("link-btn")} to={`/@${data.username}`}>
+              <div className={cx("link-btn_div")}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="none" className={cx('live-icon')} viewBox="0 0 52 52">
+                  <circle cx="26" cy="26" r="25.25" stroke="url(#paint0_linear)" strokeWidth="1.5"></circle>
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear" x1="-22.739" x2="29.261" y1="26" y2="71.479" gradientUnits="userSpaceOnUse"><stop stopColor="#FF1764"></stop><stop offset="1" stopColor="#ED3495"></stop>
+                    </linearGradient>
+                  </defs>
+                </svg>
 
-            <span className={cx("link-btn_span1")}>
-              <img style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover", maxWidth: '100%', display: "block" }} lazy1-src={data.avatar} alt={'avatar'} ref={ref_avatar} />
-            </span>
+                <span className={cx("link-btn_span1")}>
+                  <img style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover", maxWidth: '100%', display: "block" }} lazy1-src={data.avatar} alt={'avatar'} ref={ref_avatar} />
+                </span>
 
-            <span className={cx('live-stream')}>LIVE</span>
-          </div>
-        </Link>
+                <span className={cx('live-stream')}>LIVE</span>
+              </div>
+            </Link>
+            :
+            <Link className={cx("link-btn")} to={`/@${data.username}`}>
+              <div className={cx("link-btn_div")}>
+                <span className={cx("link-btn_span")}>
+                  <img style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover" }} lazy1-src={data.avatar} alt={'avatar'} ref={ref_avatar} />
+                </span>
+              </div>
+            </Link>
+        }
       </Tippys>
 
       {/* content-title */}
