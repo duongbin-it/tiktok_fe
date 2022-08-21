@@ -14,6 +14,7 @@ interface Props {
 }
 
 const SuggestAcounts: React.FC<Props> = ({ title, atb, data }) => {
+
   return (
     <div className={cx("wrapper")}>
       <p className={cx("title")}>{title}</p>
@@ -26,7 +27,7 @@ const SuggestAcounts: React.FC<Props> = ({ title, atb, data }) => {
               name={props.name}
               username={props.username}
               icon={props.blue_check ? <CheckIcon /> : null}
-              image={props.image}
+              image={props.avatar}
               live={props.live}
               title={title}
             />

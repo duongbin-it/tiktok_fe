@@ -226,7 +226,7 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
             </Link>
             :
             <Link className={cx("link-btn")} to={`/@${data.username}`}>
-              <div className={cx("link-btn_div")}>
+              <div className={cx("link-btn_div1")}>
                 <span className={cx("link-btn_span")}>
                   <img style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover" }} lazy1-src={data.avatar} alt={'avatar'} ref={ref_avatar} />
                 </span>
@@ -266,7 +266,7 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
             <span className={cx('font-popers')}>{data.title}</span>
             {data.name_tag
               && data.name_tag.map((item: any) => (
-                <a className={cx("tag")} href={item.link_tag} target="_blank" rel="noreferrer" key={uuidv4()}>
+                <a className={cx("tag")} href={`/tag/${item.key}`} target="_blank" rel="noreferrer" key={uuidv4()}>
                   <strong className={cx("tag_strong")}>
                     #{item.key}
                   </strong>

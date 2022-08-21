@@ -165,27 +165,46 @@
   }
 }
 
-.link-btn_span {
+.link-btn_div1 {
   width: 56px;
   height: 56px;
-  display: inline-block;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-feature-settings: "tnum";
   position: relative;
-  overflow: hidden;
-  color: #fff;
-  white-space: nowrap;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 32px;
-  border-radius: 50%;
-  background-color: rgba(136, 136, 136, 0.5);
-  border-color: rgba(22, 24, 35, 0.12);
-  border-width: 0.5px;
-  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+
+  .link-btn_span {
+    width: 56px;
+    height: 56px;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-feature-settings: "tnum";
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 32px;
+    border-radius: 50%;
+    background-color: rgba(136, 136, 136, 0.5);
+    border-color: rgba(22, 24, 35, 0.12);
+    border-width: 0.5px;
+    cursor: pointer;
+  }
 }
+
 
 .div-btn_item {
   margin-right: 114px;
