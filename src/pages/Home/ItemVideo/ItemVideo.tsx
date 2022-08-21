@@ -215,7 +215,7 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
 
       {/* LIVESTREAM */}
       <Tippys setFollow={setFollow} data={data}>
-        <Link className={cx("link-btn")} to={data.link_profile}>
+        <Link className={cx("link-btn")} to={`/@${data.username}`}>
           <div className={cx("link-btn_div")}>
             <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="none" className={cx('live-icon')} viewBox="0 0 52 52">
               <circle cx="26" cy="26" r="25.25" stroke="url(#paint0_linear)" strokeWidth="1.5"></circle>
@@ -241,7 +241,7 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
           <div className={cx("div-btn_item-div")}>
             <div style={{ display: "block" }}>
               <h3 className={cx("title")}>
-                <a href={data.link_profile}>{data.username}</a>
+                <a href={`/@${data.username}`}>{data.username}</a>
                 {data.blue_check ? <CheckIcon marginLeft={4} marginRight={2} /> : null}
               </h3>
               <h4 className={cx("name-title")}>{data.name}</h4>

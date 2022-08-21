@@ -1,7 +1,16 @@
-POST  http://localhost:3001/api/following
+POST https://tiktok-nodejs1.herokuapp.com/api/post_videos
 Content-Type: application/json
 
 {
-     "value": true, 
-     "username": "hienluongxink"
+     "title": "Qua đi đám cưới mà em còn phải tranh thủ làm video. Ig hienluong30 ạ",
+     "heart": 13100,
+     "share": 164,
+     "comment": 905,
+     "name_tag": null,
+     "heart_check": false,
+     "username": "hienluongxink",
+     "name_music": "nhạc nền - Hiền Lương",
+     "link_music": "https://www.tiktok.com/music/nh%E1%BA%A1c-n%E1%BB%81n-Hi%E1%BB%81n-L%C6%B0%C6%A1ng-7117448689014115099",
+     "link_video": "https://res.cloudinary.com/dmb7ox9vh/video/upload/v1659004074/video/download_qy72oo.mp4",
+     "image": "https://res.cloudinary.com/dmb7ox9vh/image/upload/v1659779246/image_video/0980bb87d01946de9ac84098718f2e16_c4sgsm.jpg"
 }
