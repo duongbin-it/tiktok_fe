@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { DISCOVER, SUGGEST_ACOUNTS } from "../../../api/api";
+import { DISCOVER, FOLLOWING_ACOUNTS, SUGGEST_ACOUNTS } from "../../../api/api";
 import { MusicIcon, SharpIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
 import { ConnectApi, handleShowLogin } from "../../../components/GlobalFunc/GlobalFunc";
@@ -33,18 +33,20 @@ const dieukhoan = [
 
 
 const Sidebar: React.FC = () => {
-  const [api, setApi] = useState<any>();
+  const [discover, setDiscover] = useState<any>();
   const ref = useRef<HTMLDivElement>(null);
   const currentUser = localStorage.getItem("user");
-  const [data, setData] = useState<any>(null)
+  const [suggest, setSuggest] = useState<any>(null)
+  const [following, setFollowing] = useState<any>(null)
 
   useEffect(() => {
     localStorage.setItem("ref", ref.current?.className || '');
   }, [ref]);
 
   useEffect(() => {
-    ConnectApi(DISCOVER, "GET").then((res) => setApi(res)).catch((res) => console.log(res))
-    ConnectApi(SUGGEST_ACOUNTS, "GET").then((req) => setData(req)).catch((res) => console.log(res))
+    ConnectApi(DISCOVER, "GET").then((res) => setDiscover(res)).catch((res) => console.log(res))
+    ConnectApi(SUGGEST_ACOUNTS, "GET").then((req) => setSuggest(req)).catch((res) => console.log(res))
+    ConnectApi(FOLLOWING_ACOUNTS, "GET").then((req) => setFollowing(req)).catch((res) => console.log(res))
   }, []);
 
   return (
@@ -63,16 +65,16 @@ const Sidebar: React.FC = () => {
               </div>
             );
           } else {
-            return <SuggestAcounts title="Following accounts" atb="See more" data={data} />;
+            return <SuggestAcounts title="Following accounts" atb="See more" data={following} />;
           }
         })()}
 
-        <SuggestAcounts title="Suggested accounts" atb="See all" data={data} />
+        <SuggestAcounts title="Suggested accounts" atb="See all" data={suggest} />
         <div className={cx("wrapper-1")}>
           <p className={cx("title")}>Discover</p>
           <div className={cx("container-1")}>
-            {api
-              ? api.data[0].data.map((item: any) => (
+            {discover
+              ? discover.data[0].data.map((item: any) => (
                 (() => {
                   switch (item.icon) {
                     case "MusicIcon":
