@@ -21,11 +21,13 @@ function handleShowLogin() {
 }
 
 async function ConnectApi(url: string, method = "GET", data?: object) {
+  let result = ""
   if (method === "GET") {
-    return await axios.get(url);
+    result = await axios.get(url);
   } else if (method === "POST") {
-    return await axios.post(url, data);
+    result = await axios.post(url, data);
   }
+  return result
 }
 
 function Following(data: any, buff: boolean) {

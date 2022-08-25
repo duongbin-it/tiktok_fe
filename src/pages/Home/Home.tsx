@@ -10,11 +10,9 @@ const Home: React.FC = () => {
   const [api, setApi] = useState<any>();
 
   useEffect(() => {
-    (function Newfeed() {
-      ConnectApi(NEWFEED, "GET").then((res) => {
-        setApi(res);
-      });
-    })()
+    ConnectApi(NEWFEED, "GET").then((res) => {
+      setApi(res);
+    })
   }, []);
 
   return (
