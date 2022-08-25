@@ -2,12 +2,14 @@ import Tippy from "@tippyjs/react";
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from "classnames/bind";
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "tippy.js/dist/tippy.css";
 import { CoinIcon, HelpIcon, KeyboardIcon, LanguageIcon, LogoIcon, LogOutIcon, MessageIcon, MoreIcon, NotificationIcon, NotificationIcon1, PathIcon, PlusIcon, SettingIcon, UserIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
 import { handleShowLogin } from "../../../components/GlobalFunc/GlobalFunc";
 import Menu from "../../../components/Popper/Menu/Menu";
+import { setApi } from "../../../redux/actions";
 import Login from "../../Login/Login";
 import Search from "../Search/Search";
 import styles from "./Header.module.scss";
@@ -69,6 +71,7 @@ const userMenu = [
 ];
 
 const Header: React.FC = () => {
+  const dispath = useDispatch()
   const currentUser = localStorage.getItem("user");
   const ref = useRef<HTMLDivElement>(null);
   const active = useRef<HTMLDivElement>(null);
@@ -111,9 +114,9 @@ const Header: React.FC = () => {
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
         <div className={cx("logo")}>
-          <a href="/">
+          <Link to={"/"} onClick={() => { dispath(setApi("")) }}>
             <LogoIcon />
-          </a>
+          </Link>
         </div>
         <Search />
         <div className={cx("actions")}>
