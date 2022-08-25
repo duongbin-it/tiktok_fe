@@ -38,7 +38,7 @@ function DivUsers({ index, name, username, icon, image, live, title }: any) {
                         <Link className={cx('link-btn')} to={`/@${username}`}>
                             <div className={cx('img-block-label')}>
                                 <h4 className={cx('img-block-title')}>{username}</h4>
-                                <div style={{ marginLeft: 4, display: 'flex' }}>{icon}</div>
+                                <div style={{ marginLeft: 4 }}>{icon}</div>
                             </div>
                             <p className={cx('img-block-label-name')}>{name}</p>
                         </Link>
