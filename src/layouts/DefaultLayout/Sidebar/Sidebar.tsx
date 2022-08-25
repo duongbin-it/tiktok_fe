@@ -1,14 +1,15 @@
 import classNames from "classnames/bind";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 import { DISCOVER, FOLLOWING_ACOUNTS, SUGGEST_ACOUNTS } from "../../../api/api";
 import { MusicIcon, SharpIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
 import { ConnectApi, handleShowLogin } from "../../../components/GlobalFunc/GlobalFunc";
-import SuggestAcounts from "./SuggestAcounts/SuggestAcounts";
+import { DiscoverLoading } from "../../../components/Loading/Loading";
 import DivUser from "./DivLink/DivUser";
 import styles from "./Sidebar.module.scss";
-import { v4 as uuidv4 } from 'uuid';
+import SuggestAcounts from "./SuggestAcounts/SuggestAcounts";
 
 const cx = classNames.bind(styles);
 
@@ -102,7 +103,7 @@ const Sidebar: React.FC = () => {
                   }
                 })()
               ))
-              : null}
+              : <DiscoverLoading />}
           </div>
         </div>
         <div className={cx("sperate")}></div>

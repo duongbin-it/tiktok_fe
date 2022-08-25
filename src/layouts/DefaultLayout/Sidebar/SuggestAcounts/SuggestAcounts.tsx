@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import React from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { CheckIcon } from "../../../../assets/icons/icons";
+import { FollowingLoading } from "../../../../components/Loading/Loading";
 import DivUsers from "./DivUsers/DivUsers";
 import styles from "./SuggestAcounts.module.scss";
 
@@ -18,7 +19,7 @@ const SuggestAcounts: React.FC<Props> = ({ title, atb, data }) => {
   return (
     <div className={cx("wrapper")}>
       <p className={cx("title")}>{title}</p>
-      {data?.data?.map((props: any, index: number) => {
+      {data ? data?.data?.map((props: any, index: number) => {
         if (index < 10) {
           return (
             <DivUsers
@@ -36,7 +37,7 @@ const SuggestAcounts: React.FC<Props> = ({ title, atb, data }) => {
         else {
           return false
         }
-      })}
+      }) : <FollowingLoading />}
       <div className={cx("see-more")}>
         <p className={cx("see-more-btn")}>{atb}</p>
       </div>
