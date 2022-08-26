@@ -5,9 +5,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "tippy.js/dist/tippy.css";
+import { NEWFEED } from "../../../api/api";
 import { CoinIcon, HelpIcon, KeyboardIcon, LanguageIcon, LogoIcon, LogOutIcon, MessageIcon, MoreIcon, NotificationIcon, NotificationIcon1, PathIcon, PlusIcon, SettingIcon, UserIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
-import { handleShowLogin } from "../../../components/GlobalFunc/GlobalFunc";
+import { ConnectApi, handleShowLogin } from "../../../components/GlobalFunc/GlobalFunc";
 import Menu from "../../../components/Popper/Menu/Menu";
 import { setApi } from "../../../redux/actions";
 import Login from "../../Login/Login";
@@ -114,7 +115,12 @@ const Header: React.FC = () => {
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
         <div className={cx("logo")}>
-          <Link to={"/"} onClick={() => { dispath(setApi("")) }}>
+          <Link to={"/"} onClick={() => {
+            dispath(setApi([]))
+            ConnectApi(NEWFEED, "GET").then((res: any) => {
+              dispath(setApi(res.data))
+            })
+          }}>
             <LogoIcon />
           </Link>
         </div>
