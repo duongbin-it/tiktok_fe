@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import { CheckIcon, CommentIcon, HeartactiveIcon, HeartIcon, MusicIcon, PauseIcon, PlayIcon, ReportIcon, ShareIcon, SoundIcon, UnSoundIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
-import { Following, handleShowLogin, Hearted } from "../../../components/GlobalFunc/GlobalFunc";
+import { Following, handleShowLogin, Hearted } from "../../../components/GlobalFunction/GlobalFunction";
 import Tippys from "../../../components/Tippys/Tippys";
 import useElementOnScreen from "../../../hooks/useElementOnScreen";
 import TippyShare from '../../../layouts/components/TippyShare/TippyShare';
@@ -65,6 +65,7 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
         }
         setPlay(true);
         ref_video.current?.play();
+        ref_video.current!.currentTime = 0
       }
     } else {
       if (play) {
@@ -130,7 +131,6 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
 
     const ended = ref_video.current!.onended = function () {
       progress__trackupdate.current!.style.width = 0 + "%";
-      setPlay(false);
     };
 
     return () => {

@@ -3,12 +3,12 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from "classnames/bind";
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "tippy.js/dist/tippy.css";
 import { NEWFEED } from "../../../api/api";
 import { CoinIcon, HelpIcon, KeyboardIcon, LanguageIcon, LogoIcon, LogOutIcon, MessageIcon, MoreIcon, NotificationIcon, NotificationIcon1, PathIcon, PlusIcon, SettingIcon, UserIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
-import { ConnectApi, handleShowLogin } from "../../../components/GlobalFunc/GlobalFunc";
+import { ConnectApi, handleShowLogin } from "../../../components/GlobalFunction/GlobalFunction";
 import Menu from "../../../components/Popper/Menu/Menu";
 import { setApi } from "../../../redux/actions";
 import Login from "../../Login/Login";
@@ -77,6 +77,22 @@ const Header: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const active = useRef<HTMLDivElement>(null);
   const [notifi, setNotifi] = useState<boolean>(true);
+  const ref_header = useRef<HTMLDivElement>(null)
+
+  const Active = ({ isActive }: any) => {
+
+    useEffect(() => {
+      if (window.location.pathname === "/upload") {
+        (ref_header.current as HTMLDivElement).style.width = "100%"
+      }
+    }, [isActive])
+
+
+    return {
+      backgroundColor: isActive ? "rgba(22,24,35,0.06)" : "",
+      margin: 0
+    };
+  }
 
   useEffect(() => {
     window.onbeforeunload = function () {
@@ -113,7 +129,7 @@ const Header: React.FC = () => {
 
   return (
     <header className={cx("wrapper")}>
-      <div className={cx("inner")}>
+      <div className={cx("inner")} ref={ref_header}>
         <div className={cx("logo")} >
           <Link to={"/"} style={{ display: "flex" }} onClick={() => {
             dispath(setApi([]))
@@ -128,11 +144,9 @@ const Header: React.FC = () => {
         <div className={cx("actions")}>
           {currentUser ? (
             <div className={cx("icon-center")}>
-              <Tippy content="Tải video lên" delay={[100, 0]}>
-                <Link className={cx("action-btn")} style={{ margin: "0" }} to="/upload">
-                  <Button text leftIcon={<PlusIcon />}>Upload</Button>
-                </Link>
-              </Tippy>
+              <NavLink className={cx("action-btn")} style={Active} to="/upload">
+                <Button text leftIcon={<PlusIcon />}>Upload</Button>
+              </NavLink>
               <Tippy content="Tin nhắn" delay={[100, 0]}>
                 <Link className={cx("action-btn")} to="/messages">
                   <MessageIcon></MessageIcon>

@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import React from "react";
 import { CircleIcon, CloseIcon, FbIcon, GgIcon, GithubIcon, IclouldIcon, InstagramIcon, MicrosoftIcon, PersonIcon, QrIcon, TwitterIcon } from "../../assets/icons/icons";
-import { handleHideLogin } from "../../components/GlobalFunc/GlobalFunc";
+import { handleHideLogin } from "../../components/GlobalFunction/GlobalFunction";
 import styles from "./Login.module.scss";
 import { LoginFacebook, LoginGithub, LoginGoogle } from "./LoginSocialNetWork/LoginSocialNetWork";
 

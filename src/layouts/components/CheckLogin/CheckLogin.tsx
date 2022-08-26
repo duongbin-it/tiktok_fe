@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react';
-import { Following, handleShowLogin } from '../../../components/GlobalFunc/GlobalFunc';
+import { Following, handleShowLogin } from '../../../components/GlobalFunction/GlobalFunction';
 
 
 interface Props {

@@ -16,11 +16,10 @@ const DivUserItem: React.FC<Props> = ({ link, icon, icon1, content }) => {
 
     const [act, setAct] = useState(false)
 
-    function Active({ isActive }: any) {
-
+    const Active = ({ isActive }: any) => {
         useEffect(() => {
             setAct(isActive)
-        })
+        }, [isActive])
 
         return {
             color: isActive ? "rgba(254, 44, 85, 1)" : "",

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { USERS } from "../../api/api";
 import DetailsProfile from "../../pages/Home/ItemVideo/DetailsProfile/DetailsProfile";
 import styles from "../../pages/Home/ItemVideo/ItemVideo.module.scss";
-import { ConnectApi } from "../GlobalFunc/GlobalFunc";
+import { ConnectApi } from "../GlobalFunction/GlobalFunction";
 
 const cx = classNames.bind(styles);
 

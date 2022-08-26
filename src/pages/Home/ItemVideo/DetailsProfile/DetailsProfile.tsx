@@ -2,7 +2,7 @@ import classNames from "classnames/bind"
 import React, { Fragment, memo, useEffect, useState } from "react"
 import { CheckIcon } from "../../../../assets/icons/icons"
 import Button from "../../../../components/Button/Button"
-import { Following, handleShowLogin } from "../../../../components/GlobalFunc/GlobalFunc"
+import { Following, handleShowLogin } from "../../../../components/GlobalFunction/GlobalFunction"
 import styles from './DetailsProfile.module.scss'
 
 var numeral = require('numeral');

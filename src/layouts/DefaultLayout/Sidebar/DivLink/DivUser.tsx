@@ -6,8 +6,6 @@ import DivUserItem from './DivUserItem/DivUserItem';
 
 const cx = classNames.bind(styles)
 
-
-
 const DivUser: React.FC = () => {
     return (
         <div className={cx('wrapper')}>
