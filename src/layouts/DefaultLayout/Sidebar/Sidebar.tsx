@@ -63,14 +63,19 @@ const Sidebar: React.FC = () => {
                 <Button login onClick={handleShowLogin}>
                   Log in
                 </Button>
+                <SuggestAcounts title="Suggested accounts" atb="See all" data={suggest} />
               </div>
             );
           } else {
-            return <SuggestAcounts title="Following accounts" atb="See more" data={following} />;
+            return (
+              <>
+                <SuggestAcounts title="Suggested accounts" atb="See all" data={suggest} />
+                <SuggestAcounts title="Following accounts" atb="See more" data={following} />
+              </>
+            )
           }
         })()}
 
-        <SuggestAcounts title="Suggested accounts" atb="See all" data={suggest} />
         <div className={cx("wrapper-1")}>
           <p className={cx("title")}>Discover</p>
           <div className={cx("container-1")}>

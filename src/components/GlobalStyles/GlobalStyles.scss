@@ -40,6 +40,36 @@ body {
   overflow-y: overlay;
 }
 
+body {
+  .tippy-box {
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    background-color: rgba(84, 84, 84, 0.92);
+  }
+
+  .tippy-arrow {
+    color: rgba(84, 84, 84, 0.92);
+  }
+
+  .tippy-content {
+    text-align: left;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    background-color: rgba(84, 84, 84, 0.92);
+    color: rgb(255, 255, 255);
+    padding: 8px;
+  }
+
+  .tippy-box[data-placement^='bottom']>.tippy-arrow:before {
+    top: -8px;
+  }
+}
+
 div {
   border: 0;
 }
@@ -52,24 +82,6 @@ a {
 button {
   border: none;
   outline: none;
-}
-
-body .tippy-box {
-  .tippy-box {
-    text-align: left;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 300;
-    font-size: 12px;
-    line-height: 22px;
-    background-color: rgba(84, 84, 84, 0.92);
-    color: rgb(255, 255, 255);
-    box-sizing: border-box;
-  }
-
-  .tippy-arrow {
-    color: #333;
-  }
 }
 
 @font-face {

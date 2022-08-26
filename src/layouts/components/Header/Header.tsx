@@ -114,8 +114,8 @@ const Header: React.FC = () => {
   return (
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
-        <div className={cx("logo")}>
-          <Link to={"/"} onClick={() => {
+        <div className={cx("logo")} >
+          <Link to={"/"} style={{ display: "flex" }} onClick={() => {
             dispath(setApi([]))
             ConnectApi(NEWFEED, "GET").then((res: any) => {
               dispath(setApi(res.data))

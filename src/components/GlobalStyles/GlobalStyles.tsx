@@ -1,5 +1,5 @@
 import React from 'react';
-import './GlobalStyles.module.scss'
+import './GlobalStyles.scss';
 
 interface Props {
     children: any,
