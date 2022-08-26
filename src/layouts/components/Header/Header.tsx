@@ -133,9 +133,11 @@ const Header: React.FC = () => {
         <div className={cx("logo")} >
           <Link to={"/"} style={{ display: "flex" }} onClick={() => {
             dispath(setApi([]))
-            ConnectApi(NEWFEED, "GET").then((res: any) => {
-              dispath(setApi(res.data))
-            })
+            if (window.location.pathname === "/") {
+              ConnectApi(NEWFEED, "GET").then((res: any) => {
+                dispath(setApi(res.data))
+              })
+            }
           }}>
             <LogoIcon />
           </Link>
