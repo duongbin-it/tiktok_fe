@@ -1,4 +1,4 @@
-const URL = 'https://tiktok-nodejs1.herokuapp.com'
+const URL = 'https://tiktok-be.onrender.com'
 
 const SUGGEST_ACOUNTS = `${URL}/api/suggest_acounts`
 const FOLLOWING_ACOUNTS = `${URL}/api/following_acounts`
