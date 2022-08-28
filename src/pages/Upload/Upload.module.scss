@@ -1,0 +1,393 @@
+@mixin caption {
+    box-sizing: border-box;
+    margin-block: 0px;
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 600;
+    color: rgba(22, 24, 35, 1);
+    display: inline;
+    margin-right: 14px;
+}
+
+
+
+.wrapper {
+    padding-top: 60px;
+    width: 100%;
+    background-color: rgb(248, 248, 248);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+
+    .container {
+        margin: 0px auto;
+        width: 1100px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        background-color: rgb(248, 248, 248);
+
+        .content {
+            width: 1100px;
+            box-shadow: rgb(0 0 0 / 6%) 0px 2px 8px;
+            border-radius: 8px;
+            background-color: rgb(255, 255, 255);
+            padding: 24px 56px;
+
+            .title {
+                box-sizing: border-box;
+                font-size: 24px;
+                line-height: 1.5;
+                font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+                font-weight: 700;
+                color: rgba(22, 24, 35, 1);
+                display: block;
+            }
+
+            .note_title {
+                box-sizing: border-box;
+                margin-block: 0px;
+                font-size: 18px;
+                line-height: 1.5;
+                font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+                font-weight: 400;
+                color: rgba(22, 24, 35, 0.5);
+            }
+
+            .upload_video {
+                display: flex;
+                margin-top: 24px;
+
+                .layout_left {
+                    margin-top: 24px;
+                }
+
+                .layout_right {
+                    margin-left: 24px;
+                    flex: 1 1 0%;
+                    min-width: 0px;
+
+                    .layout_right-container {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        outline-style: none;
+                        position: relative;
+                        flex: 1 1 0%;
+
+                        .caption {
+                            @include caption()
+                        }
+
+                        .length-notation {
+                            font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif, "Segoe UI Emoji", "Noto Emoji";
+                            font-weight: 400;
+                            font-size: 13px;
+                            line-height: 17px;
+                            color: rgba(22, 24, 35, 0.5);
+                            white-space: pre;
+                        }
+                    }
+
+                    .input-tag {
+                        margin-top: 4px;
+                        font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif, "Segoe UI Emoji", "Noto Emoji";
+                        position: relative;
+
+                        .input-tag_item {
+                            font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif, "Segoe UI Emoji", "Noto Emoji";
+                            font-weight: 500;
+                            height: 46px;
+                            border: 1px solid rgba(22, 24, 35, 0.12);
+                            border-radius: 4px;
+                            outline: none;
+                            width: 100%;
+                            padding: 0 80px 0 16px;
+                            font-size: 17px;
+                            caret-color: rgb(254, 44, 85);
+                        }
+
+                        .icon-tag1 {
+                            position: absolute;
+                            right: 41px;
+                            width: 20px;
+                            height: 20px;
+                            margin-left: 8px;
+                            top: 13px;
+                            cursor: pointer;
+                        }
+
+                        .icon-tag2 {
+                            position: absolute;
+                            right: 13px;
+                            width: 20px;
+                            height: 20px;
+                            margin-left: 8px;
+                            top: 13px;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .group {
+                        margin-bottom: 24px;
+
+                        .show-cover {
+                            position: relative;
+                            line-height: 0;
+                            padding: 6px;
+                            border: 1px solid rgba(22, 24, 35, 0.12);
+                            border-radius: 2px;
+
+                            .show-cover_item {
+                                display: flex;
+                                border: 2px solid transparent;
+                                box-sizing: border-box;
+                                border-radius: 2px;
+
+                                .show-cover_item-item {
+                                    width: 84.2px;
+                                    height: 150px;
+                                    object-fit: cover;
+                                    background-color: rgba(22, 24, 35, 0.03);
+                                }
+                            }
+                        }
+
+                        .privacy {
+                            @include caption()
+                        }
+
+                        .policity {
+                            box-sizing: border-box;
+                            margin-block: 0px;
+                            font-size: 12px;
+                            line-height: 1.5;
+                            font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+                            font-weight: 400;
+                            color: rgba(22, 24, 35, 0.75);
+                        }
+
+                        .policity1 {
+                            box-sizing: border-box;
+                            margin-block: 0px;
+                            font-size: 12px;
+                            line-height: 1.7;
+                            font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+                            font-weight: 600;
+                            color: rgba(22, 24, 35, 1);
+                        }
+
+                        .show-dropdown {
+                            width: 300px;
+                            height: 36px;
+                            margin-top: 4px;
+                        }
+
+                        .show-dropdown_item {
+                            position: relative;
+                            border-radius: 4px;
+                            padding: 7px 12px;
+                            box-sizing: border-box;
+                            display: inline-flex;
+                            -webkit-box-pack: justify;
+                            justify-content: space-between;
+                            -webkit-box-align: center;
+                            align-items: center;
+                            cursor: pointer;
+                            width: 300px;
+                            height: 36px;
+                            border: 1px solid rgba(22, 24, 35, 0.12);
+                            background: rgb(255, 255, 255);
+                        }
+
+                        .show-dropdown_item-item {
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            .privacy-title {
+                                font-weight: 400 !important;
+                                height: 22px;
+                                font-family: ProximaNova;
+                                font-size: 16px;
+                                line-height: 22px;
+                                @include caption()
+                            }
+
+                            .rotate_dropdown {
+                                display: flex;
+                                transform: rotate(0deg);
+                                transition: transform 0.2s linear;
+                            }
+
+                            .drop_down--container {
+                                position: absolute;
+                                top: 36px;
+                                left: -1px;
+                                display: inline-flex;
+                                flex-direction: column;
+                                box-sizing: border-box;
+                                margin-top: 4px;
+                                border-radius: 4px;
+                                background: rgb(255, 255, 255);
+                                box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+                                overflow: overlay;
+                                z-index: 1111;
+                                transition: max-height 0.2s cubic-bezier(0.075, 0.82, 0.165, 1) 1s line;
+                                max-height: 0px;
+                                padding: 0px;
+                                direction: ltr;
+                                width: 300px;
+
+                                .drop_down--item {
+                                    width: 100%;
+                                    display: flex;
+                                    background: rgb(255, 255, 255);
+                                    padding: 10px 12px;
+                                    font-family: ProximaNova;
+                                    font-size: 16px;
+                                    line-height: 22px;
+                                    box-sizing: border-box;
+                                    color: rgb(22, 24, 35);
+                                    cursor: pointer;
+
+                                    &:hover {
+                                        background: rgba(22, 24, 35, 0.03) !important;
+                                    }
+                                }
+                            }
+                        }
+
+                        .input-checkbox--item {
+                            margin-right: 34px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            .div-checkbox {
+                                display: flex;
+                                width: 16px;
+                                height: 16px;
+
+                                .input-item {
+                                    width: 16px;
+                                    height: 16px;
+                                    cursor: pointer;
+                                    position: absolute;
+                                    appearance: none;
+
+                                    &:hover {
+                                        border: 1.5px solid rgba(254, 44, 85, 1);
+                                    }
+
+                                    &:checked~.checked-checkbox {
+                                        background-color: rgba(254, 44, 85, 1);
+
+                                        svg {
+                                            color: white;
+                                        }
+                                    }
+                                }
+
+                                .checked-checkbox {
+                                    box-sizing: border-box;
+                                    position: relative;
+                                    height: 100%;
+                                    width: 100%;
+                                    display: flex;
+                                    -webkit-box-align: center;
+                                    align-items: center;
+                                    -webkit-box-pack: center;
+                                    justify-content: center;
+                                    border-radius: 2px;
+                                    pointer-events: none;
+                                    color: rgba(255, 255, 255, 1);
+                                    border: 1.5px solid rgba(22, 24, 35, 0.12);
+                                }
+                            }
+
+                            .label {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                text-align: center;
+
+                                .label-checkbox {
+                                    cursor: context-menu;
+                                }
+                            }
+                        }
+                    }
+
+                    .group1 {
+                        margin-bottom: 8px;
+
+                        .privacy {
+                            @include caption()
+                        }
+
+                        .radio-button {
+                            position: relative;
+                            box-sizing: border-box;
+                            overflow: visible;
+                            display: inline-flex;
+                            -webkit-box-align: center;
+                            align-items: center;
+                            color: rgb(22, 24, 35);
+                            cursor: pointer;
+                            font-weight: 400;
+                            font-size: 16px;
+                            line-height: 22px;
+
+                            .radio-button-item {
+                                position: relative;
+                                width: 44px;
+                                height: 24px;
+                                padding: 2px;
+                                box-sizing: border-box;
+                                left: 0px;
+                                top: 0px;
+                                background: rgba(22, 24, 35, 0.12);
+                                border-radius: 22px;
+                                transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+                                cursor: pointer;
+
+                                .span-item {
+                                    position: absolute;
+                                    display: flex;
+                                    -webkit-box-pack: center;
+                                    justify-content: center;
+                                    -webkit-box-align: center;
+                                    align-items: center;
+                                    width: 20px;
+                                    height: 20px;
+                                    left: 2px;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    border-radius: 22px;
+                                    background: rgb(255, 255, 255);
+                                    box-shadow: rgb(0 0 0 / 15%) 0px 1px 2px;
+                                    transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+                                    z-index: 2;
+                                }
+                            }
+                        }
+
+                        .button-property {
+                            display: flex;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

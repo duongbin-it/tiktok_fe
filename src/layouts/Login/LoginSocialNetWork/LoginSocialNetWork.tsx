@@ -12,6 +12,11 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 
+function setStorages(re: any) {
+  localStorage.setItem("user", String(re.user.email));
+  localStorage.setItem("avatar", String(re.user.photoURL));
+}
+
 function Success() {
   (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block';
   (document.querySelector("[class='css-feuqz4']") as HTMLDivElement).style.top = '16px';
@@ -20,44 +25,50 @@ function Success() {
   setTimeout(() => { location.reload(); }, 4000);
 }
 
-function Fail(err: any) {
+function Fail(err: any, isModal: boolean) {
   console.log(err['message']);
-  (document.querySelector("[class='css-feuqz5']") as HTMLDivElement).style.top = '16px';
-  setTimeout(() => { (document.querySelector("[class='css-feuqz5']") as HTMLDivElement).style.top = '-50px'; }, 3000);
-  (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'none';
+  if (isModal) {
+    (document.querySelector("[class='css-feuqz5']") as HTMLDivElement).style.top = '16px';
+    setTimeout(() => { (document.querySelector("[class='css-feuqz5']") as HTMLDivElement).style.top = '-50px'; }, 3000);
+    (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'none';
+  }
 }
 
-export function LoginFacebook() {
+export function LoginFacebook(isModal: boolean) {
+  if (isModal) {
+    (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block';
+  }
   const provider = new FacebookAuthProvider();
   signInWithPopup(getAuth(app), provider)
     .then((re) => {
-      localStorage.setItem("user", String(re.user.email));
-      localStorage.setItem("avatar", String(re.user.photoURL));
+      setStorages(re)
       Success()
     })
-    .catch(err => Fail(err))
+    .catch(err => Fail(err, isModal))
 }
 
-export function LoginGoogle() {
+export function LoginGoogle(isModal: boolean) {
+  if (isModal) {
+    (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block';
+  }
   const provider = new GoogleAuthProvider();
-  (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block';
   signInWithPopup(getAuth(app), provider)
     .then((re) => {
-      localStorage.setItem("user", String(re.user.email));
-      localStorage.setItem("avatar", String(re.user.photoURL));
+      setStorages(re)
       Success()
     })
-    .catch(err => Fail(err))
+    .catch(err => Fail(err, isModal))
 }
 
-export function LoginGithub() {
+export function LoginGithub(isModal: boolean) {
+  if (isModal) {
+    (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block';
+  }
   const provider = new GithubAuthProvider();
-  (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block';
   signInWithPopup(getAuth(app), provider)
     .then((re) => {
-      localStorage.setItem("user", String(re.user.email));
-      localStorage.setItem("avatar", String(re.user.photoURL));
+      setStorages(re)
       Success()
     })
-    .catch(err => Fail(err))
+    .catch(err => Fail(err, isModal))
 }

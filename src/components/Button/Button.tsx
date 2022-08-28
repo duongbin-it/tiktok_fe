@@ -26,6 +26,9 @@ function Button({
   followback,
   login,
   enablesound,
+  buttonHeader,
+  button_property,
+  button_property_none,
   ...passAvailable
 }: any) {
   let Comp: any = "div";
@@ -63,7 +66,10 @@ function Button({
     following_profile,
     followback,
     login,
+    buttonHeader,
     enablesound,
+    button_property,
+    button_property_none,
   });
 
   return (

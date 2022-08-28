@@ -1,8 +1,8 @@
+import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 import { NEWFEED } from "../../api/api";
-import { ConnectApi } from "../../components/GlobalFunction/GlobalFunction";
 import { VideoLoading } from "../../components/Loading/Loading";
 import { setApi } from "../../redux/actions";
 import ItemVideo from "./ItemVideo/ItemVideo";
@@ -13,7 +13,7 @@ const Home: React.FC = () => {
   const api = Object(useSelector<any>(item => item['api']))
 
   useEffect(() => {
-    ConnectApi(NEWFEED, "GET").then((res: any) => {
+    axios.get(NEWFEED).then((res: any) => {
       dispath(setApi(res.data))
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps

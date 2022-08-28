@@ -14,10 +14,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  // -webkit-user-select: none;
-  // -moz-user-select: none;
-  // -ms-user-select: none;
-  // user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
   &::selection {
     background-color: lime;
@@ -91,13 +91,13 @@ button {
 }
 
 @font-face {
-  font-family: ProximaNova;
+  font-family: ProximaNova1;
   src: url("../../assets/fonts/Proxima-Nova-Semibold.woff2");
   font-weight: 600;
 }
 
 @font-face {
-  font-family: ProximaNova;
+  font-family: ProximaNova2;
   src: url("../../assets/fonts/Proxima-Nova-Bold.woff2");
   font-weight: 700;
 }

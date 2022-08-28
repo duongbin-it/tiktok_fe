@@ -1,5 +1,6 @@
 import Tippy from "@tippyjs/react";
 import HeadlessTippy from '@tippyjs/react/headless';
+import axios from "axios";
 import classNames from "classnames/bind";
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from "react-redux";
@@ -8,7 +9,7 @@ import "tippy.js/dist/tippy.css";
 import { NEWFEED } from "../../../api/api";
 import { CoinIcon, HelpIcon, KeyboardIcon, LanguageIcon, LogoIcon, LogOutIcon, MessageIcon, MoreIcon, NotificationIcon, NotificationIcon1, PathIcon, PlusIcon, SettingIcon, UserIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
-import { ConnectApi, handleShowLogin } from "../../../components/GlobalFunction/GlobalFunction";
+import { handleShowLogin } from "../../../components/GlobalFunction/GlobalFunction";
 import Menu from "../../../components/Popper/Menu/Menu";
 import { setApi } from "../../../redux/actions";
 import Login from "../../Login/Login";
@@ -78,11 +79,13 @@ const Header: React.FC = () => {
   const active = useRef<HTMLDivElement>(null);
   const [notifi, setNotifi] = useState<boolean>(true);
   const ref_header = useRef<HTMLDivElement>(null)
+  const [actived, setActived] = useState<boolean>(false)
 
   const Active = ({ isActive }: any) => {
 
     useEffect(() => {
       if (window.location.pathname === "/upload") {
+        setActived(true);
         (ref_header.current as HTMLDivElement).style.width = "100%"
       }
     }, [isActive])
@@ -134,9 +137,14 @@ const Header: React.FC = () => {
           <Link to={"/"} style={{ display: "flex" }} onClick={() => {
             dispath(setApi([]))
             if (window.location.pathname === "/") {
-              ConnectApi(NEWFEED, "GET").then((res: any) => {
+              axios.get(NEWFEED).then((res: any) => {
                 dispath(setApi(res.data))
               })
+            }
+            else {
+              setTimeout(() => {
+                setActived(false); console.log(1);
+              }, 4000);
             }
           }}>
             <LogoIcon />
@@ -147,7 +155,7 @@ const Header: React.FC = () => {
           {currentUser ? (
             <div className={cx("icon-center")}>
               <NavLink className={cx("action-btn")} style={Active} to="/upload">
-                <Button text leftIcon={<PlusIcon />}>Upload</Button>
+                {actived ? <Button text buttonHeader leftIcon={<PlusIcon />}>Upload</Button> : <Button text leftIcon={<PlusIcon />}>Upload</Button>}
               </NavLink>
               <Tippy content="Tin nhắn" delay={[100, 0]}>
                 <Link className={cx("action-btn")} to="/messages">
@@ -198,7 +206,7 @@ const Header: React.FC = () => {
                 )}>
                 <button className={cx("action-btn")} onClick={() => setNotifi(!notifi)}>
                   {notifi ? <NotificationIcon /> : <NotificationIcon1 />}
-                  {/* <sup className={cx("ting-mess")}>12</sup> */}
+                  <sup className={cx("ting-mess")}>12</sup>
                 </button>
               </HeadlessTippy>
 

@@ -754,3 +754,68 @@ export const LogoLogoutIcon = React.memo(() => (
     </defs>
   </svg>)
 )
+
+export const CheckboxIcon = React.memo(() => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="12"
+    height="9.6"
+    fill="none"
+    viewBox="0 0 10 8"
+  >
+    <path
+      fill="currentColor"
+      d="M3.886 5.952L8.775.915a.5.5 0 01.707-.01l.195.19a.5.5 0 01.01.707L4.344 7.309a.636.636 0 01-.913 0L.948 4.752a.5.5 0 01.01-.707l.197-.19a.5.5 0 01.707.01l2.024 2.087z"
+    ></path>
+  </svg>
+))
+
+export const DropdownIcon = React.memo(() => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="14"
+    height="14"
+    fill="currentColor"
+    viewBox="0 0 48 48"
+  >
+    <path
+      fillRule="evenodd"
+      d="M25.519 35.228a2 2 0 01-3.037 0L8.83 19.302C7.718 18.004 8.64 16 10.35 16h27.303c1.708 0 2.63 2.004 1.518 3.302L25.52 35.228z"
+      clipRule="evenodd"
+    ></path>
+  </svg>
+))
+
+export const ProcessIcon = React.memo(() => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+    <defs>
+      <linearGradient x1="0%" x2="0%" y1="100%" y2="0%">
+        <stop offset="0%" stopColor="red"></stop>
+        <stop offset="100%" stopColor="#ff0"></stop>
+      </linearGradient>
+    </defs>
+    <circle
+      cx="40"
+      cy="40"
+      r="36"
+      fill="transparent"
+      stroke="rgba(22, 24, 35, 0.12)"
+      strokeDasharray="226.1946710584651 226.1946710584651"
+      strokeWidth="4"
+      className="tiktok-progress-background"
+    ></circle>
+    <circle
+      cx="40"
+      cy="40"
+      r="36"
+      fill="transparent"
+      stroke="#FE2C55"
+      strokeDasharray="226.1946710584651 226.1946710584651"
+      strokeDashoffset="226.195"
+      strokeLinecap="square"
+      strokeWidth="4"
+      className="tiktok-progress-bar"
+      transform="rotate(-90)"
+    ></circle>
+  </svg>
+))

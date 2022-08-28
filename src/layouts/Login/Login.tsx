@@ -32,13 +32,13 @@ const Login: React.FC = () => {
                 </div>
               </div>
               <div
-                className={cx("link-login")} onClick={() => LoginFacebook()}>
+                className={cx("link-login")} onClick={() => LoginFacebook(true)}>
                 <div className={cx("link-login-item")}>
                   <div className={cx("item-properties")}>{<FbIcon />}</div>
                   Continue with Facebook
                 </div>
               </div>
-              <div className={cx("link-login")} onClick={() => LoginGoogle()}>
+              <div className={cx("link-login")} onClick={() => LoginGoogle(true)}>
                 <div className={cx("link-login-item")}>
                   <div className={cx("item-properties")}>{<GgIcon />}</div>
                   Continue with Google
@@ -50,7 +50,7 @@ const Login: React.FC = () => {
                   Continue with Twitter
                 </div>
               </div>
-              <div className={cx("link-login")} onClick={() => LoginGithub()}>
+              <div className={cx("link-login")} onClick={() => LoginGithub(true)}>
                 <div className={cx("link-login-item")}>
                   <div className={cx("item-properties")}>{<GithubIcon />}</div>
                   Continue with GitHub

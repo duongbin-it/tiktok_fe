@@ -1,3 +1,4 @@
+import axios from "axios";
 import classNames from "classnames/bind";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
@@ -5,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { DISCOVER, FOLLOWING_ACOUNTS, SUGGEST_ACOUNTS } from "../../../api/api";
 import { MusicIcon, SharpIcon } from "../../../assets/icons/icons";
 import Button from "../../../components/Button/Button";
-import { ConnectApi, handleShowLogin } from "../../../components/GlobalFunction/GlobalFunction";
+import { handleShowLogin } from "../../../components/GlobalFunction/GlobalFunction";
 import { DiscoverLoading } from "../../../components/Loading/Loading";
 import DivUser from "./DivLink/DivUser";
 import styles from "./Sidebar.module.scss";
@@ -45,9 +46,9 @@ const Sidebar: React.FC = () => {
   }, [ref]);
 
   useEffect(() => {
-    ConnectApi(DISCOVER, "GET").then((res) => setDiscover(res)).catch((res) => console.log(res))
-    ConnectApi(SUGGEST_ACOUNTS, "GET").then((req) => setSuggest(req)).catch((res) => console.log(res))
-    ConnectApi(FOLLOWING_ACOUNTS, "GET").then((req) => setFollowing(req)).catch((res) => console.log(res))
+    axios.get(DISCOVER).then((res) => setDiscover(res)).catch((res) => console.log(res))
+    axios.get(SUGGEST_ACOUNTS).then((req) => setSuggest(req)).catch((res) => console.log(res))
+    axios.get(FOLLOWING_ACOUNTS).then((req) => setFollowing(req)).catch((res) => console.log(res))
   }, []);
 
   return (

@@ -20,32 +20,23 @@ function handleShowLogin() {
   document.querySelector(`[class='${cx("wrapper")}']`)?.classList.replace(String(cx("wrapper")), cx("wrapper3"))
 }
 
-async function ConnectApi(url: string, method = "GET", data?: object) {
-  let result = ""
-  if (method === "GET") {
-    result = await axios.get(url);
-  } else if (method === "POST") {
-    result = await axios.post(url, data);
-  }
-  return result
-}
 
-function Following(data: any, buff: boolean) {
+async function Following(data: any, buff: boolean) {
   if (data.username) {
-    ConnectApi(FOLLOWING, "POST", {
+    await axios.post(FOLLOWING, {
       username: data.username,
       value: buff,
     });
   }
 }
 
-function Hearted(data: any, buff: boolean) {
+async function Hearted(data: any, buff: boolean) {
   if (data.username) {
-    ConnectApi(HEARTED, "POST", {
+    await axios.post(HEARTED, {
       username: data.username,
       value: buff,
     });
   }
 }
 
-export { handleHideLogin, handleShowLogin, ConnectApi, Following, Hearted };
+export { handleHideLogin, handleShowLogin, Following, Hearted };

@@ -1,0 +1,145 @@
+.input_upload {
+    border-radius: 8px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out 0s;
+    padding-left: 35px;
+    padding-right: 35px;
+    width: 260px;
+    height: 458px;
+    border: 2px dashed rgba(22, 24, 35, 0.2);
+    box-sizing: border-box;
+
+    &:hover {
+        border-color: rgba(254, 44, 85, 1);
+        background: rgba(22, 24, 35, 0.03);
+    }
+
+    .title_select {
+        text-align: center;
+        margin-top: 24px;
+
+        .title_select-item {
+            box-sizing: border-box;
+            margin-block: 0px;
+            font-size: 18px;
+            line-height: 1.5;
+            font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+            font-weight: 600;
+            color: rgba(22, 24, 35, 1);
+        }
+    }
+
+    .note-title_select {
+        margin-top: 6px;
+        margin-bottom: 24px;
+        height: 24px;
+
+        .title_select-item {
+            box-sizing: border-box;
+            margin-block: 0px;
+            font-size: 14px;
+            line-height: 1.5;
+            font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+            font-weight: 400;
+            color: rgba(22, 24, 35, 0.75);
+        }
+    }
+
+    .type_select {
+        list-style: none;
+
+        .type_select-item {
+            margin-bottom: 6px;
+            text-align: center;
+            height: 24px;
+
+            .title_button {
+                box-sizing: border-box;
+                margin-block: 0px;
+                font-size: 14px;
+                line-height: 1.5;
+                font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+                font-weight: 400;
+                color: rgba(22, 24, 35, 0.5);
+            }
+        }
+
+        .type_select-itemlast {
+            margin-bottom: 0;
+            text-align: center;
+
+            .title_button {
+                box-sizing: border-box;
+                margin-block: 0px;
+                font-size: 14px;
+                line-height: 1.5;
+                font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+                font-weight: 400;
+                color: rgba(22, 24, 35, 0.5);
+            }
+        }
+    }
+
+    .button_select {
+        margin-top: 32px;
+        width: 100%;
+
+        .button_select-button {
+            box-sizing: border-box;
+            appearance: none;
+            min-width: 96px;
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            position: relative;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 2px;
+            font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            background-clip: padding-box;
+            width: 100%;
+            font-size: var(--tux-fontSizeP3);
+            height: 36px;
+            padding-inline: 15px;
+            color: rgba(255, 255, 255, 1);
+            background-color: rgba(254, 44, 85, 1);
+            border-color: rgba(254, 44, 85, 1);
+
+            &:hover {
+                border-color: rgba(254, 44, 85, 1);
+                background-color: rgba(234, 40, 78, 1);
+            }
+
+            .button_container {
+                box-sizing: border-box;
+                width: 100%;
+                display: flex;
+                -webkit-box-pack: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                align-items: center;
+                opacity: 1;
+                overflow: hidden;
+                gap: 6px;
+
+                .button_content {
+                    box-sizing: border-box;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,100 @@
+@mixin Content {
+    color: rgba(22, 24, 35, 1.0);
+    font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 600;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    font-size: 15px;
+    padding: 0 12px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    height: 44px;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 16px;
+    word-break: keep-all;
+    white-space: nowrap;
+}
+
+@mixin Content1 {
+    left: 12px;
+    font-size: 20px;
+    position: absolute;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+
+.wrapper {
+    margin-top: 60px;
+    width: 100vw;
+    overflow: auto;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding-bottom: 60px;
+
+    .container {
+        width: 375px;
+        margin: auto;
+        padding: unset;
+
+        .title {
+            color: rgba(22, 24, 35, 1.0);
+            font-family: SofiaPro, Arial, Tahoma, PingFangSC, sans-serif;
+            font-size: 32px;
+            margin: 16px auto;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .content-title {
+            color: rgba(22, 24, 35, 0.34);
+            font-size: 15px;
+            line-height: 18px;
+            margin: 12px 0 32px;
+            text-align: center;
+        }
+
+        .link-title {
+            color: rgba(22, 24, 35, 0.75);
+            font-weight: 600;
+            font-size: 12px;
+
+            .qr-code {
+                @include Content();
+
+                .qr-code-div {
+                    @include Content1();
+                }
+            }
+
+            .content-link-title {
+                @include Content();
+
+                .content-link-title-div {
+                    @include Content1();
+                }
+            }
+        }
+
+        .type_login {
+            @include Content();
+
+            .type_login--item {
+                @include Content1();
+            }
+        }
+    }
+}

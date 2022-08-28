@@ -1,0 +1,125 @@
+.input_uploading {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    width: 260px;
+    height: 458px;
+    border: 2px dashed rgba(22, 24, 35, 0.2);
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    &:hover {
+        border: 2px dashed rgb(254, 44, 85);
+    }
+
+    .input_process {
+        flex-direction: column;
+        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px;
+        font-feature-settings: "tnum";
+        position: relative;
+        overflow: hidden;
+        color: rgb(255, 255, 255);
+        white-space: nowrap;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 32px;
+        border-radius: 50%;
+        display: inline-flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        width: 80px;
+        height: 80px;
+
+        .input_process-item {
+            display: inline-flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            position: absolute;
+            font-family: ProximaNova;
+            font-weight: 700;
+            line-height: 22px;
+            height: 22px;
+            color: rgba(22, 24, 35, 0.75);
+            font-size: 16px;
+        }
+    }
+
+    .input_title {
+        font-family: proxima-semibold, Arial, Tahoma, PingFangSC, sans-serif, "Segoe UI Emoji", "Noto Emoji";
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        color: rgba(22, 24, 35, 0.75);
+        text-align: center;
+        max-width: 220px;
+        margin-top: 16px;
+        margin-bottom: 20px;
+    }
+
+    .input_cancel {
+        box-sizing: border-box;
+        appearance: none;
+        min-width: 96px;
+        display: inline-flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        position: relative;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 2px;
+        font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        background-clip: padding-box;
+        font-size: 14px;
+        height: 28px;
+        padding-inline: 11px;
+        color: rgba(22, 24, 35, 1);
+        background-color: rgba(255, 255, 255, 1);
+        border-color: rgba(22, 24, 35, 0.12);
+
+        &:hover {
+            background-color: rgba(245, 245, 245, 1);
+            border-color: rgba(22, 24, 35, 0.2);
+        }
+
+        .input_cancel-item {
+            box-sizing: border-box;
+            width: 100%;
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            opacity: 1;
+            overflow: hidden;
+            gap: 4px;
+
+            .input_cancel--item {
+                box-sizing: border-box;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+    }
+}
+
+.tiktok-progress-bar {
+    stroke-dashoffset: 99.5257px;
+}

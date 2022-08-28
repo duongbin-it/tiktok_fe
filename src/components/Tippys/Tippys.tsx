@@ -1,10 +1,10 @@
 import Tippy from "@tippyjs/react/headless";
+import axios from "axios";
 import classNames from "classnames/bind";
 import { useState } from "react";
 import { USERS } from "../../api/api";
 import DetailsProfile from "../../pages/Home/ItemVideo/DetailsProfile/DetailsProfile";
 import styles from "../../pages/Home/ItemVideo/ItemVideo.module.scss";
-import { ConnectApi } from "../GlobalFunction/GlobalFunction";
 
 const cx = classNames.bind(styles);
 
@@ -22,10 +22,9 @@ export default function Tippys({ children, setFollow, data, suggest }: any) {
             placement='bottom'
             hideOnClick={false}
             onShow={() => {
-                ConnectApi(USERS, "POST", data.username ? { username: data.username } : { username: data })
+                axios.post(USERS, data.username ? { username: data.username } : { username: data })
                     .then((req) => setDatadetails(req))
                     .catch((res) => console.log(res))
-
             }}
             onHide={() => {
                 setDatadetails('')

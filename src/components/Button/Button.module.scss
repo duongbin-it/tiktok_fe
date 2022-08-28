@@ -363,3 +363,26 @@
     background-color: rgb(254, 44, 85);
   }
 }
+
+.buttonHeader {
+  width: 144px;
+}
+
+.button_property {
+  width: 164px;
+  height: 48px;
+  margin-right: 16px;
+}
+
+.button_property_none {
+  width: 164px;
+  height: 48px;
+  cursor: not-allowed;
+  color: rgba(22, 24, 35, 0.34);
+  background-color: rgba(235, 235, 235, 1);
+  border-color: rgba(235, 235, 235, 1);
+
+  &:hover {
+    background-color: rgba(235, 235, 235, 1);
+  }
+}

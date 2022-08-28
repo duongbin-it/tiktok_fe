@@ -2,14 +2,14 @@ import { Fragment } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout";
-import { publicRoutes } from "./Routes/Routes";
+import { totalRoutes } from "./Routes/Routes";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
-          {publicRoutes.map((route) => {
+          {totalRoutes.map((route) => {
             let Layout: any = DefaultLayout;
             if (route.layout) {
               Layout = route.layout;
