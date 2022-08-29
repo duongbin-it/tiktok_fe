@@ -34,13 +34,15 @@
   border-radius: 999px;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
   text-rendering: optimizeSpeed;
   min-height: 100vh;
   overflow-y: overlay;
-}
 
-body {
   .tippy-box {
     border-radius: 8px;
     font-weight: 600;

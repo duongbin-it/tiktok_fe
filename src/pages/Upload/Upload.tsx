@@ -27,6 +27,9 @@ const Upload: React.FC = () => {
     const [dropdown, setDropdown] = useState<boolean>(false)
     const [showinput, setShowinput] = useState<string>("")
 
+    console.log(showinput);
+
+
     useEffect(() => {
         (radio_button.current as HTMLDivElement).onclick = () => {
             setButton(!button);
@@ -77,7 +80,7 @@ const Upload: React.FC = () => {
                     <div className={cx("upload_video")}>
                         <input type="file" hidden={true} ref={file} />
                         <div className={cx("layout_left")}>
-                            {showinput ? <Uploading /> : <Uploader onClick={opendialogFile} />}
+                            {showinput ? <Uploading onClick={() => setShowinput("")} /> : <Uploader onClick={opendialogFile} />}
                         </div>
                         <div className={cx("layout_right")}>
                             <div className={cx("group")}>
@@ -113,7 +116,7 @@ const Upload: React.FC = () => {
                                             (show_dropdown.current as HTMLDivElement).style.maxHeight = "0";
                                             setDropdown(false)
                                         } else {
-                                            (rotate_dropdown.current as HTMLDivElement).style.transform = "rotate(180deg)";
+                                            (rotate_dropdown.current as HTMLDivElement).style.transform = "rotate(-180deg)";
                                             (show_dropdown.current as HTMLDivElement).style.maxHeight = "1000px";
                                             setDropdown(true)
                                         }
