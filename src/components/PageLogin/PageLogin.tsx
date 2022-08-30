@@ -11,7 +11,7 @@ const PageLogin: React.FC = () => {
     return (
         <div className={cx("wrapper")}>
             <div className={cx("container")}>
-                <div style={{ padding: 'unset' }}>
+                <div>
                     <div className={cx("title")}>Log in to TikTok</div>
                     <div className={cx("content-title")}>Manage your account, check notifications, comment on videos, and more.</div>
                     <a className={cx("link-title")} href="/qr/code">
@@ -48,13 +48,13 @@ const PageLogin: React.FC = () => {
                         </div>
                         Continue with Twitter
                     </div>
-                    <div className={cx('type_login')}>
+                    <div className={cx('type_login')} onClick={() => LoginGithub(false)}>
                         <div className={cx("type_login--item")}>
-                            <icon.LiveIcon />
+                            <icon.GithubIcon />
                         </div>
                         Continue with GitHub
                     </div>
-                    <div className={cx('type_login')} onClick={() => LoginGithub(false)}>
+                    <div className={cx('type_login')}>
                         <div className={cx("type_login--item")}>
                             <icon.MicrosoftIcon />
                         </div>

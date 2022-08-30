@@ -37,18 +37,14 @@
 
 
 .wrapper {
-    margin-top: 60px;
-    width: 100vw;
-    overflow: auto;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    padding-bottom: 60px;
+    height: 100vh;
+    display: flex;
 
     .container {
-        width: 375px;
+        width: 450px;
         margin: auto;
-        padding: unset;
+        padding: 27px;
+        border: 1px solid rgb(180, 180, 180);
 
         .title {
             color: rgba(22, 24, 35, 1.0);

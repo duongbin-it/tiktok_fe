@@ -17,10 +17,12 @@ function setStorages(re: any) {
   localStorage.setItem("avatar", String(re.user.photoURL));
 }
 
-function Success() {
-  (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block';
-  (document.querySelector("[class='css-feuqz4']") as HTMLDivElement).style.top = '16px';
-  setTimeout(() => { (document.querySelector("[class='css-feuqz4']") as HTMLDivElement).style.top = '-50px'; }, 3000)
+function Success(isModal: boolean) {
+  if (isModal) {
+    (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block';
+    (document.querySelector("[class='css-feuqz4']") as HTMLDivElement).style.top = '16px';
+    setTimeout(() => { (document.querySelector("[class='css-feuqz4']") as HTMLDivElement).style.top = '-50px'; }, 1500)
+  }
   //eslint-disable-next-line no-restricted-globals
   setTimeout(() => { location.reload(); }, 4000);
 }
@@ -29,7 +31,7 @@ function Fail(err: any, isModal: boolean) {
   console.log(err['message']);
   if (isModal) {
     (document.querySelector("[class='css-feuqz5']") as HTMLDivElement).style.top = '16px';
-    setTimeout(() => { (document.querySelector("[class='css-feuqz5']") as HTMLDivElement).style.top = '-50px'; }, 3000);
+    setTimeout(() => { (document.querySelector("[class='css-feuqz5']") as HTMLDivElement).style.top = '-50px'; }, 1500);
     (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'none';
   }
 }
@@ -42,7 +44,7 @@ export function LoginFacebook(isModal: boolean) {
   signInWithPopup(getAuth(app), provider)
     .then((re) => {
       setStorages(re)
-      Success()
+      Success(isModal)
     })
     .catch(err => Fail(err, isModal))
 }
@@ -55,7 +57,7 @@ export function LoginGoogle(isModal: boolean) {
   signInWithPopup(getAuth(app), provider)
     .then((re) => {
       setStorages(re)
-      Success()
+      Success(isModal)
     })
     .catch(err => Fail(err, isModal))
 }
@@ -68,7 +70,7 @@ export function LoginGithub(isModal: boolean) {
   signInWithPopup(getAuth(app), provider)
     .then((re) => {
       setStorages(re)
-      Success()
+      Success(isModal)
     })
     .catch(err => Fail(err, isModal))
 }

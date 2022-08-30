@@ -27,9 +27,6 @@ const Upload: React.FC = () => {
     const [dropdown, setDropdown] = useState<boolean>(false)
     const [showinput, setShowinput] = useState<string>("")
 
-    console.log(showinput);
-
-
     useEffect(() => {
         (radio_button.current as HTMLDivElement).onclick = () => {
             setButton(!button);
@@ -92,10 +89,12 @@ const Upload: React.FC = () => {
                                     <input type="text" className={cx("input-tag_item")} ref={ref_input}
                                         onChange={(e) => { setSharp(e.target.value) }} value={sharp} />
                                     <div className={cx("icon-tag1")} onClick={() => { setSharp(prev => prev + "@"); ref_input.current?.focus() }}>
-                                        <img src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/at.062a03e9.svg" alt="@" />
+                                        <img
+                                            src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/at.062a03e9.svg" alt="@" />
                                     </div>
                                     <div className={cx("icon-tag2")} onClick={() => { setSharp(prev => prev + "#"); ref_input.current?.focus() }}>
-                                        <img src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/hashtag.234f1b9c.svg" alt="#" />
+                                        <img
+                                            src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/hashtag.234f1b9c.svg" alt="#" />
                                     </div>
                                 </div>
                             </div>
