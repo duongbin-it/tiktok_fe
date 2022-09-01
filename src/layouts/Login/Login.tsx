@@ -1,6 +1,8 @@
 import classNames from "classnames/bind";
 import React from "react";
-import { CircleIcon, CloseIcon, FbIcon, GgIcon, GithubIcon, IclouldIcon, InstagramIcon, MicrosoftIcon, PersonIcon, QrIcon, TwitterIcon } from "../../assets/icons/icons";
+import { CloseIcon, FbIcon, GgIcon, GithubIcon, IclouldIcon, InstagramIcon, MicrosoftIcon, PersonIcon, QrIcon, TwitterIcon } from "../../assets/icons/icons";
+import { EffectLoading } from "../../components/Effect/EffectLoading";
+import { Notification } from "../../components/Effect/Notification";
 import { handleHideLogin } from "../../components/GlobalFunction/GlobalFunction";
 import styles from "./Login.module.scss";
 import { LoginFacebook, LoginGithub, LoginGoogle } from "./LoginSocialNetWork/LoginSocialNetWork";
@@ -11,8 +13,7 @@ const Login: React.FC = () => {
 
   return (
     <div className={cx("wrapper")}>
-      <div><div className="css-feuqz4" style={{ transition: 'top 1s linear', display: "flex", justifyContent: "center", fontFamily: 'ProximaNova, PingFangSC, sans-serif', fontWeight: 600, position: 'fixed', top: '-50px', left: '0px', color: 'rgb(255, 255, 255)', zIndex: 1002, width: '100%', pointerEvents: 'none', userSelect: 'none' }}><span><div className="css-feuqz4-notice" style={{ right: '50%', marginTop: '-8px' }}><div className="css-feuqz4-notice-content" style={{ backgroundColor: 'rgba(84, 84, 84, 0.92)', display: 'inline-block', padding: '10px 8px', pointerEvents: 'all', maxWidth: '100%', borderRadius: '2px' }}><div className="css-9aj0a0-DivMessageContainer e1wz89c90" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '50vw', direction: 'ltr', minWidth: '300px' }}><span>Login Success</span></div></div></div></span></div></div>
-      <div><div className="css-feuqz5" style={{ transition: 'top 1s linear', display: "flex", justifyContent: "center", fontFamily: 'ProximaNova, PingFangSC, sans-serif', fontWeight: 600, position: 'fixed', top: '-50px', left: '0px', color: 'rgb(255, 255, 255)', zIndex: 1002, width: '100%', pointerEvents: 'none', userSelect: 'none' }}><span><div className="css-feuqz4-notice" style={{ right: '50%', marginTop: '-8px' }}><div className="css-feuqz4-notice-content" style={{ backgroundColor: 'rgba(84, 84, 84, 0.92)', display: 'inline-block', padding: '10px 8px', pointerEvents: 'all', maxWidth: '100%', borderRadius: '2px' }}><div className="css-9aj0a0-DivMessageContainer e1wz89c90" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '50vw', direction: 'ltr', minWidth: '300px' }}><span>Login Error</span></div></div></div></span></div></div>
+      <Notification />
       <div className={cx("wrapper-ui")}></div>
       <div className={cx("wrapper-select")}>
         <div className={cx("container")}>
@@ -75,9 +76,7 @@ const Login: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div style={{ position: 'fixed', left: 'calc(50% - 15px)', top: '38%', display: 'none' }} className={"svg-css"}>
-              <CircleIcon />
-            </div>
+            <EffectLoading />
           </div>
           <div className={cx("footer-login")}>
             <div>Don’t have an account?</div>

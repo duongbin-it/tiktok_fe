@@ -15,6 +15,8 @@
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
     "firebase": "^9.9.0",
+    "i": "^0.3.7",
+    "npm": "^8.18.0",
     "numeral": "^2.0.6",
     "react": "^18.2.0",
     "react-css-modules": "^4.7.11",
@@ -24,8 +26,6 @@
     "react-scripts": "5.0.1",
     "sass": "^1.53.0",
     "typescript": "^4.7.4",
-    "uuid": "^8.3.2",
-    "uuidv4": "^6.2.13",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -51,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.3.4"
   }
 }

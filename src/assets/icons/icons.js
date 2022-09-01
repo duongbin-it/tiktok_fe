@@ -811,7 +811,7 @@ export const ProcessIcon = React.memo(() => (
       fill="transparent"
       stroke="#FE2C55"
       strokeDasharray="226.1946710584651 226.1946710584651"
-      strokeDashoffset="226.195"
+      strokeDashoffset="157.55"
       strokeLinecap="square"
       strokeWidth="4"
       className="tiktok-progress-bar"
