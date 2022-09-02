@@ -1,11 +1,11 @@
-import classNames from "classnames/bind";
-import React from "react";
-import * as icon from "../../assets/icons/icons";
-import { LoginFacebook, LoginGithub, LoginGoogle } from "../../layouts/Login/LoginSocialNetWork/LoginSocialNetWork";
-import styles from "./PageLogin.module.scss";
+import classNames from "classnames/bind"
+import React from "react"
+import * as icon from "../../assets/icons/icons"
+import { LoginFacebook, LoginGithub, LoginGoogle } from "../../layouts/Login/LoginSocialNetWork/LoginSocialNetWork"
+import styles from "./PageLogin.module.scss"
 
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(styles)
 
 const PageLogin: React.FC = () => {
     return (

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState } from 'react';
-import { Following, handleShowLogin } from '../../../components/GlobalFunction/GlobalFunction';
+import React, { useState } from 'react'
+import { Following, handleShowLogin } from '../../../components/GlobalFunction/GlobalFunction'
 
 
 interface Props {
@@ -10,12 +10,12 @@ interface Props {
 }
 
 const handleFollow: React.FC<Props> = ({ CurrentUser, buff, data }) => {
-    const [follow, setFollow] = useState<boolean>(data.following);
+    const [follow, setFollow] = useState<boolean>(data.following)
     if (CurrentUser) {
-        setFollow(!follow);
+        setFollow(!follow)
         Following(data, buff)
     } else {
-        handleShowLogin();
+        handleShowLogin()
     }
 
     return (

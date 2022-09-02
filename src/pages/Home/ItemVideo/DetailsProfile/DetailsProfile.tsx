@@ -5,9 +5,9 @@ import Button from "../../../../components/Button/Button"
 import { Following, handleShowLogin } from "../../../../components/GlobalFunction/GlobalFunction"
 import styles from './DetailsProfile.module.scss'
 
-var numeral = require('numeral');
+var numeral = require('numeral')
 const cx = classNames.bind(styles)
-const CurrentUser = localStorage.getItem("user");
+const CurrentUser = localStorage.getItem("user")
 
 interface Props {
     datadetails: any,
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow, suggest }: any) => {
-    const [follow, setFollow1] = useState<any>(datadetails?.following);
+    const [follow, setFollow1] = useState<any>(datadetails?.following)
     useEffect(() => {
         setFollow1(datadetails?.following)
     }, [datadetails?.following])
@@ -27,7 +27,7 @@ const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow, suggest }: an
             setFollow1(!follow)
             Following(datadetails, buff)
         } else {
-            handleShowLogin();
+            handleShowLogin()
         }
     }
 
@@ -46,7 +46,7 @@ const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow, suggest }: an
                                 <Button following_profile onClick={() => handleFollow(false)}>
                                     Following
                                 </Button>
-                            );
+                            )
                         } else {
                             return (
                                 suggest
@@ -56,7 +56,7 @@ const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow, suggest }: an
                                     : (<Button follow_profile onClick={() => handleFollow(true)}>
                                         Follow
                                     </Button>)
-                            );
+                            )
                         }
                     })() : null
                 }

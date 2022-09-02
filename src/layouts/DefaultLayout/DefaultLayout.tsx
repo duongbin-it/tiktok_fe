@@ -1,10 +1,10 @@
-import classNames from "classnames/bind";
-import React, { useRef } from "react";
-import Header from "../components/Header/Header";
-import styles from "./DefaultLayout.module.scss";
-import Sidebar from "./Sidebar/Sidebar";
+import classNames from "classnames/bind"
+import React, { useRef } from "react"
+import Header from "../components/Header/Header"
+import styles from "./DefaultLayout.module.scss"
+import Sidebar from "./Sidebar/Sidebar"
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(styles)
 
 interface Props {
   children: any,
@@ -12,7 +12,7 @@ interface Props {
 
 const DefaultLayout: React.FC<Props> = ({ children }) => {
 
-  const scrollHome = useRef<HTMLDivElement>(null);
+  const scrollHome = useRef<HTMLDivElement>(null)
 
   return (
     <div className={cx("wrapper")}>
@@ -24,7 +24,7 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default DefaultLayout;
+export default DefaultLayout

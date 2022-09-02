@@ -1,7 +1,7 @@
-import classNames from 'classnames/bind';
-import React from 'react';
-import Button from "../../Button/Button";
-import styles from './Menu.module.scss';
+import classNames from 'classnames/bind'
+import React from 'react'
+import Button from "../../Button/Button"
+import styles from './Menu.module.scss'
 
 const cx = classNames.bind(styles)
 
@@ -17,4 +17,4 @@ const MenuItem: React.FC<Props> = ({ data, onClick }) => {
     return <Button className={classes} leftIcon={data.icon} to={data.to} onClick={onClick}>{data.title}</Button>
 }
 
-export default MenuItem;
+export default MenuItem

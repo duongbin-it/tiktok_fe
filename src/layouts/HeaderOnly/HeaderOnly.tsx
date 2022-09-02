@@ -1,5 +1,5 @@
-import React from "react";
-import Header from "../components/Header/Header";
+import React from "react"
+import Header from "../components/Header/Header"
 
 interface Props {
     children: any,
@@ -18,4 +18,4 @@ const HeaderOnly: React.FC<Props> = ({ children }) => {
     )
 }
 
-export default HeaderOnly;
+export default HeaderOnly

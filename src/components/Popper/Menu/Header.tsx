@@ -1,7 +1,7 @@
-import classNames from "classnames/bind";
-import React from "react";
-import { BackIcon } from "../../../assets/icons/icons";
-import styles from './Menu.module.scss';
+import classNames from "classnames/bind"
+import React from "react"
+import { BackIcon } from "../../../assets/icons/icons"
+import styles from './Menu.module.scss'
 
 const cx = classNames.bind(styles)
 
@@ -18,7 +18,7 @@ const Header: React.FC<Props> = ({ title, onBack }) => {
             </button>
             <h4 className={cx('header-title')}>{title}</h4>
         </header>
-    );
+    )
 }
 
-export default Header;
+export default Header

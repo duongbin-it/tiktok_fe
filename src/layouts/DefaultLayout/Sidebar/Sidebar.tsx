@@ -1,18 +1,18 @@
-import axios from "axios";
-import classNames from "classnames/bind";
-import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';
-import { DISCOVER, FOLLOWING_ACOUNTS, SUGGEST_ACOUNTS } from "../../../api/api";
-import { MusicIcon, SharpIcon } from "../../../assets/icons/icons";
-import Button from "../../../components/Button/Button";
-import { handleShowLogin } from "../../../components/GlobalFunction/GlobalFunction";
-import { DiscoverLoading } from "../../../components/Loading/Loading";
-import DivUser from "./DivLink/DivUser";
-import styles from "./Sidebar.module.scss";
-import SuggestAcounts from "./SuggestAcounts/SuggestAcounts";
+import axios from "axios"
+import classNames from "classnames/bind"
+import React, { useEffect, useRef, useState } from "react"
+import { Link } from "react-router-dom"
+import { v4 as uuidv4 } from 'uuid'
+import { DISCOVER, FOLLOWING_ACOUNTS, SUGGEST_ACOUNTS } from "../../../api/api"
+import { MusicIcon, SharpIcon } from "../../../assets/icons/icons"
+import Button from "../../../components/Button/Button"
+import { handleShowLogin } from "../../../components/GlobalFunction/GlobalFunction"
+import { DiscoverLoading } from "../../../components/Loading/Loading"
+import DivUser from "./DivLink/DivUser"
+import styles from "./Sidebar.module.scss"
+import SuggestAcounts from "./SuggestAcounts/SuggestAcounts"
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(styles)
 
 const dieukhoan = [
   { title: 'About', },
@@ -35,21 +35,21 @@ const dieukhoan = [
 
 
 const Sidebar: React.FC = () => {
-  const [discover, setDiscover] = useState<any>();
-  const ref = useRef<HTMLDivElement>(null);
-  const currentUser = localStorage.getItem("user");
+  const [discover, setDiscover] = useState<any>()
+  const ref = useRef<HTMLDivElement>(null)
+  const currentUser = localStorage.getItem("user")
   const [suggest, setSuggest] = useState<any>(null)
   const [following, setFollowing] = useState<any>(null)
 
   useEffect(() => {
-    localStorage.setItem("ref", ref.current?.className || '');
-  }, [ref]);
+    localStorage.setItem("ref", ref.current?.className || '')
+  }, [ref])
 
   useEffect(() => {
     axios.get(DISCOVER).then((res) => setDiscover(res)).catch((res) => console.log(res))
     axios.get(SUGGEST_ACOUNTS).then((req) => setSuggest(req)).catch((res) => console.log(res))
     axios.get(FOLLOWING_ACOUNTS).then((req) => setFollowing(req)).catch((res) => console.log(res))
-  }, []);
+  }, [])
 
   return (
     <div className={cx("wrapper")} ref={ref}>
@@ -66,7 +66,7 @@ const Sidebar: React.FC = () => {
                 </Button>
                 <SuggestAcounts title="Suggested accounts" atb="See all" data={suggest} />
               </div>
-            );
+            )
           } else {
             return (
               <>
@@ -123,7 +123,7 @@ const Sidebar: React.FC = () => {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Sidebar;
+export default Sidebar

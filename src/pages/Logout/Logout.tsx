@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
-import { LogoLogoutIcon } from "../../assets/icons/icons";
-import { EffectLoading } from "../../components/Effect/EffectLoading";
-import './Logout.css';
+import React, { useEffect } from "react"
+import { LogoLogoutIcon } from "../../assets/icons/icons"
+import { EffectLoading } from "../../components/Effect/EffectLoading"
+import './Logout.css'
 
 const Logout: React.FC = () => {
 
     useEffect(() => {
         setTimeout(() => {
             (document.querySelector("[class='css-feuqz5']") as HTMLDivElement).style.top = '16px';
-            (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block';
+            (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block'
             setTimeout(() => {
                 setTimeout(() => {
                     // eslint-disable-next-line no-restricted-globals
-                    setTimeout(() => { localStorage.removeItem('user'); location.href = '/' }, 0);
+                    setTimeout(() => { localStorage.removeItem('user'); location.href = '/' }, 0)
                 }, 1000)
-            }, 2000)
+            }, 700)
         }, 0)
     }, [])
 

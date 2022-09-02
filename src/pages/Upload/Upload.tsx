@@ -1,70 +1,113 @@
-import axios from "axios";
-import classNames from "classnames/bind";
-import React, { useEffect, useRef, useState } from "react";
-import { CheckboxIcon, DropdownIcon } from '../../assets/icons/icons';
-import Button from '../../components/Button/Button';
-import Uploader from "../../components/Upload/Uploader/Uploader";
-import Uploading from '../../components/Upload/Uploading/Uploading';
-import styles from "./Upload.module.scss";
+import axios from "axios"
+import classNames from "classnames/bind"
+import React, { useEffect, useRef, useState } from "react"
+import { POST_VIDEO } from "../../api/api"
+import { CheckboxIcon, DropdownIcon } from '../../assets/icons/icons'
+import Button from '../../components/Button/Button'
+import Uploader from "../../components/Upload/Uploader/Uploader"
+import Uploading from '../../components/Upload/Uploading/Uploading'
+import styles from "./Upload.module.scss"
 
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(styles)
 
 
 const Upload: React.FC = () => {
 
     const file = useRef<HTMLInputElement>(null)
-    const ref_input = useRef<HTMLInputElement>(null);
+    const ref_input = useRef<HTMLInputElement>(null)
     const radio_button = useRef<HTMLDivElement>(null)
     const radio_button_item = useRef<HTMLDivElement>(null)
     const span_item = useRef<HTMLSpanElement>(null)
     const rotate_dropdown = useRef<HTMLDivElement>(null)
     const show_dropdown = useRef<HTMLDivElement>(null)
 
-    const [sharp, setSharp] = useState<string>("");
+    const [length, setLength] = useState(0)
+    const [sharp, setSharp] = useState<string>("")
     const [item, setItem] = useState<string>("Public")
     const [button, setButton] = useState<boolean>(true)
     const [dropdown, setDropdown] = useState<boolean>(false)
     const [showinput, setShowinput] = useState<string>("")
+    const [data, setData] = useState<string>("")
 
     useEffect(() => {
         (radio_button.current as HTMLDivElement).onclick = () => {
-            setButton(!button);
+            setButton(!button)
             if (button) {
                 (radio_button_item.current as HTMLDivElement).style.backgroundColor = "rgb(11, 224, 155)";
                 (span_item.current as HTMLSpanElement).style.left = "calc(100% - 2px)";
-                (span_item.current as HTMLSpanElement).style.transform = "translate(-100%, -50%)";
+                (span_item.current as HTMLSpanElement).style.transform = "translate(-100%, -50%)"
 
             }
             else {
                 (radio_button_item.current as HTMLDivElement).style.backgroundColor = "rgba(22, 24, 35, 0.12)";
                 (span_item.current as HTMLSpanElement).style.left = "2px";
-                (span_item.current as HTMLSpanElement).style.transform = "translateY(-50%)";
+                (span_item.current as HTMLSpanElement).style.transform = "translateY(-50%)"
             }
         }
     }, [button])
 
     const opendialogFile = () => {
-        (file.current as HTMLInputElement).click();
+        (file.current as HTMLInputElement).click()
     }
 
     useEffect(() => {
         (file.current as HTMLInputElement).onchange = async (e: any) => {
 
             let currentFile = e.target.files[0]
-            setShowinput(currentFile.name)
-            const formData = new FormData()
-            formData.append("upload_preset", "tiktok_be-upload")
-            formData.append("file", currentFile)
-            formData.append("folder", "image")
-
-            const infoUpload = await axios.post("https://api.cloudinary.com/v1_1/dmb7ox9vh/image/upload", formData)
-                .then((res) => {
-                    return res
-                })
-            console.log(infoUpload.data.url);
+            setShowinput(currentFile)
+            setData(currentFile)
+            await setTimeout(() => {
+                const reader = new FileReader()
+                reader.readAsDataURL(currentFile)
+                reader.onloadend = () => {
+                    setData('')
+                }
+            }, 700)
         }
     }, [file])
+
+    const postVideo = async () => {
+
+        const title = []
+        const array = []
+        const tag = sharp.trim().split(" ")
+        for (const key in tag) {
+            if (tag[key].includes("#")) {
+                await array.push({ key: tag[key].replace("#", "") })
+            }
+            else {
+                await title.push(tag[key].concat(" "))
+            }
+        }
+
+        const formData = new FormData()
+        formData.append("upload_preset", "tiktok_be-upload")
+        formData.append("file", showinput)
+        formData.append("folder", "video")
+
+        const infoUpload = await axios.post("https://api.cloudinary.com/v1_1/dmb7ox9vh/video/upload", formData)
+            .then((res) => {
+                return res
+            })
+
+        await axios.post(POST_VIDEO, {
+            "username": localStorage.getItem("username"),
+            "title": title,
+            "heart": 0,
+            "share": 0,
+            "comment": 0,
+            "name_tag": array,
+            "link_music": "https://www.tiktok.com/music/nh%E1%BA%A1c-n%E1%BB%81n-%F0%9D%99%A7%F0%9D%99%A4%F0%9D%99%A1%F0%9D%99%A1%F0%9D%99%9A%F0%9D%99%A3-7123551846429461275",
+            "link_video": infoUpload.data.url,
+            "name_music": `nhạc nền - ${localStorage.getItem("user")}`,
+            "heart_check": false
+        })
+            .then(() => {
+                // eslint-disable-next-line no-restricted-globals
+                location.href = '/'
+            })
+    }
 
     return (
         <div className={cx("wrapper")}>
@@ -75,24 +118,34 @@ const Upload: React.FC = () => {
                         <span className={cx("note_title")}>Post a video to your account</span>
                     </div>
                     <div className={cx("upload_video")}>
-                        <input type="file" hidden={true} ref={file} />
+                        <input type="file" hidden={true} ref={file} accept="video/mp4,video/x-m4v,video/*" />
                         <div className={cx("layout_left")}>
-                            {showinput ? <Uploading onClick={() => setShowinput("")} /> : <Uploader onClick={opendialogFile} />}
+                            {data ? <Uploading onClick={() => setShowinput("")} /> : <Uploader onClick={opendialogFile} />}
                         </div>
                         <div className={cx("layout_right")}>
                             <div className={cx("group")}>
                                 <div className={cx("layout_right-container")}>
                                     <span className={cx("caption")}>Caption</span>
-                                    <span className={cx("length-notation")}>0 / 150</span>
+                                    <span className={cx("length-notation")}>{length} / 150</span>
                                 </div>
                                 <div className={cx("input-tag")}>
                                     <input type="text" className={cx("input-tag_item")} ref={ref_input}
-                                        onChange={(e) => { setSharp(e.target.value) }} value={sharp} />
-                                    <div className={cx("icon-tag1")} onClick={() => { setSharp(prev => prev + "@"); ref_input.current?.focus() }}>
+                                        onChange={
+                                            (e) => {
+                                                setLength(e.target.value.length)
+                                                const lastValue = e.target.value.slice(e.target.value.length - 1, e.target.value.length)
+                                                if (lastValue === "#") {
+                                                    setSharp(e.target.value.slice(0, e.target.value.length - 1) + " " + lastValue)
+                                                }
+                                                else {
+                                                    setSharp(e.target.value)
+                                                }
+                                            }} value={sharp} maxLength={150} />
+                                    <div className={cx("icon-tag1")} onClick={() => { setSharp(prev => prev + " @"); ref_input.current?.focus() }}>
                                         <img
                                             src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/at.062a03e9.svg" alt="@" />
                                     </div>
-                                    <div className={cx("icon-tag2")} onClick={() => { setSharp(prev => prev + "#"); ref_input.current?.focus() }}>
+                                    <div className={cx("icon-tag2")} onClick={() => { setSharp(prev => prev + " #"); ref_input.current?.focus() }}>
                                         <img
                                             src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/hashtag.234f1b9c.svg" alt="#" />
                                     </div>
@@ -102,7 +155,8 @@ const Upload: React.FC = () => {
                                 <span className={cx("privacy")}>Cover</span>
                                 <div className={cx("show-cover")}>
                                     <div className={cx("show-cover_item")}>
-                                        <div className={cx("show-cover_item-item")}></div>
+                                        <div className={cx("show-cover_item-item")}>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -112,11 +166,11 @@ const Upload: React.FC = () => {
                                     <div className={cx("show-dropdown_item")} onClick={() => {
                                         if (dropdown) {
                                             (rotate_dropdown.current as HTMLDivElement).style.transform = "rotate(0deg)";
-                                            (show_dropdown.current as HTMLDivElement).style.maxHeight = "0";
+                                            (show_dropdown.current as HTMLDivElement).style.maxHeight = "0"
                                             setDropdown(false)
                                         } else {
                                             (rotate_dropdown.current as HTMLDivElement).style.transform = "rotate(-180deg)";
-                                            (show_dropdown.current as HTMLDivElement).style.maxHeight = "1000px";
+                                            (show_dropdown.current as HTMLDivElement).style.maxHeight = "1000px"
                                             setDropdown(true)
                                         }
                                     }}>
@@ -203,7 +257,7 @@ const Upload: React.FC = () => {
                             <div className={cx("group1")}>
                                 <div className={cx("button-property")}>
                                     <Button button_property>Discard</Button>
-                                    <Button button_property_none>Post</Button>
+                                    {showinput && sharp ? <Button button_property_primary onClick={postVideo}>Post</Button> : <Button button_property_none>Post</Button>}
                                 </div>
                             </div>
                         </div>

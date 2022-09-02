@@ -326,7 +326,6 @@
   border-radius: 8px;
   overflow: hidden;
   margin-right: 20px;
-  width: 282.38px;
   height: 504.25px;
 }
 
@@ -693,4 +692,42 @@ canvas {
     height: 25px;
     background: transparent;
   }
+}
+
+.settings__videos {
+  right: 0;
+  position: absolute;
+  top: 28px;
+  min-width: 88px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.tippy__wrapper {
+  width: 100%;
+  background: rgb(255, 255, 255);
+  box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+  border-radius: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  max-height: min(100vh - 96px - 60px, 734px);
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Work Sans", sans-serif;
+
+  .tippy__wrapper--item {
+    padding: 5px 20px;
+
+    .tippy__link {
+      display: flex;
+      align-items: center;
+    }
+
+    &:hover {
+      color: rgb(254, 44, 85);
+    }
+  }
+
 }

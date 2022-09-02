@@ -1,7 +1,7 @@
-import classNames from "classnames/bind";
-import { ProcessIcon } from "../../../assets/icons/icons";
-import styles from "./Uploading.module.scss";
-const cx = classNames.bind(styles);
+import classNames from "classnames/bind"
+import { ProcessIcon } from "../../../assets/icons/icons"
+import styles from "./Uploading.module.scss"
+const cx = classNames.bind(styles)
 
 
 export default function Uploading({ onClick }: any) {

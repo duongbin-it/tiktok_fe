@@ -1,7 +1,7 @@
-import classNames from 'classnames/bind';
-import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import styles from './DivUserItem.module.scss';
+import classNames from 'classnames/bind'
+import React, { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import styles from './DivUserItem.module.scss'
 
 const cx = classNames.bind(styles)
 
@@ -23,7 +23,7 @@ const DivUserItem: React.FC<Props> = ({ link, icon, icon1, content }) => {
 
         return {
             color: isActive ? "rgba(254, 44, 85, 1)" : "",
-        };
+        }
     }
 
     return (
@@ -35,7 +35,7 @@ const DivUserItem: React.FC<Props> = ({ link, icon, icon1, content }) => {
                 </h2>
             </div>
         </NavLink >
-    );
+    )
 }
 
-export default DivUserItem;
+export default DivUserItem

@@ -1,8 +1,8 @@
-import classNameNames from "classnames/bind";
-import React from "react";
-import styles from "./Loading.module.scss";
+import classNameNames from "classnames/bind"
+import React from "react"
+import styles from "./Loading.module.scss"
 
-const cx = classNameNames.bind(styles);
+const cx = classNameNames.bind(styles)
 
 const VideoLoading: React.FC = () => {
   return (
@@ -23,7 +23,7 @@ const VideoLoading: React.FC = () => {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 const FollowingLoading: React.FC = () => {
@@ -49,4 +49,4 @@ const DiscoverLoading: React.FC = () => {
   )
 }
 
-export { FollowingLoading, VideoLoading, DiscoverLoading };
+export { FollowingLoading, VideoLoading, DiscoverLoading }

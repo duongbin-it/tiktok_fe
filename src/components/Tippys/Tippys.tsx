@@ -1,16 +1,16 @@
-import Tippy from "@tippyjs/react/headless";
-import axios from "axios";
-import classNames from "classnames/bind";
-import { useState } from "react";
-import { USERS } from "../../api/api";
-import DetailsProfile from "../../pages/Home/ItemVideo/DetailsProfile/DetailsProfile";
-import styles from "../../pages/Home/ItemVideo/ItemVideo.module.scss";
+import Tippy from "@tippyjs/react/headless"
+import axios from "axios"
+import classNames from "classnames/bind"
+import { useState } from "react"
+import { USERS } from "../../api/api"
+import DetailsProfile from "../../pages/Home/ItemVideo/DetailsProfile/DetailsProfile"
+import styles from "../../pages/Home/ItemVideo/ItemVideo.module.scss"
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(styles)
 
 
 export default function Tippys({ children, setFollow, data, suggest }: any) {
-    const [datadetails, setDatadetails] = useState<any | undefined>();
+    const [datadetails, setDatadetails] = useState<any | undefined>()
 
     return (
         <Tippy

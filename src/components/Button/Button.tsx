@@ -1,8 +1,8 @@
-import classNames from "classnames/bind";
-import { Link } from "react-router-dom";
-import styles from "./Button.module.scss";
+import classNames from "classnames/bind"
+import { Link } from "react-router-dom"
+import styles from "./Button.module.scss"
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(styles)
 
 function Button({
   onClick,
@@ -29,24 +29,25 @@ function Button({
   buttonHeader,
   button_property,
   button_property_none,
+  button_property_primary,
   ...passAvailable
 }: any) {
-  let Comp: any = "div";
+  let Comp: any = "div"
 
   const available = {
     ...passAvailable,
-  };
+  }
 
   if (disabled) {
-    delete available.onClick;
+    delete available.onClick
   }
 
   if (to) {
-    available.to = to;
-    Comp = Link;
+    available.to = to
+    Comp = Link
   } else if (href) {
-    available.href = href;
-    Comp = "a";
+    available.href = href
+    Comp = "a"
   }
 
   const classes = cx("wrapper", {
@@ -70,7 +71,8 @@ function Button({
     enablesound,
     button_property,
     button_property_none,
-  });
+    button_property_primary,
+  })
 
   return (
     <Comp className={classes} {...available} onClick={onClick}>
@@ -78,7 +80,7 @@ function Button({
       <span className={cx("title")}>{children}</span>
       {rightIcon && <span className={cx("icon")}>{rightIcon}</span>}
     </Comp>
-  );
+  )
 }
 
-export default Button;
+export default Button

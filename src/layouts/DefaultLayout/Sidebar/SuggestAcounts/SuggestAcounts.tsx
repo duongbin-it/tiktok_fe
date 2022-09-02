@@ -1,12 +1,12 @@
-import classNames from "classnames/bind";
-import React from "react";
-import { v4 as uuidv4 } from 'uuid';
-import { CheckIcon } from "../../../../assets/icons/icons";
-import { FollowingLoading } from "../../../../components/Loading/Loading";
-import DivUsers from "./DivUsers/DivUsers";
-import styles from "./SuggestAcounts.module.scss";
+import classNames from "classnames/bind"
+import React from "react"
+import { v4 as uuidv4 } from 'uuid'
+import { CheckIcon } from "../../../../assets/icons/icons"
+import { FollowingLoading } from "../../../../components/Loading/Loading"
+import DivUsers from "./DivUsers/DivUsers"
+import styles from "./SuggestAcounts.module.scss"
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(styles)
 
 interface Props {
   title: string,
@@ -42,7 +42,7 @@ const SuggestAcounts: React.FC<Props> = ({ title, atb, data }) => {
         <p className={cx("see-more-btn")}>{atb}</p>
       </div>
     </div>
-  );
+  )
 }
 
 export default SuggestAcounts

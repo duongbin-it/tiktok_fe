@@ -1,22 +1,22 @@
-import Tippy from "@tippyjs/react";
-import HeadlessTippy from '@tippyjs/react/headless';
-import axios from "axios";
-import classNames from "classnames/bind";
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
-import "tippy.js/dist/tippy.css";
-import { NEWFEED } from "../../../api/api";
-import { CoinIcon, HelpIcon, KeyboardIcon, LanguageIcon, LogoIcon, LogOutIcon, MessageIcon, MoreIcon, NotificationIcon, NotificationIcon1, PathIcon, PlusIcon, SettingIcon, UserIcon } from "../../../assets/icons/icons";
-import Button from "../../../components/Button/Button";
-import { handleShowLogin } from "../../../components/GlobalFunction/GlobalFunction";
-import Menu from "../../../components/Popper/Menu/Menu";
-import { setApi } from "../../../redux/actions";
-import Login from "../../Login/Login";
-import Search from "../Search/Search";
-import styles from "./Header.module.scss";
+import Tippy from "@tippyjs/react"
+import HeadlessTippy from '@tippyjs/react/headless'
+import axios from "axios"
+import classNames from "classnames/bind"
+import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch } from "react-redux"
+import { Link, NavLink } from "react-router-dom"
+import "tippy.js/dist/tippy.css"
+import { NEWFEED } from "../../../api/api"
+import { CoinIcon, HelpIcon, KeyboardIcon, LanguageIcon, LogoIcon, LogOutIcon, MessageIcon, MoreIcon, NotificationIcon, NotificationIcon1, PathIcon, PlusIcon, SettingIcon, UserIcon } from "../../../assets/icons/icons"
+import Button from "../../../components/Button/Button"
+import { handleShowLogin } from "../../../components/GlobalFunction/GlobalFunction"
+import Menu from "../../../components/Popper/Menu/Menu"
+import { setApi } from "../../../redux/actions"
+import Login from "../../Login/Login"
+import Search from "../Search/Search"
+import styles from "./Header.module.scss"
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(styles)
 
 const MENU_ITEMS = [
   {
@@ -45,7 +45,7 @@ const MENU_ITEMS = [
     icon: <KeyboardIcon />,
     title: "Keyboard shortcuts",
   },
-];
+]
 
 const userMenu = [
   {
@@ -70,14 +70,14 @@ const userMenu = [
     to: "/logout",
     separate: true,
   },
-];
+]
 
 const Header: React.FC = () => {
   const dispath = useDispatch()
-  const currentUser = localStorage.getItem("user");
-  const ref = useRef<HTMLDivElement>(null);
-  const active = useRef<HTMLDivElement>(null);
-  const [notifi, setNotifi] = useState<boolean>(true);
+  const currentUser = localStorage.getItem("user")
+  const ref = useRef<HTMLDivElement>(null)
+  const active = useRef<HTMLDivElement>(null)
+  const [notifi, setNotifi] = useState<boolean>(true)
   const ref_header = useRef<HTMLDivElement>(null)
   const [actived, setActived] = useState<boolean>(false)
 
@@ -94,18 +94,18 @@ const Header: React.FC = () => {
     return {
       backgroundColor: isActive ? "rgba(22,24,35,0.06)" : "",
       margin: 0
-    };
+    }
   }
 
   useEffect(() => {
     window.onbeforeunload = function () {
-      window.scrollTo(0, 0);
-    };
-  }, []);
+      window.scrollTo(0, 0)
+    }
+  }, [])
 
   useEffect(() => {
-    const Class = (document.querySelector(`[class='${active.current?.className}']`)?.firstChild as HTMLDivElement)?.className.split(" ")[0];
-    const Active = (document.querySelector(`[class='${active.current?.className}']`)?.firstChild as HTMLDivElement)?.className.split(" ")[1];
+    const Class = (document.querySelector(`[class='${active.current?.className}']`)?.firstChild as HTMLDivElement)?.className.split(" ")[0]
+    const Active = (document.querySelector(`[class='${active.current?.className}']`)?.firstChild as HTMLDivElement)?.className.split(" ")[1]
     if (Class !== undefined && Active !== undefined)
       document.querySelectorAll(`.${active.current?.className} span`).forEach((item) => {
         const Click = (item as HTMLSpanElement).onclick = (() => {
@@ -143,8 +143,8 @@ const Header: React.FC = () => {
             }
             else {
               setTimeout(() => {
-                setActived(false); console.log(1);
-              }, 4000);
+                setActived(false); console.log(1)
+              }, 4000)
             }
           }}>
             <LogoIcon />
@@ -188,7 +188,6 @@ const Header: React.FC = () => {
                       </div>
                       <div className={cx('notification-item')}>
                         <p className={cx('slogan')}>Previous</p>
-
                         <div className={cx('user')}>
                           <span className={cx('user-title')}>
                             <img loading='lazy' src='https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/7095391853205422081.jpeg?x-expires=1659459600&x-signature=%2Feaox9BBwPs2LCgzfSyXWG5kQZc%3D' alt="avatar" />
@@ -209,8 +208,6 @@ const Header: React.FC = () => {
                   <sup className={cx("ting-mess")}>12</sup>
                 </button>
               </HeadlessTippy>
-
-
             </div>
           ) : (
             <>
@@ -220,7 +217,7 @@ const Header: React.FC = () => {
               <Button
                 primary
                 onClick={() => {
-                  handleShowLogin();
+                  handleShowLogin()
                 }}
               >
                 Log in
@@ -240,7 +237,7 @@ const Header: React.FC = () => {
         </div>
       </div>
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header

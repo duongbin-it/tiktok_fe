@@ -1,12 +1,12 @@
-import React from 'react';
-import './GlobalStyles.scss';
+import React from 'react'
+import './GlobalStyles.scss'
 
 interface Props {
     children: any,
 }
 
 const GlobalStyles: React.FC<Props> = ({ children }) => {
-    return (children);
+    return (children)
 }
 
-export default GlobalStyles;
+export default GlobalStyles

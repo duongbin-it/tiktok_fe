@@ -1,8 +1,8 @@
-import { Fragment } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';
-import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout";
-import { totalRoutes } from "./Routes/Routes";
+import { Fragment } from "react"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { v4 as uuidv4 } from 'uuid'
+import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout"
+import { totalRoutes } from "./Routes/Routes"
 
 function App() {
   return (
@@ -10,11 +10,11 @@ function App() {
       <div className="App">
         <Routes>
           {totalRoutes.map((route) => {
-            let Layout: any = DefaultLayout;
+            let Layout: any = DefaultLayout
             if (route.layout) {
-              Layout = route.layout;
+              Layout = route.layout
             } else if (route.layout === null) {
-              Layout = Fragment;
+              Layout = Fragment
             }
             return (
               <Route key={uuidv4()} path={route.path} element={
@@ -23,12 +23,12 @@ function App() {
                 </Layout>
               }
               ></Route>
-            );
+            )
           })}
         </Routes>
       </div>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

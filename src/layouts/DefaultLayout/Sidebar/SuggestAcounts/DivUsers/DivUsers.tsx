@@ -1,9 +1,9 @@
-import classNames from 'classnames/bind';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { LiveStreamIcon } from '../../../../../assets/icons/icons';
-import Tippys from '../../../../../components/Tippys/Tippys';
-import styles from './DivUsers.module.scss';
+import classNames from 'classnames/bind'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { LiveStreamIcon } from '../../../../../assets/icons/icons'
+import Tippys from '../../../../../components/Tippys/Tippys'
+import styles from './DivUsers.module.scss'
 
 
 const cx = classNames.bind(styles)
@@ -61,7 +61,7 @@ function DivUsers({ index, name, username, icon, image, live, title }: any) {
                     </Link>
                 </div>
             )
-    );
+    )
 }
 
 export default DivUsers

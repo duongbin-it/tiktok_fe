@@ -1,7 +1,7 @@
-import classNames from 'classnames/bind';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from './AccountItem.module.scss';
+import classNames from 'classnames/bind'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styles from './AccountItem.module.scss'
 
 const cx = classNames.bind(styles)
 
@@ -25,4 +25,4 @@ const AccountItem: React.FC<Props> = ({ data, onClick }) => {
     )
 }
 
-export default AccountItem;
+export default AccountItem

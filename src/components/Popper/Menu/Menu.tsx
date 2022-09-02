@@ -1,10 +1,10 @@
-import Tippy from '@tippyjs/react/headless';
-import classNames from 'classnames/bind';
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import Header from './Header';
-import styles from './Menu.module.scss';
-import MenuItem from './MenuItem';
+import Tippy from '@tippyjs/react/headless'
+import classNames from 'classnames/bind'
+import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import Header from './Header'
+import styles from './Menu.module.scss'
+import MenuItem from './MenuItem'
 
 const cx = classNames.bind(styles)
 
@@ -42,10 +42,9 @@ const Menu: React.FC<Props> = ({ children, items = [], onChange = defaultFn }) =
         <Tippy
             interactive
             appendTo={document.body}
-            delay={[0, 700]}
             offset={[12, 8]}
             placement='bottom-end'
-            hideOnClick={false}
+            trigger="click"
             render={(attrs) => (
                 <div className={cx('content')} tabIndex={-1} {...attrs}>
                     <div className={cx('wrapper-1')}>
@@ -65,4 +64,4 @@ const Menu: React.FC<Props> = ({ children, items = [], onChange = defaultFn }) =
     )
 }
 
-export default Menu;
+export default Menu

@@ -1,12 +1,12 @@
-import Tippy from '@tippyjs/react/headless';
-import axios from 'axios';
-import classNames from 'classnames/bind';
-import React, { useEffect, useRef, useState } from 'react';
-import 'tippy.js/dist/tippy.css';
-import { v4 as uuidv4 } from 'uuid';
-import { ClearIcon, LoadingIcon, SearchIcon } from '../../../assets/icons/icons';
-import AccountItem from '../../../components/AccountItem/AccountItem';
-import styles from './Search.module.scss';
+import Tippy from '@tippyjs/react/headless'
+import axios from 'axios'
+import classNames from 'classnames/bind'
+import React, { useEffect, useRef, useState } from 'react'
+import 'tippy.js/dist/tippy.css'
+import { v4 as uuidv4 } from 'uuid'
+import { ClearIcon, LoadingIcon, SearchIcon } from '../../../assets/icons/icons'
+import AccountItem from '../../../components/AccountItem/AccountItem'
+import styles from './Search.module.scss'
 
 
 
@@ -32,12 +32,12 @@ const Search: React.FC = () => {
             if (!searchValue.trim()) {
                 setLoading(false)
                 setsearchResult([])
-                return;
+                return
             }
 
             axios.get(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
                 .then(res => {
-                    setsearchResult(res['data']['data']);
+                    setsearchResult(res['data']['data'])
                     setLoading(false)
                 })
                 .catch(() => {
@@ -95,7 +95,7 @@ const Search: React.FC = () => {
                 </button>
             </div>
         </Tippy>
-    );
+    )
 }
 
-export default Search;
+export default Search

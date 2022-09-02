@@ -386,3 +386,15 @@
     background-color: rgba(235, 235, 235, 1);
   }
 }
+
+.button_property_primary {
+  width: 164px;
+  height: 48px;
+  cursor: pointer;
+  color: rgba(235, 235, 235, 1);
+  background-color: rgb(254, 44, 85);
+
+  &:hover {
+    background-color: rgb(234, 40, 78);
+  }
+}

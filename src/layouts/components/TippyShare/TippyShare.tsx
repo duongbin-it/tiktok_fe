@@ -1,9 +1,9 @@
-import Tippy from "@tippyjs/react/headless";
-import classNames from "classnames/bind";
-import React from "react";
-import styles from './TippyShare.module.scss';
+import Tippy from "@tippyjs/react/headless"
+import classNames from "classnames/bind"
+import React from "react"
+import styles from './TippyShare.module.scss'
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(styles)
 
 interface Props {
     children: any,
