@@ -24,7 +24,7 @@ const Home: React.FC = () => {
     <div>
       {api
         ? api['status'] !== 'no data'
-          ? api.map((datas: any) => datas.username && <ItemVideo key={uuidv4()} data={datas} big={false} />)
+          ? api.map((datas: any) => datas.username && <ItemVideo key={uuidv4()} data={datas} />)
           : <Error title="Thông báo mới nhất từ TikTok" content="Bạn đã xem hết clip của hôm nay" feedback="Reload Page" top="15em" />
         : <VideoLoading />}
     </div>

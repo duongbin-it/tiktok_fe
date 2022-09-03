@@ -23,10 +23,9 @@ const cx = classNames.bind(styles)
 
 interface Props {
   data: any,
-  big: false,
 }
 
-const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
+const ItemVideo: React.FC<Props> = ({ data }) => {
 
   const dispath = useDispatch()
   const sound = useSelector<any>(item => item['sound'])
@@ -196,7 +195,7 @@ const ItemVideo: React.FC<Props> = ({ data, big = false }) => {
       setSize(width)
     }
     getSize(data.link_video.replace("mp4", "jpg"))
-  }, [data.link_video])
+  })
 
   const deleteVideo = async () => {
     await axios.post(DELETE_VIDEO, { _id: data._id })
