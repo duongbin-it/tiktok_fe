@@ -199,22 +199,11 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
 
   const deleteVideo = async () => {
     await axios.post(DELETE_VIDEO, { _id: data._id })
-      .then(async () => {
-        await axios.post("https://cloudinary.com/console/api/v1/operations/delete", {
-          "external_ids": [`${data.asset_id}`]
-        }, {
-          headers: {
-            "Host": "cloudinary.com",
-            "Content-Length": 53,
-            "Content-Type": "application/json",
-            "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI0MDMyODUsImlzcyI6ImNvbnNvbGUiLCJpYXQiOjE2NjIyMzA0ODUsInVzZXJfaWQiOiJlMGNlMGVkMjhkMmFhMzljOWQ0NjQyODRmZTUzMTkzOSIsIm1ldGEiOnsiY2xkX2FkbWluIjpmYWxzZSwicm9sZSI6Im1hc3Rlcl9hZG1pbiIsImNsb3VkX25hbWUiOiJkbWI3b3g5dmgifSwiY3VzdG9tZXJfaWQiOiJiZjM5OGZiZWY2OWE3MmEwMzU1OGFkZjcxMTBlY2UzYyJ9.kQVNIjxlXXNwVlY7taEixtDtADXz9XKH-s9xmSSVlfA",
-          }
-        }).then(() => {
-          setTimeout(() => {
-            // eslint-disable-next-line no-restricted-globals
-            location.reload()
-          }, 1500)
-        })
+      .then(() => {
+        setTimeout(() => {
+          // eslint-disable-next-line no-restricted-globals
+          location.reload()
+        }, 1500)
       })
   }
 
