@@ -6,10 +6,11 @@ const cx = classNames.bind(styles)
 
 interface Props {
     onClick?: any,
+    content: string
 }
 
 
-const Upload: React.FC<Props> = ({ onClick }) => {
+const Upload: React.FC<Props> = ({ onClick, content }) => {
     return (
         <div className={cx("input_upload")} onClick={onClick}>
             <img src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/cloud-icon1.ecf0bf2b.svg"
@@ -37,7 +38,7 @@ const Upload: React.FC<Props> = ({ onClick }) => {
             <div className={cx("button_select")}>
                 <button className={cx("button_select-button")}>
                     <div className={cx("button_container")}>
-                        <div className={cx("button_content")}>Select file</div>
+                        <div className={cx("button_content")}>{content}</div>
                     </div>
                 </button>
             </div>

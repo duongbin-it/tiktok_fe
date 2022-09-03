@@ -205,7 +205,7 @@ const Header: React.FC = () => {
                 )}>
                 <button className={cx("action-btn")} onClick={() => setNotifi(!notifi)}>
                   {notifi ? <NotificationIcon /> : <NotificationIcon1 />}
-                  <sup className={cx("ting-mess")}>12</sup>
+                  {/* <sup className={cx("ting-mess")}>12</sup> */}
                 </button>
               </HeadlessTippy>
             </div>

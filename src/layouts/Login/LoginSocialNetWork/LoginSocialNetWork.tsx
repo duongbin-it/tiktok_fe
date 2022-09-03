@@ -52,9 +52,9 @@ function Success(isModal: boolean) {
 function Fail(err: any, isModal: boolean) {
   console.log(err['message'])
   if (isModal) {
-    (document.querySelector("[class='css-feuqz5']") as HTMLDivElement).style.top = '16px'
-    setTimeout(() => { (document.querySelector("[class='css-feuqz5']") as HTMLDivElement).style.top = '-50px' }, 1500);
+    (document.querySelector("[class='css-feuqz5']") as HTMLDivElement).style.top = '16px';
     (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'none'
+    setTimeout(() => { (document.querySelector("[class='css-feuqz5']") as HTMLDivElement).style.top = '-50px' }, 1500)
   }
 }
 

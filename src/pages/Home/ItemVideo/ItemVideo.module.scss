@@ -316,7 +316,7 @@
   }
 }
 
-.div_first {
+.div_first_normal {
   position: relative;
   box-sizing: border-box;
   background: #eee center no-repeat;
@@ -327,6 +327,18 @@
   overflow: hidden;
   margin-right: 20px;
   height: 504.25px;
+}
+
+.div_first_600 {
+  position: relative;
+  box-sizing: border-box;
+  background: #eee center no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 20px;
 }
 
 
@@ -506,10 +518,6 @@ canvas {
   }
 }
 
-.Big {
-  width: 556px;
-  height: 314.11px;
-}
 
 .title-reactjs {
   color: rgba(22, 24, 35, 0.75);
@@ -723,10 +731,12 @@ canvas {
     .tippy__link {
       display: flex;
       align-items: center;
+      cursor: pointer;
     }
 
     &:hover {
       color: rgb(254, 44, 85);
+      background-color: rgba(22, 24, 35, 0.03);
     }
   }
 

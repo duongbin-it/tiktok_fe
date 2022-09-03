@@ -1,13 +1,13 @@
 const URL = 'https://tiktok-be.onrender.com'
+// const URL = 'http://localhost:3001'
 
-const SUGGEST_ACOUNTS = `${URL}/api/suggest_accounts`
-const FOLLOWING_ACOUNTS = `${URL}/api/following_accounts`
-const DISCOVER = `${URL}/api/discover`
-const NEWFEED = `${URL}/api/newfeed`
-const USERS = `${URL}/api/detail_accounts`
-const FOLLOWING = `${URL}/api/following`
-const HEARTED = `${URL}/api/hearted`
-const POST_VIDEO = `${URL}/api/post_videos`
-const ADD_USERS = `${URL}/api/add_users`
-
-export { SUGGEST_ACOUNTS, POST_VIDEO, ADD_USERS, DISCOVER, NEWFEED, USERS, FOLLOWING, HEARTED, FOLLOWING_ACOUNTS }
+export const SUGGEST_ACOUNTS = `${URL}/api/suggest_accounts`
+export const FOLLOWING_ACOUNTS = `${URL}/api/following_accounts`
+export const DISCOVER = `${URL}/api/discover`
+export const NEWFEED = `${URL}/api/newfeed`
+export const USERS = `${URL}/api/detail_accounts`
+export const FOLLOWING = `${URL}/api/following`
+export const HEARTED = `${URL}/api/hearted`
+export const POST_VIDEO = `${URL}/api/post_videos`
+export const ADD_USERS = `${URL}/api/add_users`
+export const DELETE_VIDEO = `${URL}/api/delete_videos`

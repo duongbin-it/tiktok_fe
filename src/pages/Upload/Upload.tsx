@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { POST_VIDEO } from "../../api/api"
 import { CheckboxIcon, DropdownIcon } from '../../assets/icons/icons'
 import Button from '../../components/Button/Button'
+import { EffectLoading } from "../../components/Effect/EffectLoading"
 import Uploader from "../../components/Upload/Uploader/Uploader"
 import Uploading from '../../components/Upload/Uploading/Uploading'
 import styles from "./Upload.module.scss"
@@ -28,7 +29,7 @@ const Upload: React.FC = () => {
     const [button, setButton] = useState<boolean>(true)
     const [dropdown, setDropdown] = useState<boolean>(false)
     const [showinput, setShowinput] = useState<string>("")
-    const [data, setData] = useState<string>("")
+    const [data, setData] = useState<string>("select")
 
     useEffect(() => {
         (radio_button.current as HTMLDivElement).onclick = () => {
@@ -56,19 +57,22 @@ const Upload: React.FC = () => {
 
             let currentFile = e.target.files[0]
             setShowinput(currentFile)
-            setData(currentFile)
             await setTimeout(() => {
                 const reader = new FileReader()
                 reader.readAsDataURL(currentFile)
-                reader.onloadend = () => {
-                    setData('')
+                reader.onload = () => {
+                    setData('change')
+                    ref_input.current!.placeholder = "Hãy nhập nội dung video của bạn ở đây..."
                 }
-            }, 700)
+            }, 1000)
+            currentFile && setData('')
         }
     }, [file])
 
     const postVideo = async () => {
-
+        (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block'
+        setSharp("")
+        ref_input.current!.placeholder = ""
         const title = []
         const array = []
         const tag = sharp.trim().split(" ")
@@ -90,6 +94,7 @@ const Upload: React.FC = () => {
             .then((res) => {
                 return res
             })
+        console.log(infoUpload)
 
         await axios.post(POST_VIDEO, {
             "username": localStorage.getItem("username"),
@@ -100,17 +105,23 @@ const Upload: React.FC = () => {
             "name_tag": array,
             "link_music": "https://www.tiktok.com/music/nh%E1%BA%A1c-n%E1%BB%81n-%F0%9D%99%A7%F0%9D%99%A4%F0%9D%99%A1%F0%9D%99%A1%F0%9D%99%9A%F0%9D%99%A3-7123551846429461275",
             "link_video": infoUpload.data.url,
+            "asset_id": infoUpload.data.asset_id,
             "name_music": `nhạc nền - ${localStorage.getItem("user")}`,
             "heart_check": false
         })
             .then(() => {
-                // eslint-disable-next-line no-restricted-globals
-                location.href = '/'
+                (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'none'
+                setSharp("Upload Lên TikTok thành công! 😀")
+                setTimeout(() => {
+                    // eslint-disable-next-line no-restricted-globals
+                    location.href = '/'
+                }, 1000)
             })
     }
 
     return (
         <div className={cx("wrapper")}>
+            <EffectLoading />
             <div className={cx("container")}>
                 <div className={cx("content")}>
                     <span className={cx("title")}>Upload video</span>
@@ -120,7 +131,10 @@ const Upload: React.FC = () => {
                     <div className={cx("upload_video")}>
                         <input type="file" hidden={true} ref={file} accept="video/mp4,video/x-m4v,video/*" />
                         <div className={cx("layout_left")}>
-                            {data ? <Uploading onClick={() => setShowinput("")} /> : <Uploader onClick={opendialogFile} />}
+                            {data
+                                ? data === 'select' ? <Uploader onClick={opendialogFile} content="Select file" /> : <Uploader onClick={opendialogFile} content="Change file" />
+                                : <Uploading onClick={() => setShowinput("")} />
+                            }
                         </div>
                         <div className={cx("layout_right")}>
                             <div className={cx("group")}>
@@ -132,20 +146,30 @@ const Upload: React.FC = () => {
                                     <input type="text" className={cx("input-tag_item")} ref={ref_input}
                                         onChange={
                                             (e) => {
-                                                setLength(e.target.value.length)
-                                                const lastValue = e.target.value.slice(e.target.value.length - 1, e.target.value.length)
-                                                if (lastValue === "#") {
-                                                    setSharp(e.target.value.slice(0, e.target.value.length - 1) + " " + lastValue)
-                                                }
-                                                else {
-                                                    setSharp(e.target.value)
+                                                if (!e.target.value.startsWith(" ")) {
+                                                    setLength(e.target.value.length)
+                                                    const lastValue = e.target.value.slice(e.target.value.length - 1, e.target.value.length)
+                                                    if (lastValue === "#") {
+                                                        setSharp(e.target.value.slice(0, e.target.value.length - 1) + " " + lastValue)
+                                                    }
+                                                    else {
+                                                        setSharp(e.target.value)
+                                                    }
                                                 }
                                             }} value={sharp} maxLength={150} />
-                                    <div className={cx("icon-tag1")} onClick={() => { setSharp(prev => prev + " @"); ref_input.current?.focus() }}>
+                                    <div className={cx("icon-tag1")} onClick={() => {
+                                        ref_input.current?.value.length === 0 ? setSharp(prev => prev + "@") : setSharp(prev => prev + " @")
+                                        ref_input.current?.focus()
+                                        setLength(ref_input.current!.value.length)
+                                    }}>
                                         <img
                                             src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/at.062a03e9.svg" alt="@" />
                                     </div>
-                                    <div className={cx("icon-tag2")} onClick={() => { setSharp(prev => prev + " #"); ref_input.current?.focus() }}>
+                                    <div className={cx("icon-tag2")} onClick={() => {
+                                        ref_input.current?.value.length === 0 ? setSharp(prev => prev + "#") : setSharp(prev => prev + " #")
+                                        ref_input.current?.focus()
+                                        setLength(ref_input.current!.value.length)
+                                    }}>
                                         <img
                                             src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/hashtag.234f1b9c.svg" alt="#" />
                                     </div>
