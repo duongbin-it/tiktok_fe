@@ -143,7 +143,7 @@ const Header: React.FC = () => {
             }
             else {
               setTimeout(() => {
-                setActived(false); console.log(1)
+                setActived(false)
               }, 4000)
             }
           }}>

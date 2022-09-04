@@ -13,6 +13,9 @@
   padding: 20px 0;
   position: relative;
   max-width: 692px;
+  max-height: 635px;
+  opacity: 1;
+  transition: all 0.5s;
 }
 
 .link-btn {
@@ -326,21 +329,7 @@
   border-radius: 8px;
   overflow: hidden;
   margin-right: 20px;
-  height: 504.25px;
 }
-
-.div_first_600 {
-  position: relative;
-  box-sizing: border-box;
-  background: #eee center no-repeat;
-  -webkit-background-size: cover;
-  background-size: cover;
-  cursor: pointer;
-  border-radius: 8px;
-  overflow: hidden;
-  margin-right: 20px;
-}
-
 
 .div_first-item {
   position: absolute;
@@ -709,6 +698,9 @@ canvas {
   min-width: 88px;
   padding: 0 10px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tippy__wrapper {

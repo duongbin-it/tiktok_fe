@@ -101,18 +101,23 @@
                         margin-top: 4px;
                         font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif, "Segoe UI Emoji", "Noto Emoji";
                         position: relative;
+                        pointer-events: none;
 
                         .input-tag_item {
                             font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif, "Segoe UI Emoji", "Noto Emoji";
                             font-weight: 500;
                             height: 46px;
-                            border: 1px solid rgba(22, 24, 35, 0.12);
+                            border: 0;
                             border-radius: 4px;
                             outline: none;
                             width: 100%;
                             padding: 0 80px 0 16px;
                             font-size: 17px;
                             caret-color: rgb(254, 44, 85);
+                            pointer-events: none;
+                            color: #AAA;
+                            background: #F5F5F5;
+                            box-sizing: border-box;
                         }
 
                         .icon-tag1 {
@@ -138,6 +143,8 @@
 
                     .group {
                         margin-bottom: 24px;
+                        display: flex;
+                        flex-direction: column;
 
                         .show-cover {
                             position: relative;
@@ -145,19 +152,50 @@
                             padding: 6px;
                             border: 1px solid rgba(22, 24, 35, 0.12);
                             border-radius: 2px;
+                            display: inline-flex;
 
                             .show-cover_item {
-                                display: flex;
                                 border: 2px solid transparent;
                                 box-sizing: border-box;
                                 border-radius: 2px;
+                                user-select: none;
+                                height: 150px;
+                                object-fit: cover;
+                                display: flex;
 
-                                .show-cover_item-item {
+                                .show__cover-image {
+                                    opacity: 0.3;
+                                    user-select: none;
+                                    width: 85.8px;
+                                    height: 150px;
+                                    object-fit: cover;
+                                }
+                            }
+
+                            .image__scale {
+                                cursor: grab;
+                                position: absolute;
+                                top: 0px;
+                                left: 0px;
+                                box-sizing: content-box;
+                                border: 6px solid rgb(255, 255, 255);
+                                box-shadow: rgb(34 90 89 / 20%) 2px 4px 20px;
+                                border-radius: 8px;
+                                transform: translate3d(4px, 1px, 0px) scaleX(1.1) scaleY(1.1);
+
+                                .image__scale--item {
                                     width: 84.2px;
                                     height: 150px;
                                     object-fit: cover;
-                                    background-color: rgba(22, 24, 35, 0.03);
+                                    border-radius: 0.5px;
                                 }
+                            }
+
+                            .image__scale-item {
+                                width: 84.2px;
+                                height: 150px;
+                                object-fit: cover;
+                                background-color: rgba(22, 24, 35, 0.03);
                             }
                         }
 

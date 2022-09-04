@@ -1,6 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-restricted-globals */
+import { generateVideoThumbnails } from "@rajesh896/video-thumbnails-generator"
 import axios from "axios"
 import classNames from "classnames/bind"
+import getImageSize from 'image-size-from-url'
 import React, { useEffect, useRef, useState } from "react"
+import { v4 as uuidv4 } from 'uuid'
 import { POST_VIDEO } from "../../api/api"
 import { CheckboxIcon, DropdownIcon } from '../../assets/icons/icons'
 import Button from '../../components/Button/Button'
@@ -9,9 +14,8 @@ import Uploader from "../../components/Upload/Uploader/Uploader"
 import Uploading from '../../components/Upload/Uploading/Uploading'
 import styles from "./Upload.module.scss"
 
-
+const bytes = require('bytes')
 const cx = classNames.bind(styles)
-
 
 const Upload: React.FC = () => {
 
@@ -23,13 +27,16 @@ const Upload: React.FC = () => {
     const rotate_dropdown = useRef<HTMLDivElement>(null)
     const show_dropdown = useRef<HTMLDivElement>(null)
 
+    const [base64Video, setbaseVideo] = useState<string>("")
+    const [listimage, setListimage] = useState<string[]>([])
     const [length, setLength] = useState(0)
     const [sharp, setSharp] = useState<string>("")
     const [item, setItem] = useState<string>("Public")
     const [button, setButton] = useState<boolean>(true)
     const [dropdown, setDropdown] = useState<boolean>(false)
-    const [showinput, setShowinput] = useState<string>("")
+    const [showinput, setShowinput] = useState<any>("")
     const [data, setData] = useState<string>("select")
+
 
     useEffect(() => {
         (radio_button.current as HTMLDivElement).onclick = () => {
@@ -53,38 +60,52 @@ const Upload: React.FC = () => {
     }
 
     useEffect(() => {
-        (file.current as HTMLInputElement).onchange = async (e: any) => {
-
-            let currentFile = e.target.files[0]
+        (file.current as HTMLInputElement).onchange = (e: any) => {
+            setListimage([])
+            const currentFile = e.target.files[0]
             setShowinput(currentFile)
-            await setTimeout(() => {
+            setTimeout(() => {
                 const reader = new FileReader()
                 reader.readAsDataURL(currentFile)
                 reader.onload = () => {
                     setData('change')
-                    ref_input.current!.placeholder = "Hãy nhập nội dung video của bạn ở đây..."
+                    ref_input.current!.placeholder = showinput;
+                    (document.querySelector(`[class='${cx("input-tag")}']`) as HTMLDivElement).style.pointerEvents = 'unset';
+                    (ref_input.current as HTMLInputElement).style.color = 'unset';
+                    (ref_input.current as HTMLInputElement).style.background = 'unset';
+                    (ref_input.current as HTMLInputElement).style.pointerEvents = 'unset';
+                    (ref_input.current as HTMLInputElement).style.border = '1px solid rgba(22, 24, 35, 0.12)';
+                    (ref_input.current as HTMLInputElement).placeholder = 'Hãy nhập nội dung video của bạn ở đây...'
+                    reader.result && setbaseVideo(String(reader.result))
+                    generateVideoThumbnails(currentFile, 8, "video").then((thumbnailArray) => {
+                        thumbnailArray.map((item) => {
+                            return setListimage(prev => [...prev, item])
+                        })
+                    }).catch((err) => {
+                        console.error(err)
+                    })
                 }
             }, 1000)
-            currentFile && setData('')
         }
-    }, [file])
+    }, [file, showinput])
 
     const postVideo = async () => {
         (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block'
         setSharp("")
         ref_input.current!.placeholder = ""
-        const title = []
-        const array = []
-        const tag = sharp.trim().split(" ")
+        const title = [], array = []
+        const tag = sharp.split(" ")
+
         for (const key in tag) {
             if (tag[key].includes("#")) {
                 await array.push({ key: tag[key].replace("#", "") })
             }
             else {
-                await title.push(tag[key].concat(" "))
+                await title.push(tag[key])
             }
         }
 
+        const content = title.join(" ")
         const formData = new FormData()
         formData.append("upload_preset", "tiktok_be-upload")
         formData.append("file", showinput)
@@ -94,29 +115,29 @@ const Upload: React.FC = () => {
             .then((res) => {
                 return res
             })
-        console.log(infoUpload)
+
+        const { width } = await getImageSize(infoUpload.data.url.replace("mp4", "jpg"))
 
         await axios.post(POST_VIDEO, {
             "username": localStorage.getItem("username"),
-            "title": title,
+            "title": content.trim(),
             "heart": 0,
             "share": 0,
             "comment": 0,
+            "height": width > 600 ? "unset" : 504.25,
             "name_tag": array,
             "link_music": "https://www.tiktok.com/music/nh%E1%BA%A1c-n%E1%BB%81n-%F0%9D%99%A7%F0%9D%99%A4%F0%9D%99%A1%F0%9D%99%A1%F0%9D%99%9A%F0%9D%99%A3-7123551846429461275",
             "link_video": infoUpload.data.url,
             "asset_id": infoUpload.data.asset_id,
             "name_music": `nhạc nền - ${localStorage.getItem("user")}`,
             "heart_check": false
+        }).then(() => {
+            (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'none'
+            setSharp("Upload Lên TikTok thành công! 😀")
+            setTimeout(() => {
+                location.href = '/'
+            }, 1000)
         })
-            .then(() => {
-                (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'none'
-                setSharp("Upload Lên TikTok thành công! 😀")
-                setTimeout(() => {
-                    // eslint-disable-next-line no-restricted-globals
-                    location.href = '/'
-                }, 1000)
-            })
     }
 
     return (
@@ -132,8 +153,14 @@ const Upload: React.FC = () => {
                         <input type="file" hidden={true} ref={file} accept="video/mp4,video/x-m4v,video/*" />
                         <div className={cx("layout_left")}>
                             {data
-                                ? data === 'select' ? <Uploader onClick={opendialogFile} content="Select file" /> : <Uploader onClick={opendialogFile} content="Change file" />
-                                : <Uploading onClick={() => setShowinput("")} />
+                                ? data === 'select'
+                                    ? <Uploader onClick={opendialogFile} content="Select file" />
+                                    : <Uploader onClick={opendialogFile} content="Change file"
+                                        name_file={showinput.name}
+                                        title="Successfully uploaded"
+                                        size={"Size video: " + bytes.format(showinput.size, { unitSeparator: ' ' })}
+                                    />
+                                : <Uploading />
                             }
                         </div>
                         <div className={cx("layout_right")}>
@@ -143,7 +170,7 @@ const Upload: React.FC = () => {
                                     <span className={cx("length-notation")}>{length} / 150</span>
                                 </div>
                                 <div className={cx("input-tag")}>
-                                    <input type="text" className={cx("input-tag_item")} ref={ref_input}
+                                    <input type="text" className={cx("input-tag_item")} ref={ref_input} placeholder="Hãy nhập nội dung video của bạn ở đây..."
                                         onChange={
                                             (e) => {
                                                 if (!e.target.value.startsWith(" ")) {
@@ -171,17 +198,33 @@ const Upload: React.FC = () => {
                                         setLength(ref_input.current!.value.length)
                                     }}>
                                         <img
-                                            src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/hashtag.234f1b9c.svg" alt="#" />
+                                            alt="#"
+                                            src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/hashtag.234f1b9c.svg"
+                                        />
                                     </div>
                                 </div>
                             </div>
                             <div className={cx("group")}>
                                 <span className={cx("privacy")}>Cover</span>
-                                <div className={cx("show-cover")}>
-                                    <div className={cx("show-cover_item")}>
-                                        <div className={cx("show-cover_item-item")}>
-                                        </div>
-                                    </div>
+                                <div className={cx("show-cover")} >
+                                    {listimage[0] && <div className={cx("show-cover_item")}>
+                                        {listimage ? listimage.filter((item, index) => index <= 7 && item).map((item) => {
+                                            return (
+                                                <img key={uuidv4()} className={cx("show__cover-image")} alt="thumbnail" src={item} />
+                                            )
+                                        }) : null}
+                                    </div>}
+                                    {
+                                        listimage[0]
+                                            ?
+                                            <div className={cx("image__scale")}>
+                                                <div>
+                                                    <video key={uuidv4()} className={cx("image__scale--item")} src={base64Video} />
+                                                </div>
+                                            </div>
+                                            :
+                                            <div className={cx("image__scale-item")}></div>
+                                    }
                                 </div>
                             </div>
                             <div className={cx("group")}>
@@ -288,7 +331,7 @@ const Upload: React.FC = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

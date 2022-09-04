@@ -39,8 +39,13 @@
         margin-top: 6px;
         margin-bottom: 24px;
         height: 24px;
+        width: 15rem;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
 
-        .title_select-item {
+        .title_select-item1 {
             box-sizing: border-box;
             margin-block: 0px;
             font-size: 14px;

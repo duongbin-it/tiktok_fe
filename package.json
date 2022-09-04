@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@rajesh896/video-thumbnails-generator": "^2.3.9",
     "@reduxjs/toolkit": "^1.8.3",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -13,8 +14,9 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "axios": "^0.27.2",
+    "bytes": "^3.1.2",
     "classnames": "^2.3.1",
-    "firebase": "^9.9.0",
+    "firebase": "^9.9.4",
     "i": "^0.3.7",
     "image-size-from-url": "^1.0.2",
     "npm": "^8.18.0",

@@ -2,24 +2,22 @@
 import Tippy from "@tippyjs/react/headless"
 import axios from "axios"
 import classNames from "classnames/bind"
-import getImageSize from 'image-size-from-url'
 import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid'
-import { DELETE_VIDEO } from "../../../api/api"
+import { DELETE_VIDEO, NEWFEED } from "../../../api/api"
 import { CheckIcon, CommentIcon, DeleteIcon, DownloadIcon, EditIcon, HeartactiveIcon, HeartIcon, MoreIcon, MusicIcon, PauseIcon, PlayIcon, ReportIcon, ShareIcon, SoundIcon, UnSoundIcon } from "../../../assets/icons/icons"
 import Button from "../../../components/Button/Button"
 import { Following, handleShowLogin, Hearted } from "../../../components/GlobalFunction/GlobalFunction"
 import Tippys from "../../../components/Tippys/Tippys"
 import useElementOnScreen from "../../../hooks/useElementOnScreen"
 import TippyShare from '../../../layouts/components/TippyShare/TippyShare'
-import { setButtonSound } from "../../../redux/actions"
+import { setApi, setButtonSound } from "../../../redux/actions"
 import styles from "./ItemVideo.module.scss"
 
 var numeral = require('numeral')
 const cx = classNames.bind(styles)
-
 
 interface Props {
   data: any,
@@ -30,7 +28,6 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
   const dispath = useDispatch()
   const sound = useSelector<any>(item => item['sound'])
 
-  const [size, setSize] = useState<number>(0)
   const [play, setPlay] = useState<boolean>(false)
   const [time, setTime] = useState<any>(null)
   const [follow, setFollow] = useState<boolean>(data.following)
@@ -187,23 +184,16 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
     }
   }, [sound])
 
-
-  useEffect(() => {
-
-    const getSize = async (url: string) => {
-      const { width } = await getImageSize(url)
-      setSize(width)
-    }
-    getSize(data.link_video.replace("mp4", "jpg"))
-  })
-
   const deleteVideo = async () => {
-    await axios.post(DELETE_VIDEO, { _id: data._id })
-      .then(() => {
-        setTimeout(() => {
-          // eslint-disable-next-line no-restricted-globals
-          location.reload()
-        }, 1500)
+    (document.querySelector(`[class='${cx("wrapper")}']`) as HTMLDivElement)!.style.maxHeight = '0';
+    (document.querySelector(`[class='${cx("wrapper")}']`) as HTMLDivElement)!.style.opacity = '0';
+    (document.querySelector(`[class='${cx("wrapper")}']`) as HTMLDivElement)!.style.padding = '0'
+    await axios.post(DELETE_VIDEO, { _id: data._id, asset_id: data.asset_id })
+      .then(async () => {
+        await axios.get(NEWFEED).then((res: any) => {
+          dispath(setApi(res.data))
+          window.scrollTo(0, 0)
+        })
       })
   }
 
@@ -265,11 +255,9 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
                 <Tippy
                   interactive
                   appendTo={document.body}
-                  offset={[-10, -45]}
+                  offset={[120, -30]}
                   zIndex={1}
                   placement='right-end'
-                  trigger="click"
-                  hideOnClick={true}
                   render={(attrs) => (
                     <div className={cx('content')} tabIndex={-1} {...attrs}>
                       <div className={cx("tippy__wrapper")}>
@@ -336,7 +324,7 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
 
         {/* xử lý video */}
         <div className={cx("div-btn-video")}>
-          <div className={size > 600 ? cx("div_first_600") : cx("div_first_normal")}>
+          <div className={cx("div_first_normal")} style={{ height: data.height }}>
             <img src={data.link_video.replace("mp4", "jpg")} alt="video" ref={ref_img} />
             <div className={cx("div_first-item")}>
               <div className={cx("div-1")}>
