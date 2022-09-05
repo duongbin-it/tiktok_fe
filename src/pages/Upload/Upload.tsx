@@ -93,7 +93,8 @@ const Upload: React.FC = () => {
         (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block'
         setSharp("")
         ref_input.current!.placeholder = ""
-        const title = [], array = []
+        const title = []
+        const array: {}[] = []
         const tag = sharp.split(" ")
 
         for (const key in tag) {
@@ -111,33 +112,31 @@ const Upload: React.FC = () => {
         formData.append("file", showinput)
         formData.append("folder", "video")
 
-        const infoUpload = await axios.post("https://api.cloudinary.com/v1_1/dmb7ox9vh/video/upload", formData)
-            .then((res) => {
-                return res
+        await axios.post("https://api.cloudinary.com/v1_1/dmb7ox9vh/video/upload", formData)
+            .then(async (infoUpload) => {
+                const { width } = await getImageSize(infoUpload.data.url.replace("mp4", "jpg"))
+                await axios.post(POST_VIDEO, {
+                    "username": localStorage.getItem("username"),
+                    "title": content.trim(),
+                    "heart": 0,
+                    "share": 0,
+                    "comment": 0,
+                    "height": width > 600 ? "unset" : 504.25,
+                    "name_tag": array,
+                    "link_music": "https://www.tiktok.com/music/nh%E1%BA%A1c-n%E1%BB%81n-%F0%9D%99%A7%F0%9D%99%A4%F0%9D%99%A1%F0%9D%99%A1%F0%9D%99%9A%F0%9D%99%A3-7123551846429461275",
+                    "link_video": infoUpload.data.url,
+                    "asset_id": infoUpload.data.asset_id,
+                    "name_music": `nhạc nền - ${localStorage.getItem("user")}`,
+                    "heart_check": false
+                })
+                    .then(() => {
+                        (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'none'
+                        setSharp("Upload Lên TikTok thành công! 😀")
+                        setTimeout(() => {
+                            location.href = '/'
+                        }, 1000)
+                    })
             })
-
-        const { width } = await getImageSize(infoUpload.data.url.replace("mp4", "jpg"))
-
-        await axios.post(POST_VIDEO, {
-            "username": localStorage.getItem("username"),
-            "title": content.trim(),
-            "heart": 0,
-            "share": 0,
-            "comment": 0,
-            "height": width > 600 ? "unset" : 504.25,
-            "name_tag": array,
-            "link_music": "https://www.tiktok.com/music/nh%E1%BA%A1c-n%E1%BB%81n-%F0%9D%99%A7%F0%9D%99%A4%F0%9D%99%A1%F0%9D%99%A1%F0%9D%99%9A%F0%9D%99%A3-7123551846429461275",
-            "link_video": infoUpload.data.url,
-            "asset_id": infoUpload.data.asset_id,
-            "name_music": `nhạc nền - ${localStorage.getItem("user")}`,
-            "heart_check": false
-        }).then(() => {
-            (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'none'
-            setSharp("Upload Lên TikTok thành công! 😀")
-            setTimeout(() => {
-                location.href = '/'
-            }, 1000)
-        })
     }
 
     return (
