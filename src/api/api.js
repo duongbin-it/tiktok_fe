@@ -1,4 +1,4 @@
-const URL = 'https://tiktok-be1.onrender.com'
+const URL = 'https://tiktok-be.onrender.com'
 // const URL = 'http://localhost:3001'
 
 export const SUGGEST_ACOUNTS = `${URL}/api/suggest_accounts`
