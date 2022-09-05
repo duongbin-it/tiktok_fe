@@ -219,7 +219,7 @@ const Upload: React.FC = () => {
                                             ?
                                             <div className={cx("image__scale")}>
                                                 <div>
-                                                    <video key={uuidv4()} className={cx("image__scale--item")} src={base64Video} />
+                                                    <video className={cx("image__scale--item")} src={base64Video} />
                                                 </div>
                                             </div>
                                             :
