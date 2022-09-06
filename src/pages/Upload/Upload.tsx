@@ -5,6 +5,7 @@ import axios from "axios"
 import classNames from "classnames/bind"
 import getImageSize from 'image-size-from-url'
 import React, { useEffect, useRef, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid'
 import { POST_VIDEO } from "../../api/api"
 import { CheckboxIcon, DropdownIcon } from '../../assets/icons/icons'
@@ -18,16 +19,20 @@ const bytes = require('bytes')
 const cx = classNames.bind(styles)
 
 const Upload: React.FC = () => {
+    const navigate = useNavigate()
 
     const file = useRef<HTMLInputElement>(null)
+    const input_swift = useRef<HTMLInputElement>(null)
+    const ref_video = useRef<HTMLVideoElement>(null)
     const ref_input = useRef<HTMLInputElement>(null)
     const radio_button = useRef<HTMLDivElement>(null)
     const radio_button_item = useRef<HTMLDivElement>(null)
     const span_item = useRef<HTMLSpanElement>(null)
     const rotate_dropdown = useRef<HTMLDivElement>(null)
     const show_dropdown = useRef<HTMLDivElement>(null)
+    const show_cover = useRef<HTMLDivElement>(null)
+    const show_scale = useRef<HTMLDivElement>(null)
 
-    const [base64Video, setbaseVideo] = useState<string>("")
     const [listimage, setListimage] = useState<string[]>([])
     const [length, setLength] = useState(0)
     const [sharp, setSharp] = useState<string>("")
@@ -37,6 +42,9 @@ const Upload: React.FC = () => {
     const [showinput, setShowinput] = useState<any>("")
     const [data, setData] = useState<string>("select")
 
+    useEffect(() => {
+        localStorage.getItem("username") ?? navigate("/logout")
+    }, [navigate])
 
     useEffect(() => {
         (radio_button.current as HTMLDivElement).onclick = () => {
@@ -60,38 +68,44 @@ const Upload: React.FC = () => {
     }
 
     useEffect(() => {
+        input_swift.current && ((input_swift.current as HTMLInputElement).oninput = (e) => {
+            const seekTime = (Number((e.target as HTMLInputElement).value) * ref_video.current!.duration) / 100;
+            (ref_video.current as HTMLVideoElement).currentTime = seekTime
+            show_scale.current && ((show_scale.current as HTMLInputElement).style.transform =
+                `translate3d(${Number((e.target as HTMLInputElement).value) * 6.5 - 15}%, 1px, 0px) scaleX(1.1) scaleY(1.1)`)
+        })
+    })
+
+    useEffect(() => {
         (file.current as HTMLInputElement).onchange = (e: any) => {
             setListimage([])
             const currentFile = e.target.files[0]
             setShowinput(currentFile)
-            setTimeout(() => {
-                const reader = new FileReader()
-                reader.readAsDataURL(currentFile)
-                reader.onload = () => {
-                    setData('change')
-                    ref_input.current!.placeholder = showinput;
-                    (document.querySelector(`[class='${cx("input-tag")}']`) as HTMLDivElement).style.pointerEvents = 'unset';
-                    (ref_input.current as HTMLInputElement).style.color = 'unset';
-                    (ref_input.current as HTMLInputElement).style.background = 'unset';
-                    (ref_input.current as HTMLInputElement).style.pointerEvents = 'unset';
-                    (ref_input.current as HTMLInputElement).style.border = '1px solid rgba(22, 24, 35, 0.12)';
-                    (ref_input.current as HTMLInputElement).placeholder = 'Hãy nhập nội dung video của bạn ở đây...'
-                    reader.result && setbaseVideo(String(reader.result))
-                    generateVideoThumbnails(currentFile, 8, "video").then((thumbnailArray) => {
-                        thumbnailArray.map((item) => {
-                            return setListimage(prev => [...prev, item])
-                        })
-                    }).catch((err) => {
-                        console.error(err)
+            const reader = new FileReader()
+            reader.readAsDataURL(currentFile)
+            reader.onload = () => {
+                setData('change')
+                ref_input.current!.placeholder = showinput;
+                (document.querySelector(`[class='${cx("input-tag")}']`) as HTMLDivElement).style.pointerEvents = 'unset';
+                (ref_input.current as HTMLInputElement).style.color = 'unset';
+                (ref_input.current as HTMLInputElement).style.background = 'unset';
+                (ref_input.current as HTMLInputElement).style.pointerEvents = 'unset';
+                (ref_input.current as HTMLInputElement).style.border = '1px solid rgba(22, 24, 35, 0.12)';
+                (ref_input.current as HTMLInputElement).placeholder = 'Hãy nhập nội dung video của bạn ở đây...'
+                reader.result && generateVideoThumbnails(currentFile, 8, "video").then((thumbnailArray) => {
+                    thumbnailArray.push(String(reader.result))
+                    thumbnailArray.map((item) => {
+                        return setListimage(prev => [...prev, item])
                     })
-                }
-            }, 1000)
+                }).catch((err) => {
+                    console.error(err)
+                })
+            }
         }
     }, [file, showinput])
 
     const postVideo = async () => {
         (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block'
-        setSharp("")
         ref_input.current!.placeholder = ""
         const title = []
         const array: {}[] = []
@@ -155,7 +169,7 @@ const Upload: React.FC = () => {
                                 ? data === 'select'
                                     ? <Uploader onClick={opendialogFile} content="Select file" />
                                     : <Uploader onClick={opendialogFile} content="Change file"
-                                        name_file={showinput.name}
+                                        name_file={showinput && showinput.name}
                                         title="Successfully uploaded"
                                         size={"Size video: " + bytes.format(showinput.size, { unitSeparator: ' ' })}
                                     />
@@ -169,7 +183,7 @@ const Upload: React.FC = () => {
                                     <span className={cx("length-notation")}>{length} / 150</span>
                                 </div>
                                 <div className={cx("input-tag")}>
-                                    <input type="text" className={cx("input-tag_item")} ref={ref_input} placeholder="Hãy nhập nội dung video của bạn ở đây..."
+                                    <input type="text" className={cx("input-tag_item")} ref={ref_input}
                                         onChange={
                                             (e) => {
                                                 if (!e.target.value.startsWith(" ")) {
@@ -205,7 +219,7 @@ const Upload: React.FC = () => {
                             </div>
                             <div className={cx("group")}>
                                 <span className={cx("privacy")}>Cover</span>
-                                <div className={cx("show-cover")} >
+                                <div className={cx("show-cover")} ref={show_cover}>
                                     {listimage[0] && <div className={cx("show-cover_item")}>
                                         {listimage ? listimage.filter((item, index) => index <= 7 && item).map((item) => {
                                             return (
@@ -216,13 +230,14 @@ const Upload: React.FC = () => {
                                     {
                                         listimage[0]
                                             ?
-                                            <div className={cx("image__scale")}>
-                                                <div>
-                                                    <video className={cx("image__scale--item")} src={base64Video} />
+                                            <>
+                                                <input className={cx("input_swift")} type={"range"} ref={input_swift} defaultValue={0}></input>
+                                                <div className={cx("image__scale")} ref={show_scale}>
+                                                    <video draggable={false} preload="auto" className={cx("image__scale--item")} src={listimage[listimage.length - 1]} ref={ref_video} />
                                                 </div>
-                                            </div>
+                                            </>
                                             :
-                                            <div className={cx("image__scale-item")}></div>
+                                            <div className={cx("image__scale-item")} ref={show_scale}></div>
                                     }
                                 </div>
                             </div>

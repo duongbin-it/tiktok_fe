@@ -107,7 +107,7 @@
                             font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif, "Segoe UI Emoji", "Noto Emoji";
                             font-weight: 500;
                             height: 46px;
-                            border: 0;
+                            border: 1px transparent;
                             border-radius: 4px;
                             outline: none;
                             width: 100%;
@@ -153,15 +153,16 @@
                             border: 1px solid rgba(22, 24, 35, 0.12);
                             border-radius: 2px;
                             display: inline-flex;
+                            cursor: grab;
 
                             .show-cover_item {
                                 border: 2px solid transparent;
                                 box-sizing: border-box;
                                 border-radius: 2px;
                                 user-select: none;
-                                height: 150px;
                                 object-fit: cover;
                                 display: flex;
+                                pointer-events: none;
 
                                 .show__cover-image {
                                     opacity: 0.3;
@@ -169,11 +170,13 @@
                                     width: 85.8px;
                                     height: 150px;
                                     object-fit: cover;
+                                    z-index: 1;
                                 }
                             }
 
                             .image__scale {
-                                cursor: grab;
+                                z-index: 2;
+                                pointer-events: none;
                                 position: absolute;
                                 top: 0px;
                                 left: 0px;
@@ -181,7 +184,7 @@
                                 border: 6px solid rgb(255, 255, 255);
                                 box-shadow: rgb(34 90 89 / 20%) 2px 4px 20px;
                                 border-radius: 8px;
-                                transform: translate3d(4px, 1px, 0px) scaleX(1.1) scaleY(1.1);
+                                transform: translate3d(-8.5%, 1px, 0px) scaleX(1.1) scaleY(1.1);
 
                                 .image__scale--item {
                                     width: 84.2px;
@@ -196,6 +199,14 @@
                                 height: 150px;
                                 object-fit: cover;
                                 background-color: rgba(22, 24, 35, 0.03);
+                            }
+
+                            .input_swift {
+                                position: absolute;
+                                height: 100%;
+                                inset: 0;
+                                -webkit-appearance: none;
+                                accent-color: white;
                             }
                         }
 

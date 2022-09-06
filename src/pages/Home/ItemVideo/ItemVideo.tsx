@@ -137,6 +137,7 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
     const mouseUp = progress.current!.onmouseup = function () {
       if (isVisibile_video) {
         ref_video.current?.play()
+        setPlay(true)
       }
     }
 
