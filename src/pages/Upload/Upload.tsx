@@ -140,7 +140,7 @@ const Upload: React.FC = () => {
                     "heart": 0,
                     "share": 0,
                     "comment": 0,
-                    "height": width > 600 ? 310 : 504.25,
+                    "height": width > 600 ? 310 : 525,
                     "name_tag": array,
                     "link_music": "https://www.tiktok.com/music/nh%E1%BA%A1c-n%E1%BB%81n-%F0%9D%99%A7%F0%9D%99%A4%F0%9D%99%A1%F0%9D%99%A1%F0%9D%99%9A%F0%9D%99%A3-7123551846429461275",
                     "link_video": infoUpload.data.url,
