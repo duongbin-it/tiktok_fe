@@ -185,6 +185,7 @@
                                 box-shadow: rgb(34 90 89 / 20%) 2px 4px 20px;
                                 border-radius: 8px;
                                 transform: translate3d(-8.5%, 1px, 0px) scaleX(1.1) scaleY(1.1);
+                                transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
 
                                 .image__scale--item {
                                     width: 84.2px;

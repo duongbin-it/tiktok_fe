@@ -19,7 +19,6 @@ const bytes = require('bytes')
 const cx = classNames.bind(styles)
 
 const Upload: React.FC = () => {
-    const navigate = useNavigate()
 
     const file = useRef<HTMLInputElement>(null)
     const input_swift = useRef<HTMLInputElement>(null)
@@ -42,6 +41,7 @@ const Upload: React.FC = () => {
     const [showinput, setShowinput] = useState<any>("")
     const [data, setData] = useState<string>("select")
 
+    const navigate = useNavigate()
     useEffect(() => {
         localStorage.getItem("username") ?? navigate("/logout")
     }, [navigate])
@@ -78,33 +78,38 @@ const Upload: React.FC = () => {
 
     useEffect(() => {
         (file.current as HTMLInputElement).onchange = (e: any) => {
-            setListimage([])
-            const currentFile = e.target.files[0]
-            setShowinput(currentFile)
-            const reader = new FileReader()
-            reader.readAsDataURL(currentFile)
-            reader.onload = () => {
-                setData('change')
-                ref_input.current!.placeholder = showinput;
-                (document.querySelector(`[class='${cx("input-tag")}']`) as HTMLDivElement).style.pointerEvents = 'unset';
-                (ref_input.current as HTMLInputElement).style.color = 'unset';
-                (ref_input.current as HTMLInputElement).style.background = 'unset';
-                (ref_input.current as HTMLInputElement).style.pointerEvents = 'unset';
-                (ref_input.current as HTMLInputElement).style.border = '1px solid rgba(22, 24, 35, 0.12)';
-                (ref_input.current as HTMLInputElement).placeholder = 'Hãy nhập nội dung video của bạn ở đây...'
-                reader.result && generateVideoThumbnails(currentFile, 8, "video").then((thumbnailArray) => {
-                    thumbnailArray.push(String(reader.result))
-                    thumbnailArray.map((item) => {
-                        return setListimage(prev => [...prev, item])
+            try {
+                setListimage([])
+                const currentFile = e.target.files[0]
+                setShowinput(currentFile)
+                const reader = new FileReader()
+                reader.readAsDataURL(currentFile)
+                reader.onload = () => {
+                    setData('change')
+                    ref_input.current!.placeholder = showinput;
+                    (document.querySelector(`[class='${cx("input-tag")}']`) as HTMLDivElement).style.pointerEvents = 'unset';
+                    (ref_input.current as HTMLInputElement).style.color = 'unset';
+                    (ref_input.current as HTMLInputElement).style.background = 'unset';
+                    (ref_input.current as HTMLInputElement).style.pointerEvents = 'unset';
+                    (ref_input.current as HTMLInputElement).style.border = '1px solid rgba(22, 24, 35, 0.12)';
+                    (ref_input.current as HTMLInputElement).placeholder = 'Hãy nhập nội dung video của bạn ở đây...'
+                    reader.result && generateVideoThumbnails(currentFile, 8, "video").then((thumbnailArray) => {
+                        thumbnailArray.push(String(reader.result))
+                        thumbnailArray.map((item) => {
+                            return setListimage(prev => [...prev, item])
+                        })
+                    }).catch((err) => {
+                        console.error(err)
                     })
-                }).catch((err) => {
-                    console.error(err)
-                })
+                }
+            } catch (error) {
+
             }
         }
     }, [file, showinput])
 
     const postVideo = async () => {
+        setSharp("");
         (document.querySelector("[class='svg-css']") as HTMLDivElement).style.display = 'block'
         ref_input.current!.placeholder = ""
         const title = []
@@ -171,7 +176,7 @@ const Upload: React.FC = () => {
                                     : <Uploader onClick={opendialogFile} content="Change file"
                                         name_file={showinput && showinput.name}
                                         title="Successfully uploaded"
-                                        size={"Size video: " + bytes.format(showinput.size, { unitSeparator: ' ' })}
+                                        size={showinput && "Size video: " + bytes.format(showinput.size, { unitSeparator: ' ' })}
                                     />
                                 : <Uploading />
                             }

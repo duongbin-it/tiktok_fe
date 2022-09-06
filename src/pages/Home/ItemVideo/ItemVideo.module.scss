@@ -15,7 +15,7 @@
   max-width: 692px;
   max-height: 635px;
   opacity: 1;
-  transition: all 0.5s;
+  transition: all 0.5s linear;
 }
 
 .link-btn {
@@ -716,9 +716,10 @@ canvas {
   display: flex;
   flex-direction: column;
   font-family: "Work Sans", sans-serif;
+  font-size: 14px;
 
   .tippy__wrapper--item {
-    padding: 5px 20px;
+    padding: 5px 11px;
 
     .tippy__link {
       display: flex;
@@ -731,5 +732,4 @@ canvas {
       background-color: rgba(22, 24, 35, 0.03);
     }
   }
-
 }

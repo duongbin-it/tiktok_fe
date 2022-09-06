@@ -823,8 +823,8 @@ export const ProcessIcon = React.memo(() => (
 export const DeleteIcon = React.memo(() => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="30"
-    height="30"
+    width="25"
+    height="25"
     x="0"
     y="0"
     fill="currentColor"
@@ -838,8 +838,8 @@ export const DeleteIcon = React.memo(() => (
 export const EditIcon = React.memo(() => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="30"
-    height="30"
+    width="25"
+    height="25"
     x="0"
     y="0"
     viewBox="0 0 32 32"
@@ -853,8 +853,8 @@ export const EditIcon = React.memo(() => (
 export const DownloadIcon = React.memo(() => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="30"
-    height="30"
+    width="25"
+    height="25"
     x="0"
     y="0"
     viewBox="0 0 16 16"

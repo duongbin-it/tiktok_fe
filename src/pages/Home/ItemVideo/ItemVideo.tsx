@@ -6,14 +6,14 @@ import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid'
-import { DELETE_VIDEO, NEWFEED } from "../../../api/api"
+import { DELETE_VIDEO } from "../../../api/api"
 import { CheckIcon, CommentIcon, DeleteIcon, DownloadIcon, EditIcon, HeartactiveIcon, HeartIcon, MoreIcon, MusicIcon, PauseIcon, PlayIcon, ReportIcon, ShareIcon, SoundIcon, UnSoundIcon } from "../../../assets/icons/icons"
 import Button from "../../../components/Button/Button"
 import { Following, handleShowLogin, Hearted } from "../../../components/GlobalFunction/GlobalFunction"
 import Tippys from "../../../components/Tippys/Tippys"
 import useElementOnScreen from "../../../hooks/useElementOnScreen"
 import TippyShare from '../../../layouts/components/TippyShare/TippyShare'
-import { setApi, setButtonSound } from "../../../redux/actions"
+import { setButtonSound } from "../../../redux/actions"
 import styles from "./ItemVideo.module.scss"
 
 var numeral = require('numeral')
@@ -32,7 +32,11 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
   const [time, setTime] = useState<any>(null)
   const [follow, setFollow] = useState<boolean>(data.following)
   const [heart, setHeart] = useState<boolean>(data.heart_check)
+
   const ref = useRef<HTMLDivElement>(null)
+  const link_btn = useRef<HTMLAnchorElement>(null)
+  const btn_content = useRef<HTMLDivElement>(null)
+  const ref_item = useRef<HTMLDivElement>(null)
   const ref_img = useRef<HTMLImageElement>(null)
   const ref_avatar = useRef<HTMLImageElement>(null)
   const refSound = useRef<HTMLDivElement>(null)
@@ -45,7 +49,6 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
 
 
   const isVisibile_video = useElementOnScreen({ threshold: 1 }, ref_video)
-
 
   const CurrentUser = localStorage.getItem("user")
 
@@ -185,25 +188,22 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
     }
   }, [sound])
 
-  const deleteVideo = async () => {
-    (document.querySelector(`[class='${cx("wrapper")}']`) as HTMLDivElement)!.style.maxHeight = '0';
-    (document.querySelector(`[class='${cx("wrapper")}']`) as HTMLDivElement)!.style.opacity = '0';
-    (document.querySelector(`[class='${cx("wrapper")}']`) as HTMLDivElement)!.style.padding = '0'
-    await axios.post(DELETE_VIDEO, { _id: data._id, asset_id: data.asset_id })
-      .then(async () => {
-        await axios.get(NEWFEED).then((res: any) => {
-          dispath(setApi(res.data))
-          window.scrollTo(0, 0)
-        })
-      })
+  const deleteVideo = () => {
+    (ref_item.current as HTMLDivElement).style.maxHeight = '0';
+    (ref_item.current as HTMLDivElement).style.opacity = '0';
+    (ref_item.current as HTMLDivElement).style.padding = '0';
+    (ref_item.current as HTMLDivElement).style.visibility = 'hidden';
+    (link_btn.current as HTMLAnchorElement).style.display = 'none';
+    (btn_content.current as HTMLDivElement).style.display = 'none'
+    axios.post(DELETE_VIDEO, { _id: data._id, asset_id: data.asset_id })
   }
 
   return (
-    <div className={cx("wrapper")}>
+    <div className={cx("wrapper")} ref={ref_item}>
       <Tippys setFollow={setFollow} data={data}>
         {
           data.live
-            ? <Link className={cx("link-btn")} to={`/@${data.username}`}>
+            ? <Link className={cx("link-btn")} to={`/@${data.username}`} ref={link_btn}>
               <div className={cx("link-btn_div")}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="none" className={cx('live-icon')} viewBox="0 0 52 52">
                   <circle cx="26" cy="26" r="25.25" stroke="url(#paint0_linear)" strokeWidth="1.5"></circle>
@@ -221,7 +221,7 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
               </div>
             </Link>
             :
-            <Link className={cx("link-btn")} to={`/@${data.username}`}>
+            <Link className={cx("link-btn")} to={`/@${data.username}`} ref={link_btn}>
               <div className={cx("link-btn_div1")}>
                 <span className={cx("link-btn_span")}>
                   <img style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover" }} src={data.avatar} alt={'avatar'} ref={ref_avatar} />
@@ -232,7 +232,7 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
       </Tippys>
 
       {/* content-title */}
-      <div className={cx("div-btn-content")}>
+      <div className={cx("div-btn-content")} ref={btn_content}>
         <div className={cx("div-btn_item")}>
           <div className={cx("div-btn_item-div")}>
             <div style={{ display: "block" }}>
@@ -256,7 +256,7 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
                 <Tippy
                   interactive
                   appendTo={document.body}
-                  offset={[120, -30]}
+                  offset={[100, -30]}
                   zIndex={1}
                   placement='right-end'
                   render={(attrs) => (

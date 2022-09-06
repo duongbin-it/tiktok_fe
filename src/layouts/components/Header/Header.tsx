@@ -1,10 +1,12 @@
 import Tippy from "@tippyjs/react"
 import HeadlessTippy from '@tippyjs/react/headless'
+import axios from "axios"
 import classNames from "classnames/bind"
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from "react-redux"
 import { Link, NavLink } from "react-router-dom"
 import "tippy.js/dist/tippy.css"
+import { NEWFEED } from "../../../api/api"
 import { CoinIcon, HelpIcon, KeyboardIcon, LanguageIcon, LogoIcon, LogOutIcon, MessageIcon, MoreIcon, NotificationIcon, NotificationIcon1, PathIcon, PlusIcon, SettingIcon, UserIcon } from "../../../assets/icons/icons"
 import Button from "../../../components/Button/Button"
 import { handleShowLogin } from "../../../components/GlobalFunction/GlobalFunction"
@@ -134,6 +136,11 @@ const Header: React.FC = () => {
         <div className={cx("logo")} >
           <Link to={"/"} style={{ display: "flex" }} onClick={() => {
             dispath(setApi([]))
+            if (window.location.pathname === "/") {
+              axios.get(NEWFEED).then((res) => {
+                dispath(setApi(res.data))
+              })
+            }
             setTimeout(() => {
               setActived(false)
             }, 4000)
