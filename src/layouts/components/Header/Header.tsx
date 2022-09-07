@@ -160,6 +160,7 @@ const Header: React.FC = () => {
                   <MessageIcon></MessageIcon>
                 </Link>
               </Tippy>
+
               <HeadlessTippy
                 interactive
                 zIndex={1}

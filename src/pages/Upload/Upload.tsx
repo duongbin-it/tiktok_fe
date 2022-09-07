@@ -78,10 +78,10 @@ const Upload: React.FC = () => {
 
     useEffect(() => {
         (file.current as HTMLInputElement).onchange = (e: any) => {
-            try {
+            const currentFile = e.target.files[0]
+            if (currentFile.size <= 2147483648) {
                 setListimage([])
-                const currentFile = e.target.files[0]
-                setShowinput(currentFile)
+                currentFile && setShowinput(currentFile); setData("select")
                 const reader = new FileReader()
                 reader.readAsDataURL(currentFile)
                 reader.onload = () => {
@@ -102,8 +102,6 @@ const Upload: React.FC = () => {
                         console.error(err)
                     })
                 }
-            } catch (error) {
-
             }
         }
     }, [file, showinput])
@@ -174,9 +172,10 @@ const Upload: React.FC = () => {
                                 ? data === 'select'
                                     ? <Uploader onClick={opendialogFile} content="Select file" />
                                     : <Uploader onClick={opendialogFile} content="Change file"
-                                        name_file={showinput && showinput.name}
+                                        name_file={showinput.name}
                                         title="Successfully uploaded"
-                                        size={showinput && "Size video: " + bytes.format(showinput.size, { unitSeparator: ' ' })}
+                                        bgrColor="#00CC00                                        "
+                                        size={"Size video: " + bytes.format(showinput.size, { unitSeparator: ' ' })}
                                     />
                                 : <Uploading />
                             }

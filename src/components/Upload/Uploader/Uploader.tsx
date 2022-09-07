@@ -10,9 +10,10 @@ interface Props {
     name_file?: string,
     title?: string,
     size?: string,
+    bgrColor?: string,
 }
 
-const Upload: React.FC<Props> = ({ onClick, content, name_file = 'Or drag and drop a file', title = 'Select video to upload', size = 'Less than 2 GB' }: any) => {
+const Upload: React.FC<Props> = ({ onClick, content, name_file = 'Or drag and drop a file', title = 'Select video to upload', size = 'Less than 2 GB', bgrColor = 'rgba(254, 44, 85, 1)' }) => {
 
     return (
         <div className={cx("input_upload")} onClick={onClick}>
@@ -39,7 +40,7 @@ const Upload: React.FC<Props> = ({ onClick, content, name_file = 'Or drag and dr
                 </div>
             </div>
             <div className={cx("button_select")}>
-                <button className={cx("button_select-button")}>
+                <button className={cx("button_select-button")} style={{ backgroundColor: bgrColor }}>
                     <div className={cx("button_container")}>
                         <div className={cx("button_content")}>{content}</div>
                     </div>
