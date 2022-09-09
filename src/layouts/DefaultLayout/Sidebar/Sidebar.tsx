@@ -3,7 +3,7 @@ import classNames from "classnames/bind"
 import React, { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid'
-import { DISCOVER, FOLLOWING_ACOUNTS, SUGGEST_ACOUNTS } from "../../../api/api"
+import { DISCOVER, FOLLOWING_ACCOUNTS, SUGGEST_ACCOUNTS } from "../../../api/api"
 import { MusicIcon, SharpIcon } from "../../../assets/icons/icons"
 import Button from "../../../components/Button/Button"
 import { handleShowLogin } from "../../../components/GlobalFunction/GlobalFunction"
@@ -47,8 +47,8 @@ const Sidebar: React.FC = () => {
 
   useEffect(() => {
     axios.get(DISCOVER).then((res) => setDiscover(res)).catch((res) => console.log(res))
-    axios.get(SUGGEST_ACOUNTS).then((req) => setSuggest(req)).catch((res) => console.log(res))
-    axios.get(FOLLOWING_ACOUNTS).then((req) => setFollowing(req)).catch((res) => console.log(res))
+    axios.get(SUGGEST_ACCOUNTS).then((req) => setSuggest(req)).catch((res) => console.log(res))
+    axios.get(FOLLOWING_ACCOUNTS).then((req) => setFollowing(req)).catch((res) => console.log(res))
   }, [])
 
   return (
