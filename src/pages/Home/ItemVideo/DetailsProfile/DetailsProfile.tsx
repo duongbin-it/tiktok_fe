@@ -36,7 +36,7 @@ const DetailsProfile: React.FC<Props> = ({ datadetails, setFollow, suggest }: an
             <div className={cx('header')}>
                 <a href={`/@${datadetails.username}`}>
                     <span className={cx("image_avatar")}>
-                        <img src={datadetails.avatar} alt="avatar" />
+                        <img loading="lazy" src={datadetails.avatar} alt="avatar" />
                     </span>
                 </a>
                 {

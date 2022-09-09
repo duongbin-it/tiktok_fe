@@ -215,7 +215,7 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
                 </svg>
 
                 <span className={cx("link-btn_span1")}>
-                  <img style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover", maxWidth: '100%', display: "block" }} src={data.avatar} alt={'avatar'} ref={ref_avatar} />
+                  <img loading="lazy" style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover", maxWidth: '100%', display: "block" }} src={data.avatar} alt={'avatar'} ref={ref_avatar} />
                 </span>
                 <span className={cx('live-stream')}>LIVE</span>
               </div>
@@ -224,7 +224,7 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
             <Link className={cx("link-btn")} to={`/@${data.username}`} ref={link_btn}>
               <div className={cx("link-btn_div1")}>
                 <span className={cx("link-btn_span")}>
-                  <img style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover" }} src={data.avatar} alt={'avatar'} ref={ref_avatar} />
+                  <img loading="lazy" style={{ width: 100 + "%", height: 100 + "%", objectFit: "cover" }} src={data.avatar} alt={'avatar'} ref={ref_avatar} />
                 </span>
               </div>
             </Link>
@@ -326,7 +326,7 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
         {/* xử lý video */}
         <div className={cx("div-btn-video")}>
           <div className={cx("div_first_normal")} style={{ height: data.height }}>
-            <img src={data.link_video.replace("mp4", "jpg")} alt="video" ref={ref_img} />
+            <img loading="lazy" src={data.link_video.replace("mp4", "jpg")} alt="video" ref={ref_img} />
             <div className={cx("div_first-item")}>
               <div className={cx("div-1")}>
                 <div className={cx("div-1_item")}>

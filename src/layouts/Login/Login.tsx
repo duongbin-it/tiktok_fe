@@ -2,18 +2,15 @@ import classNames from "classnames/bind"
 import React from "react"
 import { CloseIcon, FbIcon, GgIcon, GithubIcon, IclouldIcon, InstagramIcon, MicrosoftIcon, PersonIcon, QrIcon, TwitterIcon } from "../../assets/icons/icons"
 import { EffectLoading } from "../../components/Effect/EffectLoading"
-import { Notification } from "../../components/Effect/Notification"
 import { handleHideLogin } from "../../components/GlobalFunction/GlobalFunction"
 import styles from "./Login.module.scss"
 import { LoginFacebook, LoginGithub, LoginGoogle } from "./LoginSocialNetWork/LoginSocialNetWork"
 
 const cx = classNames.bind(styles)
-
 const Login: React.FC = () => {
 
   return (
     <div className={cx("wrapper")}>
-      <Notification />
       <div className={cx("wrapper-ui")}></div>
       <div className={cx("wrapper-select")}>
         <div className={cx("container")}>

@@ -12,14 +12,14 @@ const handleIconLive: React.FC = (image: any) => (
     <>
         <LiveStreamIcon />
         <span className={cx('img-block-btn')} style={{ width: 26, height: 26 }}>
-            <img className={cx('img-avatar')} src={image} alt='avatar'></img>
+            <img loading="lazy" className={cx('img-avatar')} src={image} alt='avatar'></img>
         </span>
     </>
 )
 
 const unhandleIconLive = (image: any) => (
     <span className={cx('img-block-btn')} >
-        <img className={cx('img-avatar')} src={image} alt='avatar'></img>
+        <img loading="lazy" className={cx('img-avatar')} src={image} alt='avatar'></img>
     </span>
 )
 

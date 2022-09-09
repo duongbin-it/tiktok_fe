@@ -79,7 +79,7 @@ const Upload: React.FC = () => {
     useEffect(() => {
         (file.current as HTMLInputElement).onchange = (e: any) => {
             const currentFile = e.target.files[0]
-            if (currentFile.size <= 2147483648) {
+            if (currentFile && currentFile.size <= 2147483648) {
                 setListimage([])
                 currentFile && setShowinput(currentFile); setData("select")
                 const reader = new FileReader()
@@ -207,7 +207,7 @@ const Upload: React.FC = () => {
                                         setLength(ref_input.current!.value.length)
                                     }}>
                                         <img
-                                            src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/at.062a03e9.svg" alt="@" />
+                                            loading="lazy" src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/at.062a03e9.svg" alt="@" />
                                     </div>
                                     <div className={cx("icon-tag2")} onClick={() => {
                                         ref_input.current?.value.length === 0 ? setSharp(prev => prev + "#") : setSharp(prev => prev + " #")
@@ -215,7 +215,7 @@ const Upload: React.FC = () => {
                                         setLength(ref_input.current!.value.length)
                                     }}>
                                         <img
-                                            alt="#"
+                                            loading="lazy" alt="#"
                                             src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/hashtag.234f1b9c.svg"
                                         />
                                     </div>
@@ -227,7 +227,7 @@ const Upload: React.FC = () => {
                                     {listimage[0] && <div className={cx("show-cover_item")}>
                                         {listimage ? listimage.filter((item, index) => index <= 7 && item).map((item) => {
                                             return (
-                                                <img key={uuidv4()} className={cx("show__cover-image")} alt="thumbnail" src={item} />
+                                                <img loading="lazy" key={uuidv4()} className={cx("show__cover-image")} alt="thumbnail" src={item} />
                                             )
                                         }) : null}
                                     </div>}

@@ -13,7 +13,7 @@ interface Props {
 const AccountItem: React.FC<Props> = ({ data, onClick }) => {
     return (
         <Link to={`/@${data['nickname']}`} className={cx('wrapper')} onClick={onClick}>
-            <img className={cx('avatar')} src={data['avatar']} alt={data['full_name']} />
+            <img className={cx('avatar')} src={data['avatar']} alt={data['full_name']} loading="lazy" />
             <div className={cx('info')}>
                 <h4 className={cx('name')}>
                     <span>{data['full_name']}</span>

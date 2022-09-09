@@ -17,7 +17,7 @@ const Upload: React.FC<Props> = ({ onClick, content, name_file = 'Or drag and dr
 
     return (
         <div className={cx("input_upload")} onClick={onClick}>
-            <img src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/cloud-icon1.ecf0bf2b.svg"
+            <img loading="lazy" src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/cloud-icon1.ecf0bf2b.svg"
                 alt="Upload" style={{ width: 40, height: 29 }} />
             <div className={cx("title_select")}>
                 <span className={cx("title_select-item")}>{title}</span>
