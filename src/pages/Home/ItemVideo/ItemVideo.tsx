@@ -13,7 +13,7 @@ import { Following, handleShowLogin, Hearted } from "../../../components/GlobalF
 import Tippys from "../../../components/Tippys/Tippys"
 import useElementOnScreen from "../../../hooks/useElementOnScreen"
 import TippyShare from '../../../layouts/components/TippyShare/TippyShare'
-import { setButtonSound } from "../../../redux/actions"
+import { filterSlice } from '../../../redux/reducer'
 import styles from "./ItemVideo.module.scss"
 
 var numeral = require('numeral')
@@ -26,7 +26,7 @@ interface Props {
 const ItemVideo: React.FC<Props> = ({ data }) => {
 
   const dispath = useDispatch()
-  const sound = useSelector<any>(item => item['sound'])
+  const sound = useSelector<any>(item => item['filters']['sound'])
 
   const [play, setPlay] = useState<boolean>(false)
   const [time, setTime] = useState<any>(null)
@@ -157,14 +157,14 @@ const ItemVideo: React.FC<Props> = ({ data }) => {
       let volume = Number((e.target as HTMLInputElement).value) / 100
       ref_video.current!.volume = volume
       if (volume < 0.01) {
-        dispath(setButtonSound(true))
+        dispath(filterSlice.actions.setButtonSound(true))
       } else {
-        dispath(setButtonSound(false))
+        dispath(filterSlice.actions.setButtonSound(false))
       }
     }
 
     const Click = refSound.current!.onclick = function () {
-      dispath(setButtonSound(!sound))
+      dispath(filterSlice.actions.setButtonSound(!sound))
       if (sound) {
         document.querySelectorAll(`[class='${ref_video.current?.className}']`).forEach(item => {
           (item as HTMLVideoElement).muted = false

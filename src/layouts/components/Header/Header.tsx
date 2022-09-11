@@ -11,7 +11,7 @@ import { CoinIcon, HelpIcon, KeyboardIcon, LanguageIcon, LogoIcon, LogOutIcon, M
 import Button from "../../../components/Button/Button"
 import { handleShowLogin } from "../../../components/GlobalFunction/GlobalFunction"
 import Menu from "../../../components/Popper/Menu/Menu"
-import { setApi } from "../../../redux/actions"
+import { filterSlice } from "../../../redux/reducer"
 import Login from "../../Login/Login"
 import Search from "../Search/Search"
 import styles from "./Header.module.scss"
@@ -135,10 +135,10 @@ const Header: React.FC = () => {
       <div className={cx("inner")} ref={ref_header}>
         <div className={cx("logo")} >
           <Link to={"/"} style={{ display: "flex" }} onClick={() => {
-            dispath(setApi([]))
+            dispath(filterSlice.actions.setApi([]))
             if (window.location.pathname === "/") {
               axios.get(NEWFEED).then((res) => {
-                dispath(setApi(res.data))
+                dispath(filterSlice.actions.setApi(res.data))
               })
             }
             setTimeout(() => {

@@ -5,17 +5,17 @@ import { v4 as uuidv4 } from 'uuid'
 import { NEWFEED } from "../../api/api"
 import { VideoLoading } from "../../components/Loading/Loading"
 import Error from "../../Error/Error"
-import { setApi } from "../../redux/actions"
+import { filterSlice } from "../../redux/reducer"
 import ItemVideo from "./ItemVideo/ItemVideo"
 
 const Home: React.FC = () => {
 
   const dispath = useDispatch()
-  const api = Object(useSelector<any>(item => item['api']))
+  const api = Object(useSelector<any>(item => item['filters']['api']))
 
   useEffect(() => {
     axios.get(NEWFEED).then((res: any) => {
-      dispath(setApi(res.data))
+      dispath(filterSlice.actions.setApi(res.data))
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

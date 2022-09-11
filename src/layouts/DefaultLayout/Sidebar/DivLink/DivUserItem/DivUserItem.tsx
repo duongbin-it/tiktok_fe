@@ -2,7 +2,7 @@ import classNames from 'classnames/bind'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { setApi } from '../../../../../redux/actions'
+import { filterSlice } from '../../../../../redux/reducer'
 import styles from './DivUserItem.module.scss'
 
 const cx = classNames.bind(styles)
@@ -30,7 +30,7 @@ const DivUserItem: React.FC<Props> = ({ link, icon, icon1, content }) => {
     }
 
     return (
-        <NavLink style={Active} to={link} className={cx('wrapper')} onClick={() => { dispath(setApi([])) }}>
+        <NavLink style={Active} to={link} className={cx('wrapper')} onClick={() => { dispath(filterSlice.actions.setApi([])) }}>
             <div className={cx('link')} >
                 {act ? icon1 : icon}
                 <h2 className={cx('content')}>

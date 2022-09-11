@@ -1,23 +1,17 @@
-import * as ht from "./selectors"
+import { createSlice } from "@reduxjs/toolkit"
 
-const initState = {
-    sound: true,
-    api: [],
-}
-
-export function reducer(state = initState, action: any) {
-    switch (action.type) {
-        case ht.SET_SOUND:
-            return {
-                ...state,
-                sound: action.payload,
-            }
-        case ht.SET_API:
-            return {
-                ...state,
-                api: action.payload,
-            }
-        default:
-            return state
+export const filterSlice = createSlice({
+    name: "filters",
+    initialState: {
+        sound: true,
+        api: [],
+    },
+    reducers: {
+        setButtonSound: (state, action) => {
+            state.sound = action.payload
+        },
+        setApi: (state, action) => {
+            state.api = action.payload
+        },
     }
-}
+})
